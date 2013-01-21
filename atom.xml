@@ -1,0 +1,1700 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Martin Foot]]></title>
+  <link href="http://mfoo.github.com/atom.xml" rel="self"/>
+  <link href="http://mfoo.github.com/"/>
+  <updated>2013-01-21T22:33:31+00:00</updated>
+  <id>http://mfoo.github.com/</id>
+  <author>
+    <name><![CDATA[Martin Foot]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Introduction to Genetics and Evolution]]></title>
+    <link href="http://mfoo.github.com/blog/2013/01/01/introduction-to-genetics-and-evolution/"/>
+    <updated>2013-01-01T22:12:00+00:00</updated>
+    <id>http://mfoo.github.com/blog/2013/01/01/introduction-to-genetics-and-evolution</id>
+    <content type="html"><![CDATA[<p>One of the things that I wanted to do in 2012 was to learn more about genetics
+and the process of evolution. I never had much of an interest in biology until
+I took a course by (<a href="http://legacy.www.ecs.soton.ac.uk/about/klaus-peter.php">Dr Klaus-Peter Zauner</a>)
+at university on how engineering principles can be applied to, and indeed
+derived from, biological processes. Fascinated by the fact that we&#8217;re ever
+closer to understanding the systems and pathways that control growth and
+interactions within the body, and the knowledge that we are already able to
+design systems to perform tasks for us, I now see biology as one of the
+ultimate goals for engineering. I would highly recommend anybody who has a
+computer science or engineering degree/background to read into this. As a
+software engineer I&#8217;m constantly learning new things. There&#8217;s always something
+interesting to read or learn about&#8230; but it&#8217;s usually not an entirely new
+frontier. Biological computation is just that.</p>
+
+<p>In the interests of learning, I recently completed a 10 week free online course
+called the <a href="https://www.coursera.org/course/geneticsevolution">Introduction to Genetics and Evolution</a> by Professor
+Mohamed Noor and his assistants at Duke University in North Carolina. It
+equated to 1&#8211;2 hours a week so was not too much of a commitment, but was a lot
+of fun. The course is running again shortly and I would thoroughly recommend it
+to anybody willing to learn.</p>
+
+<p>Here&#8217;s an example of a species we studied called the Lampsilis Mussel when
+studying camouflage and the extend that evolution can be observed in the wild.
+Just a fascinating taster of some of the course material!</p>
+
+<iframe width="560" height="315" src="http://www.youtube.com/embed/I0YTBj0WHkU"
+frameborder="0" allowfullscreen></iframe>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vim - precision editing at the speed of thought]]></title>
+    <link href="http://mfoo.github.com/blog/2013/01/01/vim-precision-editing-at-the-speed-of-thought/"/>
+    <updated>2013-01-01T20:08:00+00:00</updated>
+    <id>http://mfoo.github.com/blog/2013/01/01/vim-precision-editing-at-the-speed-of-thought</id>
+    <content type="html"><![CDATA[<p>I came across a presentation from <a href="http://drewneil.com/">Drew Neil</a> of
+<a href="http://vimcasts.org/">Vimcasts</a> fame, all about what makes Vim the editor that
+it is. I&#8217;ve seen several of the Vimcasts videos and always learn something new,
+but this presentation gives a nice overview of the history of Vim and why some
+of the features of the modal text editor evolved. Worth a watch (49 minutes).</p>
+
+<iframe src="http://player.vimeo.com/video/53144573" width="500" height="281"
+frameborder="0" webkitAllowFullScreen mozallowfullscreen></iframe>
+
+
+<p><a href="http://drewneil.com/">Vim - precision editing at the speed of thought</a> from
+<a href="http://drewneil.com/">&Oslash;redev Conference</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Custom Rake Tasks for db:drop db:create db:migrate db:seed]]></title>
+    <link href="http://mfoo.github.com/blog/2012/05/26/custom-rake-tasks-for-dbdrop-dbcreate-dbmigrate-dbseed/"/>
+    <updated>2012-05-26T10:27:03+01:00</updated>
+    <id>http://mfoo.github.com/blog/2012/05/26/custom-rake-tasks-for-dbdrop-dbcreate-dbmigrate-dbseed</id>
+    <content type="html"><![CDATA[<p>Resetting the database in Ruby seems to be quite a painful task if you (or your team) make changes to the seed data / schema. <code>rake db:drop db:create db:migrate db:seed</code> is too verbose. Provided below are two custom rake tasks based on Justin French&#8217;s blog post <a href="http://justinfrench.com/notebook/a-custom-rake-task-to-reset-and-seed-your-database">here</a>:</p>
+
+<pre><code>rake db:rdb (reset database)
+rake db:trdb (reset database in test environment)
+</code></pre>
+
+<p>The first is equivalent to <code>rake db:drop db:create db:migrate db:seed</code>. The second is for test databases and will not perform a seed. It is equivalent to <code>RAILS_ENV=test rake db:drop db:create db:migrate</code>. Note that the second tasks actually ignores the current environment and will always use the &#8216;test&#8217; environment.</p>
+
+<p>Create a file under <code>RAILS_ROOT/lib/tasks/db.rake</code> and paste the code below. The new tasks should both show up with a <code>rake -T.</code></p>
+
+<pre><code>namespace :db do
+  desc "Drop, create, migrate then seed the database"
+  task :rdb =&gt; :environment do
+    Rake::Task['db:drop'].invoke
+    Rake::Task['db:create'].invoke
+    Rake::Task['db:migrate'].invoke
+    Rake::Task['db:seed'].invoke
+  end
+
+  desc "Drop, create, migrate the database with RAILS_ENV=test"
+  task :trdb =&gt; :environment do
+    Rails.env = 'test'
+    Rake::Task['db:drop'].invoke
+    Rake::Task['db:create'].invoke
+    Rake::Task['db:migrate'].invoke
+  end
+end
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A Simple Lindenmayer System Renderer]]></title>
+    <link href="http://mfoo.github.com/blog/2012/05/26/a-simple-lindenmayer-system-renderer/"/>
+    <updated>2012-05-26T09:23:28+01:00</updated>
+    <id>http://mfoo.github.com/blog/2012/05/26/a-simple-lindenmayer-system-renderer</id>
+    <content type="html"><![CDATA[<p>I spent some time last week reading about <a href="http://en.wikipedia.org/wiki/L-system">Lindenmayer Systems</a> (or L-Systems), then wrote a simple interactive L-System renderer in CoffeeScript that you can try out <a href="http://mfoo.github.com/L-System-Renderer/">on GitHub</a>.</p>
+
+<p><a href="http://www.mfoot.com/wp-content/uploads/2012/05/Screen-Shot-2012-05-26-at-08.02.06.png"><img src="http://www.mfoot.com/wp-content/uploads/2012/05/Screen-Shot-2012-05-26-at-08.02.06-1024x919.png" alt="" /></a></p>
+
+<p>L-Systems are a way of describing an image in terms of an axiom, a set of generation functions, and a set of rendering functions. They are represented as a string, and for each &#8216;generation&#8217;, the generation functions are applied to all symbols in that string to produce a new string. For example, given the axiom (starting truth) &#8216;A&#8217; and the generation functions &#8216;A -> BA&#8217;, and &#8216;B -> AB&#8217;, generation one will be &#8216;BA&#8217;, then generation two will be &#8216;ABBA&#8217;.</p>
+
+<p>We can then define a set of rendering functions that define what to draw when we reach each symbol such as &#8216;move forward 10 units&#8217; and &#8216;turn left 20 degrees&#8217;. With each generation the system gets bigger and bigger, and it&#8217;s fantastic to play with.</p>
+
+<p>For instance, the code below describes how to draw a <a href="http://en.wikipedia.org/wiki/Sierpinski_triangle">Sierpinski Triangle </a>using &#8216;turtle graphics&#8217; and a simple <a href="http://en.wikipedia.org/wiki/Stack_%28abstract_data_type%29">stack</a>:</p>
+
+<pre><code>    'Sierpinski Triangle':
+        axiom: 'A'
+        rules:
+            'A': 'B-A-B'
+            'B': 'A+B+A'
+        renderFunctions:
+            'A': (stack) -&gt;
+                turtle = stack.peek()
+                turtle.forward 10
+            'B': (stack) -&gt;
+                turtle = stack.peek()
+                turtle.forward 10
+            '-': (stack) -&gt;
+                turtle = stack.peek()
+                turtle.left 60
+            '+': (stack) -&gt;
+                turtle = stack.peek()
+                turtle.right 60
+</code></pre>
+
+<p>Which, when rendered for five generations looks like this:</p>
+
+<p><a href="http://www.mfoot.com/wp-content/uploads/2012/05/sierpinskitriangle.png"><img src="http://www.mfoot.com/wp-content/uploads/2012/05/sierpinskitriangle-300x166.png" alt="" /></a>The source code for the render is available <a href="https://github.com/mfoo/L-System-Renderer">here</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Conway's Game of Life in CoffeeScript]]></title>
+    <link href="http://mfoo.github.com/blog/2012/04/22/conways-game-of-life-in-coffeescript/"/>
+    <updated>2012-04-22T21:38:55+01:00</updated>
+    <id>http://mfoo.github.com/blog/2012/04/22/conways-game-of-life-in-coffeescript</id>
+    <content type="html"><![CDATA[<p>I recently wanted to give <a href="http://coffeescript.org/">CoffeeScript</a> a try, so I decided to implement Conway&#8217;s Game of Life in CoffeeScript using an HTML5 canvas element for rendering. It was remarkably simple and CoffeeScript seems to be a big improvement over vanilla JavaScript in terms of terseness of syntax. It&#8217;s easy to learn an cuts down on a lot of brackets etc. The demo and source code are <a href="http://mfoo.github.com/CoffeeScript-Game-Of-Life/">hosted on GitHub here</a>.</p>
+
+<p><a href="http://www.mfoot.com/wp-content/uploads/2012/04/canvas.png"><img src="http://www.mfoot.com/wp-content/uploads/2012/04/canvas-300x180.png" alt="" /></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vim Cheatsheets]]></title>
+    <link href="http://mfoo.github.com/blog/2012/04/06/vim-cheatsheets/"/>
+    <updated>2012-04-06T19:18:37+01:00</updated>
+    <id>http://mfoo.github.com/blog/2012/04/06/vim-cheatsheets</id>
+    <content type="html"><![CDATA[<p>I&#8217;ve been using Vim for about four years, but I&#8217;ve recently started making the effort to use some of the more advanced features outside of the core set that I usually use. Surprisingly there&#8217;s even some basic navigation commands that I never really learned that greatly improve editing efficiency, so I&#8217;ve been using a couple of cheat sheets that come highly recommended. Here they are:</p>
+
+<p><a href="http://www.viemu.com/a_vi_vim_graphical_cheat_sheet_tutorial.html">http://www.viemu.com/a_vi_vim_graphical_cheat_sheet_tutorial.html</a></p>
+
+<p><a href="https://github.com/LevelbossMike/vim_shortcut_wallpaper/">https://github.com/LevelbossMike/vim_shortcut_wallpaper/</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Weekly Link Roundup 26th March – 1st April]]></title>
+    <link href="http://mfoo.github.com/blog/2012/04/01/weekly-link-roundup-26th-march-1st-april/"/>
+    <updated>2012-04-01T16:33:18+01:00</updated>
+    <id>http://mfoo.github.com/blog/2012/04/01/weekly-link-roundup-26th-march-1st-april</id>
+    <content type="html"><![CDATA[<p>A few weeks have gone since my last roundup, I have moved house and started working at a new job so haven&#8217;t had much time. That said, here&#8217;s a list of articles that I&#8217;ve found interesting over the past week. I&#8217;ve been getting into the &#8216;devops&#8217; world recently (or at least using some of the domain tools and learning about scalable infrastructures), so many of the links are related.</p>
+
+<ul>
+<li><p>Above is a video from HackADay about a new robot called the Sand Flea that <a href="http://hackaday.com/2012/03/31/sand-flea-literally-leaps-tall-buildings-in-a-single-bound/">has an impressive ability to jump over obstacles</a>. This could be very useful for robotic exploration in areas of difficult terrain.</p></li>
+<li><p>A scientist has taken over 90,000 hours of video of his baby son via cameras all around the house in order to try and understand the learning of language and how we pick up and reproduce new words. I&#8217;m sure that I&#8217;ve seen a video of this before a few years ago, but now there is a lot more footage and similarly more interesting results. Read more about it including several videos <a href="http://www.fastcompany.com/1733627/mit-scientist-captures-his-sons-first-90000-hours-on-video">here</a>.</p></li>
+<li><p>The <a href="http://weblog.rubyonrails.org/2012/3/30/ann-rails-3-2-3-has-been-released/">new version of Rails</a> has been released, which among other things addresses the <em>config.active_record.whitelist_attributes</em> issue that lead to the <a href="https://github.com/blog/1069-responsible-disclosure-policy">GitHub compromise</a> earlier this year.</p></li>
+<li><p>Ranjib Dey has an <a href="http://ranjib.posterous.com/infrastructure-tooling-patterns">overview of the main common parts in web infrastructures</a>.</p></li>
+<li><p>Nikolay Sturm describes how we can <a href="http://blog.nistu.de/2012/03/04/reusability-in-configuration-management-systems/">apply object oriented principles such as the single responsibility principle and object extendability to configuration management systems</a> such as <a href="http://www.opscode.com/chef/">Chef</a>.</p></li>
+<li><p>Nikolay was also featured on the <a href="http://www.foodfightshow.org/2012/03/episode-6-cookbook-reusability-with.html">Food Fight podcast talking about Cookbook reusability with Chef</a>.</p></li>
+<li><p><a href="http://www.etsy.com">Etsy</a> have <a href="http://codeascraft.etsy.com/2012/03/13/making-it-virtually-easy-to-deploy-on-day-one/">a blog post </a>describing how their infrastructure can scale and pump out new VMs so that newly hired employees can push something to production on their first day. It&#8217;s interesting seeing which tools they use and how they use them to facilitate this.</p></li>
+<li><p>Netflix maintain a technical blog that describes some of the challenges they face and how they go about overcoming them. One in particular talks about <a href="http://techblog.netflix.com/2012/02/fault-tolerance-in-high-volume.html">fault tolerance in high volume distributed systems</a> and is a useful read for anybody designing a service based architecture.</p></li>
+<li><p>John Vincent discusses requirements to be able to <a href="http://blog.lusis.org/blog/2012/03/06/graphs-in-operations/">accurately graph dependencies at macro and micro levels</a> in order to efficiently act upon changes in the dependency hierarchy.</p></li>
+<li><p>Finally, in a less educational but more entertaining capacity, I have been reading several articles each trying to clarify what DevOps really is and if/why it&#8217;s actually useful. Make what you will of the content. <a href="http://www.brunton-spall.co.uk/post/2012/03/13/what-is-devops-not/">What DevOps is not</a>, <a href="http://perfcap.blogspot.co.uk/2012/03/ops-devops-and-noops-at-netflix.html">Ops, DevOps and PaaS (NoOps) at Netflix</a>, and <a href="https://gist.github.com/2140086">a response to that post</a>.</p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Joy of Programming]]></title>
+    <link href="http://mfoo.github.com/blog/2012/03/26/the-joy-of-programming/"/>
+    <updated>2012-03-26T02:13:33+01:00</updated>
+    <id>http://mfoo.github.com/blog/2012/03/26/the-joy-of-programming</id>
+    <content type="html"><![CDATA[<p>I&#8217;ve recently started reading <a href="http://www.amazon.com/Mythical-Man-Month-Software-Engineering-Anniversary/dp/0201835959">The Mythical Man Month by Frederick P. Brooks Jr.</a>, and I came across several paragraphs that brilliantly and elegantly capture the joy of programming and the reward of solving a problem in five different points. The following is a copy of page 7 of the anniversary edition. I would definitely recommend this book to any career programmer.</p>
+
+<blockquote><p>Why is programming fun? What delights may its practitioner expect as a reward?</p></blockquote>
+
+<p>First is the sheer joy of making things. As the child delights in his mud pie, so the adult enjoys building things, especially things of his own design. I think this delight must be an image of God&#8217;s delight in making things, a delight shown in the distinctness and newness of each leaf and snowflake.</p>
+
+<p>Second is the pleasure of making things that are useful to other people. Deep within, we want others to use our work and find it helpful. In this respect the programming system is not essentially different from the child&#8217;s first clay pencil holder &#8220;for Daddy&#8217;s office.&#8221;</p>
+
+<p>Third is the fascination of fashioning complex puzzle-like objects of interlocking moving parts and watching them work in subtle cycles, playing out the consequences of principles built in from the beginning. The programmed computer has all the fascination of a pinball machine or the jukebox mechanism, carried to the ultimate.</p>
+
+<p>Fourth is the joy of always learning, which springs from the nonrepeating nature of the task. In one way or other the problem is never new, and its solver learns something: sometimes practical, sometimes theoretical, and sometimes both.</p>
+
+<p>Finally, there is the delight in working with such a tractable medium. The programmer, like the poet, works only slightly removed from pure thought-stuff. He builds his castles in the air, from the air, creating by exertion of the imagination. Few media of creation are so flexible, so easy to polish and rework, so readily capable of realizing grand conceptual structures.</p>
+
+<p>Yet the program construct, unlike the poet&#8217;s words, is real in the sense that it moves and works, producing visible outputs separate from the construct itself. It prints results, draws pictures, produces sound, moves arms. The magic of myth and legend has come true in our time. One types the correct incantation on a keyboard, and a display screen comes to life, showing things that never were nor could be.</p>
+
+<p>Programming then is fun because it gratifies creative longings built deep within us and delights sensibilities we have in common with all men.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Weekly Link Roundup 27th Feb - 4th March]]></title>
+    <link href="http://mfoo.github.com/blog/2012/03/04/weekly-link-roundup-27th-feb-4th-march/"/>
+    <updated>2012-03-04T12:49:19+00:00</updated>
+    <id>http://mfoo.github.com/blog/2012/03/04/weekly-link-roundup-27th-feb-4th-march</id>
+    <content type="html"><![CDATA[<p>I&#8217;m going to start taking notes of a few interesting articles/websites that I find each week in order to share them with others and preserve them for myself. And so begins Week One. Links will cover any article that I find interesting, but will largely be grounded in science and technology.</p>
+
+<ol>
+<li><p>An <a href="http://blogs.discovermagazine.com/badastronomy/2012/03/02/stunning-time-lapse-video-the-light-of-stars/">awesome <strong>time-lapse video of night skies</strong></a> was posted the other day (embedded above). I love stunning videos of nature and this is no exception.</p></li>
+<li><p>Some scientists as part of a Russian research team have <a href="http://news.nationalgeographic.com/news/2012/02/120221-oldest-seeds-regenerated-plants-science/?source=link-tw20120229news-plant">reportedly managed to <strong>germinate seeds that were found under 124 feet (38 meters) of permafrost</strong></a> (annoyingly, it doesn&#8217;t link to the source journal article), which were determined to be around 32,000 years old by radiocarbon dating. The article describes how knowledge of unfreezing and re-cultivating these seeds could benefit places such as the Svalbard Global Seed Vault.</p></li>
+<li><p>A new <a href="http://www.mozilla.org/en-US/collusion/">experimental plugin for Firefox</a> called Collision that allows you to <strong>visualise the connections between services that websites use to track you while you are online</strong>. It&#8217;s certainly quite eye-opening about the number of websites that record your usage data and statistics. Mozilla writes: <em>Not all tracking is bad. Many services rely on user data to provide relevant content and enhance your online experience. But most tracking happens without users&#8217; consent and without their knowledge. That’s not okay. It should be you who decides when, how and if you want to be tracked. Collusion will be a powerful tool to help you do that</em></p></li>
+<li><p>The <a href="www.raspberrypi.org/">Raspberry Pi foundation</a> also recently announced that they have <strong>started shipping A and B model Raspberry Pis</strong>, although they are currently out of stock in both RS and Farnell. Using these distributors allows for a much higher production rate that scales to demand, and will help reduce shipping costs for people due to worldwide distribution networks. Can&#8217;t wait until they are back in stock.</p></li>
+<li><p>A <a href="http://blogs.discovermagazine.com/loom/2012/03/02/tongue-parasites-to-people-of-earth-thank-you-for-your-overfishing/">scary post that describes </a><strong><a href="http://blogs.discovermagazine.com/loom/2012/03/02/tongue-parasites-to-people-of-earth-thank-you-for-your-overfishing/">a fish parasite</a> that enters the gills of a fish, devours its tongue, then positions itself in place of the tongue</strong>. Just the picture alone is creepy! Nature is awesome.</p></li>
+<li><p>A <a href="http://www.bbc.co.uk/iplayer/episode/b01cywtq/Horizon_20112012_The_Truth_About_Exercise/">BBC Horizon show</a> about <strong>what exercise really does and the best ways of getting the maximum benefit</strong> (probably UK only). This is coupled with <a href="http://blogs.discovermagazine.com/80beats/2012/03/02/just-3-days-of-lazing-around-will-weaken-your-ability-to-regulate-blood-sugar/">a post from DiscoverMagazine</a> on a new study that suggests <strong>healthy people will develop higher blood sugar after only three days of a sedentary lifestyle</strong>.</p></li>
+<li><p>A <a href="http://www.markshuttleworth.com/archives/939">post from Mark Shuttleworth</a> that shows the <strong>new HUD functionality coming in Ubuntu 12.04</strong>.</p></li>
+<li><p>A good collection of <a href="http://www.dextronet.com/micro-isv-insights/2012/01/30-books-everyone-in-software-business-should-read-and-why/"><strong>30 books that everyone in the software business should read and why</strong></a>. I know that five or six of these are already on my Amazon wishlist for when I have the time, and it&#8217;s definitely a list worth looking at.</p></li>
+<li><p>An <a href="lists.busybox.net/pipermail/busybox/2010-December/074114.html">interesting explanation of <strong>why the bin, sbin, usr/bin, and usr/sbin folders exist</strong> in Unix</a> as well as why the programs located in each exist where they do.</p></li>
+<li><p>A <a href="http://highscalability.com/blog/2012/2/13/tumblr-architecture-15-billion-page-views-a-month-and-harder.html">detailed and very interesting article describing Tumblr&#8217;s scalable architecture</a> and how it allows them to serve &#8216;500 million page views a day, a peak rate of ~40k requests per second, ~3TB of new data to store a day, all running on 1000+ servers&#8217;.</p></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Choosing a maths library for cross-platform C++ game development]]></title>
+    <link href="http://mfoo.github.com/blog/2012/01/23/choosing-a-maths-library-for-cross-platform-c-game-development/"/>
+    <updated>2012-01-23T15:35:28+00:00</updated>
+    <id>http://mfoo.github.com/blog/2012/01/23/choosing-a-maths-library-for-cross-platform-c-game-development</id>
+    <content type="html"><![CDATA[<p>I have recently been looking for a C++ maths library for use in game development projects. There are plenty of posts on websites like <a href="http://gamedev.stackexchange.com/">gamedev.stackexchange.com</a> with suggestions for libraries but few quantitative comparisons between them. I decided to take three of the most popular libraries and run some tests of my own. Below I describe the three libraries I&#8217;ve compared with their advantages and disadvantages and then show the results of some performance tests. It&#8217;s important for me to have cross-platform compatibility, so each library selected is header only and has been tested on Mac, Linux, and Android using the NDK. The code and results are also available <a href="https://github.com/mfoo/Math-Library-Test">on GitHub</a> for testing.</p>
+
+<p>The libraries tested are:</p>
+
+<ul>
+<li><p><a href="http://eigen.tuxfamily.org/">Eigen</a></p></li>
+<li><p><a href="http://glm.g-truc.net/">GLM</a></p></li>
+<li><p><a href="http://cmldev.net/">CML</a></p></li>
+</ul>
+
+
+<p>These choices are largely influenced by reading their websites and posts at the <a href="http://gamedev.stackexchange.com/">Game Development StackExchange</a> site:</p>
+
+<ul>
+<li><p><a href="http://gamedev.stackexchange.com/questions/9924/best-c-math-library-for-game-engine">Best C Math Library for Game Engine?</a></p></li>
+<li><p><a href="http://stackoverflow.com/questions/5935075/high-performance-math-library-for-vector-and-matrix-calculations">High Performance Math Library for Vector And Matrix Calculations</a></p></li>
+<li><p><a href="http://gamedev.stackexchange.com/questions/8234/complete-math-library-for-use-in-opengl-es-2-0-game">Complete Math Library for use in OpenGL ES 2.0 Game?</a></p></li>
+</ul>
+
+
+<h1>Requirements</h1>
+
+<p>I have several requirements for a math library, and when rating them (in no particular order) the <a href="http://gamedev.stackexchange.com/questions/21711/what-should-be-taken-into-consideration-when-choosing-a-math-library-for-games">following things are important</a>:</p>
+
+<ul>
+<li><p>License</p></li>
+<li><p>Portability</p></li>
+<li><p>Quality and quantity of the documentation</p></li>
+<li><p>Completeness (or how much can the library do without me having to write my own functions). For game development this includes:</p>
+
+<ul>
+<li><p>Matrix operations</p></li>
+<li><p>Vector operations</p></li>
+<li><p>Complex number support</p></li>
+<li><p>Quaternion operations</p></li>
+</ul>
+</li>
+<li><p>Extensibility and community contributions (linked directly to the above).</p></li>
+<li><p>Ease of use (are the concepts simple to understand?)</p></li>
+<li><p>Performance (are there SIMD optimisations?)</p></li>
+</ul>
+
+
+<h1>Libraries Overview</h1>
+
+<h2>Configurable Math Library (CML)</h2>
+
+<p>This is a free library designed for games, graphics, and computational geometry applications. Listed <a href="http://cmldev.net/?page_id=8">features</a> include:</p>
+
+<ul>
+<li><p>Vector, matrix, and quarternion classes</p></li>
+<li><p>Templated headers so can be used for arbitrary types</p></li>
+<li><p>Arbitrary sized vectors and matrices (fixed or dynamically resizable)</p></li>
+<li><p>Conversions between polar, cylindrical, spherical, and Cartesian coordinates</p></li>
+<li><p>A large library of functions for the construction and manipulation of transforms in 2D and 3D</p></li>
+</ul>
+
+
+<p>CML&#8217;s <a href="http://cmldev.net/?page_id=594">design notes</a> state that it is meant to be cross-platform and portable and therefore doesn&#8217;t contain any platform specific optimisations, but it is possible to include them in the future if there is specific interest.</p>
+
+<p>There&#8217;s only one header file to include, <code>cml/cml.h</code>.</p>
+
+<p>CML contains quite a nice way of creating an abstraction layer between existing math library objects and CML objects, allowing the use of other math library data types in CML library functions. See <a href="http://cmldev.net/?p=424">here</a>.</p>
+
+<p>CML only has a few <a href="http://cmldev.net/?p=402">examples</a>. Hasn&#8217;t been updated in a while. Contains useful functions for working with OpenGL or DirectX though, including replacements for things like gluLookAt().</p>
+
+<p>CML is released under the <a href="http://cmldev.net/?p=430">Boost Software License</a>. This means that you&#8217;re allowed to use and profit from the library as long as when distributing CML or any modifications you have made to CML, you keep the Boost Software License text in each file.</p>
+
+<h2>Eigen</h2>
+
+<p>This library has by far the most detailed and descriptive tutorial section with many code samples. It is also worth noting that it seems to be the most frequently updated and the most up-to-date (at the time of writing the most recent release, 3.0.4, was 3.5 weeks ago).</p>
+
+<p>Like GLM, it is very easy to pass the class objects directly to OpenGL, although in Eigen this is performed by an <a href="http://eigen.tuxfamily.org/dox-devel/unsupported/group__OpenGLSUpport__Module.html">unsupported OpenGL module</a> which provides a few functions such as glTranslate and glRotate.</p>
+
+<pre><code>// You need to add path_to_eigen/unsupported to your include path.
+#include &lt;Eigen/OpenGLSupport&gt;
+// ...
+Vector3f x, y;
+Matrix3f rot;
+glVertex(y + x * rot);
+
+Quaternion q;
+glRotate(q);
+</code></pre>
+
+<p>Provides a large number of array, matrix, and vector types with <a href="http://eigen.tuxfamily.org/dox/QuickRefPage.html#QuickRef_Types">many operators</a>.</p>
+
+<p>Eigen is licensed under the LGPL which is quite restrictive and usually would exclude a library based on my requirements. However, Eigen has a large <a href="http://eigen.tuxfamily.org/index.php?title=Licensing_FAQ">Licensing FAQ</a> which tries to answer any licensing questions people might have. Their main point is that as Eigen is a header only library, it does not count as a &#8220;Combined Work&#8221; under the LGPL it can be therefore used entirely under Section 3. This states that to use Eigen you must:</p>
+
+<ul>
+<li><p>Give prominent notice with each copy of the object code that the Library is used in it and that the Library and its use are covered by this License. The Eigen FAQ states that &#8216;the bottom of a README file or of a website would be prominent enough for us&#8217;.</p></li>
+<li><p>Accompany the object code with a copy of the GNU GPL and this license document.</p></li>
+</ul>
+
+
+<p>This assumes that you&#8217;re using Eigen unmodified. If you are planning to make changes to Eigen and release it, then you must also make the modifications available under the LGPL.</p>
+
+<h2>OpenGL Math Library (GLM)</h2>
+
+<p>GLM&#8217;s main design to be very familiar to those who know GLSL as it uses classes and functions that use the GLSL naming conventions. It also seems to provide all of the functionality that I might need in the future.</p>
+
+<p>Includes several code samples, more than CML. Many more located in the manual.</p>
+
+<p>Includes features such as:</p>
+
+<ul>
+<li><p>Math for splines</p></li>
+<li><p>Math for colour spaces</p></li>
+<li><p>Random numbers</p></li>
+<li><p>Simplex noise generation</p></li>
+<li><p>Conversion of Euler angles</p></li>
+</ul>
+
+
+<p>There&#8217;s only one header file to include, <code>glm/glm.hpp</code>. <code>glm/ext.hpp</code> can be included to add extended features (non GLSL features).</p>
+
+<p>The design choice to follow GLSL conventions allows the library to be intuitive and easy to use, especially given that data alignment is compatible with gl functions. E.g:</p>
+
+<pre><code>glm::vec4 v(0);
+glm::mat4 m(0);
+glVertex3fv(glm::value_ptr(v));
+glLoadMatrixfv(glm::value_ptr(m));
+</code></pre>
+
+<p>The manual pdf file link is broken but a slightly out of date version can be found <a href="https://bitbucket.org/alfonse/gltut/src/6332c7f79903/glm-0.9.0.0/doc/glm-manual.pdf">here</a>. I&#8217;ve sent the maintainer an email and hopefully this will be fixed shortly.</p>
+
+<p>GLM is licensed under the <a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a> (Expat License) which is very permissive and means GLM is a good candidate for any project requiring a math library.</p>
+
+<p>To run the tests on Android you will need the <a href="http://developer.android.com/sdk/ndk/index.html">Android NDK</a> and <a href="http://code.google.com/p/android-cmake/">android-cmake</a>. For Ant you will need to specify your Android SDK location in <code>android/local.properties</code>. I have included prebuilt libraries for armeabi and armeabi-v7a so if you don&#8217;t want to compile them yourself you can skip straight to the ant commants.</p>
+
+<h1>Results</h1>
+
+<p>So far I&#8217;ve tested matrix addition and multiplication. <code>src/Main.cpp</code> contains code that will generate two lists of 1 million 4x4 float matrices for each library, populate them with random float values, and then add each one from the first column to the second. It will then do the same for multiplication. It will repeat this step 10 times and print out how long it took for each library.</p>
+
+<p>Results for each library vary greatly with architecture and optimisation level. I have tested standard GCC build on Mac OS X Lion as well as an SSE enabled build, and armeabi, armeabi-v7a and armeabi-v7a with NEON instructions for Android.</p>
+
+<p>Note that all tests use the <code>-O2</code> GCC optimisation flag except the non-SSE laptop build which uses <code>-O0</code>.</p>
+
+<p>Results for addition and multiplication are shown below. Note that the laptop I&#8217;m using is an i7 2.2ghz early 2011 MacBook Pro and the Android device is a Stock HTC Desire (2.2) with a 1 GHz Qualcomm QSD8250. All times are in milliseconds.</p>
+
+<pre><code>                        laptop  laptop (SSE)  armeabi  armeabi-v7a  armeabi-v7a with neon
+Eigen additions         8065    30            9944     2181         2145
+Eigen multiplications   22404   86            59460    5143         5113
+GLM additions           2375    76            10256    1506         1407
+GLM multiplications     7337    400           59008    2189         3108
+CML additions           12336   96            9587     2885         2996
+CML multiplications     21603   551           58399    5306         5280
+</code></pre>
+
+<p>The first column for the laptop doesn&#8217;t have any compile-time optimisations and is included purely for interest. From the other results, Eigen seems to be the fastest for these operations, but GLM is the fastest on the HTC Desire with both ABIs. I am not sure why the NEON times are not much faster (and in some cases, slower) but will update this post when I learn more.</p>
+
+<p>Despite GLM being faster on the mobile devices, I am more inclined to use Eigen due to its speed on the tested Intel CPU and its much better documentation and more active community.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[MDN Holiday Calendar Link Roundup]]></title>
+    <link href="http://mfoo.github.com/blog/2011/12/24/mdn-holiday-calendar-link-roundup/"/>
+    <updated>2011-12-24T10:00:02+00:00</updated>
+    <id>http://mfoo.github.com/blog/2011/12/24/mdn-holiday-calendar-link-roundup</id>
+    <content type="html"><![CDATA[<p>Through the run-up to Christmas 2011, the Mozilla Developer Network has been posting a link a day in their <a href="http://thewebrocks.com/calendar/">MDN Holiday Calendar</a>. This post serves as a collection of those posts as a time-saver, but the site is worth checking out. Note that none of this is my work, the calendar was written by Chris Heilmann with additional links provided by Luke Crouch, Robert Nyman and Rob Hawkes. Source code is <a href="https://github.com/codepo8/calendar-tutorial">available on GitHub</a> and there is a making of tutorial: <a href="http://christianheilmann.com/2011/11/29/building-an-advent-calendar-for-mozilla-in-phpjscss-part-1/">Part 1</a> - <a href="http://christianheilmann.com/2011/11/29/building-an-advent-calendar-for-mozilla-in-phpjscss-part-2/">Part 2.</a></p>
+
+<p>Also note: this isn&#8217;t an error, at the time of writing numbers 2 and 10 point to the same URL. Number 10 also seems to have a broken quote with half missing! Despite this, some of these articles are really interesting!</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="http://www.andismith.com/blog/2011/11/25-dev-tool-secrets/">25 Secrets of the Browser Developer Tools</a></h1>
+
+<p>Superb explanation and introduction to how you use and get the most out of the Developer Tools in web browsers.</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="http://www.davidflanagan.com/2011/10/html-parsing-wi.html">HTML Parsing with JavaScript</a></h1>
+
+<p>Ever thought of implementing the DOM in JavaScript? David Flanagan shows with dom.js how it can be done.</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="http://sixrevisions.com/css/font-face-web-fonts-issues/">How to Bulletproof @font-face Web Fonts</a></h1>
+
+<p>Working with fonts on the web has always been a challenge. This article aims to clarify as much as possible and take you beyond the common pitfalls.</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="http://experiments.brandoncash.net/elements/">Interactive Periodic Table</a></h1>
+
+<p>Beautiful example of using modern web technologies to create a periodic table - complete with moving atoms.</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="http://www.thecssninja.com/javascript/fullscreen">Fullscreen HTML5 video</a></h1>
+
+<p>Watching video is nice but it is even nicer if you can do it in fullscreen. This explains how to tap into that possibility in web browsers.</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="http://lights.elliegoulding.com/">Lights </a></h1>
+
+<p>Interactive WebGL music experience.</p>
+
+<p>You can also <a href="http://lights.elliegoulding.com/">see it in action here</a>.</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="http://webglplayground.net/">WebGL playground</a></h1>
+
+<p>This is a great resource to see WebGL code in action and play live with the code</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="https://developer.mozilla.org/en/CSS/CSS_transitions">CSS Transitions</a></h1>
+
+<p>The smoothness of this page is very much the result of using CSS transitions. Check the docs to learn all about them.</p>
+
+<p>You can also <a href="https://developer.mozilla.org/samples/cssref/transitions/sample2/">see it in action here</a>.</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="https://wiki.mozilla.org/GamepadAPI">Gamepad API</a></h1>
+
+<p>Gamepad and joystick support is coming to Firefox and Chrome.</p>
+
+<p>You can also <a href="http://vimeo.com/31906995">see it in action here</a>.</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="http://www.davidflanagan.com/2011/10/html-parsing-wi.html">HTML parsing in JavaScript</a></h1>
+
+<p>&#8220;Next time you shout at some browser for doing it wrong</p>
+
+<p>You can also <a href="http://thewebrocks.com/calendar/check%20out%20how%20hard%20it%20is%20to%20parse%20HTML.">see it in action here</a>.</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="http://popcornjs.org/">Popcorn.js</a></h1>
+
+<p>Popcorn is a Mozilla sponsored project to make it dead easy to sync media with web content.</p>
+
+<p>You can also <a href="http://popcornjs.org/demos">see it in action here</a>.</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="http://www.biomotionlab.ca/Demos/webgl_walker/webgl_walker.php">WebGL Walker</a></h1>
+
+<p>A cool and customizable skeleton done with WebGL. I recommend maxing out the sliders!</p>
+
+<p>You can also <a href="http://www.biomotionlab.ca/Demos/webgl_walker/webgl_walker.php">see it in action here</a>.</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="http://medialize.github.com/jQuery-contextMenu/demo/html5-polyfill-firefox8.html">Context menus in browsers</a></h1>
+
+<p>This is a jQuery polyfill to bring native context menus as supported in Firefox 8+ to all browsers.</p>
+
+<p>You can also <a href="http://hacks.mozilla.org/2011/11/html5-context-menus-in-firefox-screencast-and-code/">see it in action here</a>.</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="http://jlongster.com/2011/11/21/canvas.html">Going Fullscreen with Canvas</a></h1>
+
+<p>Nice and simple example how you can utilize the Fullscreen API to create a complete full-screen canvas experience.</p>
+
+<p>You can also <a href="http://jlongster.com/2011/11/21/canvas.html">see it in action here</a>.</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="http://www.eleqtriq.com/2010/11/natural-object-rotation-with-css3-3d/">Natural Object-Rotation with CSS3 3D</a></h1>
+
+<p>Great article on CSS 3D Transforms with beautiful illustrations. Make sure to use the various web browser prefixes in your CSS code to make it work for as many as possible.</p>
+
+<p>You can also <a href="http://www.eleqtriq.com/wp-content/static/demos/2010/rotation/index.html">see it in action here</a>.</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="http://platform.html5.org/">The Open Web platform: Browser technologies</a></h1>
+
+<p>The Open Web is filled with technologies and specifications that offers web developers a lot of choices. This page is an overview of all those technologies.</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="http://www.martani.net/2010/11/encode-javascript-with-japanese-style.html">Encode JavaScript as Japanese emoticons</a></h1>
+
+<p>This is wild but it also shows that when it comes to filtering out your data for malicious injections looking for alert() doesn&#8217;t cut it.</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="http://nodejs.org/">Node.js</a></h1>
+
+<p>&#8220;Node.js lets you to run JavaScript outside of the browser while utilising the full power of your computer. It allows for a whole variety of use-cases; like game and Web servers or simple applications that scrape and manipulate data.</p>
+
+<p>You can also <a href="http://nodejs.org/">see it in action here</a>.</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="http://www.spielzeugz.de/html5/sticky-thing/">HTML5 Sticky Thing</a></h1>
+
+<p>Nice canvas example which shows a playful example of you you can add nice interaction to a cute feature.</p>
+
+<p>You can also <a href="http://www.spielzeugz.de/html5/sticky-thing/">see it in action here</a>.</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="https://developer.mozilla.org/en/API/Mouse_Lock_API">Mouse Lock API</a></h1>
+
+<p>The Mouse Lock API allows you to lock the position of the mouse and hide the cursor. It is perfect for games and visualisations where you need to look around a 3D world and don&#8217;t want to be restricted by traditional mouse movement on the Web.</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="http://learningthreejs.com/">Learning three.js</a></h1>
+
+<p>Learn how to use the three.js WebGL library to create animations and games.</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="http://dochub.io/">Dochub.io</a></h1>
+
+<p>This is a great find-as-you-type interface to the MDN CSS documentation</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="http://robert.ocallahan.org/2011/11/latency-of-html5-sounds.html">HTML5 audio in games</a></h1>
+
+<p>A small trick to fight the latency of HTML5 audio in Games</p>
+
+<ol>
+<li></li>
+</ol>
+
+
+<h1><a href="http://html5doctor.com/video-subtitling-and-webvtt/">Video Subtitling and WebVTT </a></h1>
+
+<p>A great introduction by the HTML5 Doctor on a very important part of online video.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Cross-compiling FreeType for Android with CMake]]></title>
+    <link href="http://mfoo.github.com/blog/2011/12/14/cross-compiling-freetype-for-android-with-cmake/"/>
+    <updated>2011-12-14T15:03:15+00:00</updated>
+    <id>http://mfoo.github.com/blog/2011/12/14/cross-compiling-freetype-for-android-with-cmake</id>
+    <content type="html"><![CDATA[<p>Freetype provides a Makefile with a configure utility that makes it fairly easy to cross-compile for other platforms, however there are a lot of examples on the web (as well as some <a href="http://zarprime.blogspot.com/2006/08/how-to-cross-compile-freetype.html">solutions</a>) of people having difficulty in it.</p>
+
+<p>My intention is to cross-compile FreeType using the Android NDK into a static library that can ultimately be used by <a href="http://librocket.com">libRocket</a> for font rendering in HTML+CSS based UIs in OpenGL applications. I&#8217;m using the <a href="http://cmake.org/">CMake</a> build system for cross-platform builds and the <a href="http://android-cmake.googlecode.com">android-cmake</a> project to create a CMake toolchain for the NDK. This requires creating a CMakeLists.txt for FreeType as it doesn&#8217;t currently provide one.</p>
+
+<p>The CMakeLists.txt file included below is based on the FreeType-2.4.8 release and is a result of converting the Jamfile and Makefile to CMake. Its intention is simply to allow compilation with CMake. For standard build and installs I would recommend following the instructions in the docs/INSTALL file from the FreeType directory. <strong>Note: </strong>This file will try and build <em>all</em> of FreeType2&#8217;s modules as defined in include/freetype/config/ftmodule.h. If you don&#8217;t want to build some of these modules please edit that file and remove the macro calls.This is a rather brute force method that will compile all the files and modules that are in the default build settings for FreeType. I spent some time trying to add proper CMake style options for each module that also checks their dependencies but didn&#8217;t get too far. You will need to remove files from compilation as needed.</p>
+
+<pre><code>cmake_minimum_required(VERSION 2.6)
+
+project(FreeType2)
+
+# First, compiler definitions for building the library
+add_definitions(-DFT2_BUILD_LIBRARY)
+add_definitions("-DFT_CONFIG_MODULES_H=&lt;ftmodule.h&gt;")
+
+# Specify library include directories
+include_directories("${PROJECT_SOURCE_DIR}/builds/ansi")
+include_directories("${PROJECT_SOURCE_DIR}/include")
+include_directories("${PROJECT_SOURCE_DIR}/include/freetype")
+#include_directories("${PROJECT_SOURCE_DIR}/include/freetype/config")
+
+# For the auto-generated ftmodule.h file
+include_directories("${PROJECT_BINARY_DIR}/include")
+
+include_directories("${PROJECT_SOURCE_DIR}/objs")
+
+#file(GLOB BASE_SRCS "src/base/*.c")
+
+set(BASE_SRCS
+    src/base/ftsystem.c
+    src/base/ftdebug.c
+    src/base/ftinit.c
+    src/base/ftbbox.c
+    src/base/ftbitmap.c
+    src/base/ftcid.c
+    src/base/ftadvanc.c
+    src/base/ftcalc.c
+    src/base/ftdbgmem.c
+    src/base/ftgloadr.c
+    src/base/ftobjs.c
+    src/base/ftoutln.c
+    src/base/ftrfork.c
+    src/base/ftsnames.c
+    src/base/ftstream.c
+    src/base/fttrigon.c
+    src/base/ftutil.c
+    src/base/ftfstype.c
+    src/base/ftgasp.c
+    src/base/ftglyph.c
+    src/base/ftgxval.c
+    src/base/ftlcdfil.c
+    src/base/ftmm.c
+    src/base/ftotval.c
+    src/base/ftpatent.c
+    src/base/ftpfr.c
+    src/base/ftstroke.c
+    src/base/ftsynth.c
+    src/base/fttype1.c
+    src/base/ftwinfnt.c
+    src/base/ftxf86.c
+    src/truetype/truetype.c
+    src/type1/type1.c
+    src/cff/cff.c
+    src/cid/type1cid.c
+    src/pfr/pfr.c
+    src/type42/type42.c
+    src/winfonts/winfnt.c
+    src/pcf/pcf.c
+    src/bdf/bdf.c
+    src/sfnt/sfnt.c
+    src/autofit/autofit.c
+    src/pshinter/pshinter.c
+    src/raster/raster.c
+    src/smooth/smooth.c
+    src/cache/ftcache.c
+    src/gzip/ftgzip.c
+    src/lzw/ftlzw.c
+    src/bzip2/ftbzip2.c
+    src/psaux/psaux.c
+    src/psnames/psmodule.c)
+
+include_directories("src/truetype")
+include_directories("src/sfnt")
+include_directories("src/autofit")
+include_directories("src/smooth")
+include_directories("src/raster")
+include_directories("src/psaux")
+include_directories("src/psnames")
+
+add_library(freetype SHARED ${BASE_SRCS})
+
+set(FREETYPE_LIBRARY freetype CACHE STRING "The FreeType library name")
+set(FREETYPE_FOUND TRUE CACHE BOOL "Whether freetype has been found or not")
+set(FREETYPE_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include/
+    ${PROJECT_SOURCE_DIR}/include/freetype CACHE STRING "FreeType include
+    directories")
+
+    set(FREETYPE_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/include/
+    ${PROJECT_SOURCE_DIR}/include/freetype CACHE STRING "FreeType include
+    directories")
+</code></pre>
+
+<p>The file sets the variables that FindFreeType.cmake sets, so any dependent sub-projects should use this first. Just remember to use:</p>
+
+<pre><code># Build FreeType
+add_subdirectory(lib/freetype-2.4.8)
+include_directories(lib/freetype-2.4.8/include)
+</code></pre>
+
+<p>&#8230; before building the dependent projects.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Building Boost 1.47 for Android using CMake and the NDK]]></title>
+    <link href="http://mfoo.github.com/blog/2011/12/14/building-boost-1-47-for-android-using-cmake-and-the-ndk/"/>
+    <updated>2011-12-14T14:52:32+00:00</updated>
+    <id>http://mfoo.github.com/blog/2011/12/14/building-boost-1-47-for-android-using-cmake-and-the-ndk</id>
+    <content type="html"><![CDATA[<p>The <a href="http://www.boost.org/">Boost library</a> is incredibly useful in cross-platform C++ software development. Building Boost for Android can be a bit troublesome and several patches need to be applied to the code. Mystic Games provides a project on GitHub called <a href="https://github.com/MysticTreeGames/Boost-for-Android">Boost for Android</a> which at the time of writing worked with official NDK r5c and Boost version 1.45. See after the break for more information.</p>
+
+<p>Version 1.47 adds some useful modules such as Boost::Random and Boost::Asio, but the patches from 1.45 don&#8217;t apply. Luckily klayge.org has applied the patches manually (there aren&#8217;t many).</p>
+
+<h2>Patching Boost:</h2>
+
+<ul>
+<li><p>The patched Boost 1.47 files <a href="http://www.klayge.org/2011/11/02/compile-boost-1-47-with-android-ndk-r6/">here</a>.</p></li>
+<li><p>The Boost 1.47 source <a href="http://www.boost.org/users/history/version_1_47_0.html">here</a>.</p></li>
+<li><p><a href="android-cmake.googlecode.com">android-cmake</a> installed and configured to use your NDK toolchain.</p></li>
+</ul>
+
+
+<p>First, merge (don&#8217;t replace!) the <em>boost</em> and <em>libs</em> folders from the download into the boost directory. You now have a patched version of Boost. Paste the contents of the code below into a file called CMakeLists.txt inside the <em>boost</em> directory. This is a modified version of android-cmake&#8217;s Boost installation script that allows you to either build and install Boost to your NDK directory or build it as a dependency for a project (this has the advantage of being sure you&#8217;re using the same version of Boost on each machine you build on and for each architecture, as well as meaning you don&#8217;t need to manually install Boost on each development machine, but Boost is a very large dependency to add and it is a lot of files to place into a repository).</p>
+
+<pre><code>cmake_minimum_required(VERSION 2.8)
+
+project(android-boost)
+
+#find patched boost directory
+set(BOOST_ROOT ${PROJECT_SOURCE_DIR} CACHE PATH  "Boost 1.47.0 patched for android")
+
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -DNO_BZIP2" )
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNO_BZIP2")
+
+include_directories(${PROJECT_SOURCE_DIR})
+
+# Build each of the Boost libraries that have compiled components
+file(GLOB lib_srcs ${PROJECT_SOURCE_DIR}/libs/system/src/*.cpp)
+
+add_library( boost_system ${lib_srcs})
+
+file(GLOB lib_srcs ${PROJECT_SOURCE_DIR}/libs/filesystem/v2/src/*.cpp)
+
+add_library( boost_filesystem ${lib_srcs})
+
+set(lib_dir ${PROJECT_SOURCE_DIR}/libs/iostreams/src)
+set(lib_srcs ${lib_dir}/file_descriptor.cpp   ${lib_dir}/gzip.cpp   ${lib_dir}/mapped_file.cpp   ${lib_dir}/zlib.cpp)
+add_library( boost_iostreams ${lib_srcs})
+
+file(GLOB lib_srcs ${PROJECT_SOURCE_DIR}/libs/program_options/src/*.cpp)
+
+add_library( boost_program_options ${lib_srcs})
+
+file(GLOB lib_srcs ${PROJECT_SOURCE_DIR}/libs/regex/src/*.cpp)
+
+add_library( boost_regex ${lib_srcs})
+
+file(GLOB lib_srcs ${PROJECT_SOURCE_DIR}/libs/signals/src/*.cpp)
+
+add_library( boost_signals ${lib_srcs})
+
+file(GLOB lib_srcs ${PROJECT_SOURCE_DIR}/libs/thread/src/pthread/*.cpp)
+
+add_library( boost_thread ${lib_srcs})
+
+set(BOOST_ROOT ${PROJECT_SOURCE_DIR} CACHE PATH "Path to the Boost root directory")
+set(BOOST_INCLUDEDIR ${BOOST_ROOT} CACHE PATH "Boost include directory")
+set(Boost_INCLUDE_DIRS ${BOOST_ROOT} CACHE PATH "Boost header locations")
+set(Boost_LIBRARIES boost_filesystem boost_system boost_program_options
+boost_iostreams boost_regex boost_signals boost_thread  CACHE STRING "khkh")
+
+configure_file(${PROJECT_SOURCE_DIR}/BoostConfig.cmake.in
+${PROJECT_BINARY_DIR}/BoostConfig.cmake @ONLY)
+
+install(DIRECTORY ${BOOST_ROOT}/boost DESTINATION ${CMAKE_INSTALL_PREFIX}/include)
+install(TARGETS boost_system DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
+install(TARGETS boost_filesystem DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
+install(TARGETS boost_program_options DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
+install(TARGETS boost_iostreams DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
+install(TARGETS boost_regex DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
+install(TARGETS boost_signals DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
+install(TARGETS boost_thread DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
+</code></pre>
+
+<p>Optional: You can then also add Boost 1.47&#8217;s version number to the known versions in FindBoost.cmake (Boost 1.47 is newer than CMake 2.8 that I am using):</p>
+
+<pre><code>  set(_Boost_KNOWN_VERSIONS ${Boost_ADDITIONAL_VERSIONS}
+    &lt;strong&gt;"1.47.0" "1.47"&lt;/strong&gt; "1.46.0" "1.46" "1.45.0" "1.45" "1.44.0" "1.44" "1.43.0" "1.43" "1.42.0" "1.42"
+</code></pre>
+
+<h2>Option: Building Boost for the NDK</h2>
+
+<p>You can then either open a terminal and build Boost using android-cmake and install to the NDK directory:</p>
+
+<pre><code>$ cd boost_1_47/
+$ mkdir build
+$ cd build/
+$ android-cmake ..
+$ make
+$ sudo make install
+</code></pre>
+
+<p>Boost should now be able to be found by CMake with the standard find_package command:</p>
+
+<pre><code>find_package(Boost 1.47 COMPONENTS filesystem system thread REQUIRED)
+</code></pre>
+
+<h2>Alternative: Adding Boost as a sub-project in CMake</h2>
+
+<p>If you move the boost directory into your third party library directory you can then build boost and be sure you have the correct version all of the time by adding this to your project&#8217;s CMakeLists.txt file:</p>
+
+<pre><code># Build boost 1.47
+add_subdirectory(lib/boost_1_47)
+</code></pre>
+
+<p>Just remember to link against ${Boost_LIBRARIES} and include ${Boost_INCLUDE_DIRS} as you usually would.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Notes on Android Graphics and Animations]]></title>
+    <link href="http://mfoo.github.com/blog/2011/12/04/notes-on-android-graphics-and-animations/"/>
+    <updated>2011-12-04T13:34:33+00:00</updated>
+    <id>http://mfoo.github.com/blog/2011/12/04/notes-on-android-graphics-and-animations</id>
+    <content type="html"><![CDATA[<p>This post contains my notes on the Youtube Video &#8221;<a href="http://www.youtube.com/watch?v=duefsFTJXzc">Learn about Android Graphics &amp; Animations from Google&#8217;s Android UI Toolkit Team</a>&#8221; which shows a talk given by Romain Guy and Chet Haase from Google at the San Francisco Android User Group, Nov 20th 2010. Note that at the time of writing the video is already quite old, but much of it is still relevant and it&#8217;s well worth a watch for anybody interested in working with graphics in Android. This post is partly for me to remember and refer back to, but hopefully others will find it useful. The video is embedded below and notes can be found after the break:</p>
+
+<p>http://www.youtube.com/watch?v=duefsFTJXzc</p>
+
+<p>So, summary of the video:</p>
+
+<ul>
+<li><p><strong>Surface</strong> is the name for the buffer that objects are rendered into, whether on-screen or off-screen.</p></li>
+<li><p>05:23: <strong>PixelFlinger</strong> is the equivalent of a JIT for the software implementation of OpenGL that&#8217;s used in the Android emulator. This is pretty interesting, it generates assembly code at runtime based on what render operations you&#8217;re performing.</p></li>
+<li><p>06:00: <strong>View</strong>s are the basic UI components, for instance each of the UI widgets inherits from View. <strong>ViewGroup</strong>s contain zero or more views and provide the base class for layouts and view containers, allowing you to modify the contents of the container and set properties for how the view children are displayed. <strong>SurfaceView</strong>s are special Views that allow you to place Surfaces at certain points in the screen. Android also provides classes such as the <a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html">GLSurfaceView</a> which enables OpenGL to render into the Surface and the <a href="http://developer.android.com/reference/android/widget/VideoView.html">VideoView</a> which allows videos to be rendered as well as providing video playback controls.</p></li>
+<li><p>06:40 Applications can render via a Canvas (which uses Google&#8217;s Skia library) or via RenderScript (which currently makes OpenGL calls) or via OpenGL directly. Each rendering method eventually renders onto the specified kind of Surface.</p></li>
+<li><p>07:25 Android supports OpenGL ES 1.x and 2.0, and you can use either of these on a device that supports it, early devices and devices running versions before Android 2.2 will not support OpenGL ES 2.0 - see <a href="https://secure.wikimedia.org/wikipedia/en/wiki/OpenGL_ES#Usage">here</a> for a list of devices that support each version. If you are using the Android Emulator then you will be using PixelFlinger which only supports OpenGL ES 1.x.</p></li>
+<li><p>08:15 Whenever a frame is drawn, <strong>SurfaceFlinger</strong> produces a composite from each visible View and renders them to a Surface (frame buffer) via either OpenGL or PixelFlinger depending on whether the software GL implementation is being used or not. Older devices used a 2D blitter called MDP.</p></li>
+<li><p> 09:20 Android won&#8217;t redraw a View unless it&#8217;s both visible and flagged (&#8216;dirty&#8217;) by calling it&#8217;s <a href="http://developer.android.com/reference/android/view/View.html#invalidate(">invalidate()</a>) method. This invalidate call will propagate up to any ViewGroups in the view hierarchy to the <strong>ViewRoot</strong> which will lock the Surface of the window and then call draw() on all of it&#8217;s children. When that&#8217;s done the ViewRoot will unlock the canvas and swap the buffers. All windows on Android are double buffered.</p></li>
+<li><p>15:00 Demo from Chet about how to add animations and effects on Views. Animations can be used for subtle indications - for instance to indicate whether an image is selected or not it&#8217;s nice to have an animation/transitioning effect rather than an abrupt change in the UI.</p></li>
+<li><p>16:56 Unlike Java2D, Android&#8217;s Canvas is virtually stateless and uses <strong>Paint</strong>s to specify font size, text colour, colour, opacity, filtering, dithering, anti-aliasing etc. These objects contain a lot of state information and are therefore fairly heavy-weight. Making a new Paint object every frame is not a good idea as you will soon saturate the heap and cause Garbage Collection.</p></li>
+<li><p>18:15 <strong>Shaders</strong> specify how to draw horizontal or vertical spans of colours (for example different kinds of gradients), i.e. how to fill a shape. These are not the same as GLSL shaders. <strong>ComposeShader</strong> will blend two shaders together and fill the shape with that. <strong>ColorFilter</strong>s perform operations on each pixel they are applied to.</p></li>
+<li><p>21:00 <strong>XferModes</strong> or blending modes such as Porter-Duff (scientists who defined 12 equations that explain how transparency affects colours) and Darken, Lighten, Multiply and Screen allow modifying the colours of a Canvas. For instance, a BitmapShader and a LinearGradient can be combined with a ComposeShader to draw a bitmap that fades out.</p></li>
+<li><p>23:17 Demo from Chet showing some example code for using creating new Bitmaps that arise from applying Shaders on Bitmaps. Shaders are created and then the Paint object is told to use that shader. You can then simply draw a rectangle to the screen using the specified Paint and it will perform the shader operations you specified on that rectangle.</p></li>
+<li><p>25:00<strong> Bitmap</strong>s are either mutable or immutable and have the concept of resolution. Android allows you to specify different assets for different screen resolutions in the same package, and if you place a drawable in the medium resolution folder and are running on a phone which reports itself as high resolution, Android will use that information to scale the Bitmap automatically when it is displayed. Bitmaps can be large objects so they can be recycled without having to wait for the garbage collector. Supported Bitmap formats are <strong>ALPHA_8 </strong>(for alpha masks), <strong>ARGB_4444</strong> (this isn&#8217;t recommended, uses 4 bits for each component and therefore doesn&#8217;t look very good), <strong>ARGB_8888</strong> (recommended, 32 bit images, allows for transparency), and <strong>RGB_565</strong> (doesn&#8217;t contain alpha channel, limited precision for colours, faster to draw, uses dithering). JPEG images do not contain transparency and pre-Gingerbread were loaded automatically with RGB_565. <strong>This meant that jpg images automatically lost some quality pre-gingerbread</strong>. Post Gingerbread all images are loaded by default as ARGB_8888 (and application memory usage limits are increased to compensate). When loading a Bitmap, make sure to specify the format that you want, otherwise it will be loaded as it&#8217;s default and every time the Bitmap is drawn it will need to be converted. For instance, pre-Gingerbread the default bit depth for a Surface is 16 bits, so a 32 bit image will need to be converted before rendering which can be slow. You can control quality of this rendering by enabling/disabling dithering on the Paint object and the Drawable object that the Bitmap&#8217;s being used by. Blending should be avoided with the alpha channel. If Android detects an image is completely opaque it can perform a faster rendering pass.</p></li>
+<li><p>30:00 Demo by Romain showing the effects of precision loss when rendering 32 bit images onto a 16 bit window (introduces artefacts, gradients look banded). Enabling dithering removes the banding somewhat and improves the gradient. Using a 32 bit window ARGB_8888 with no dithering looks fine while ARGB_4444 still looks bad (and hence isn&#8217;t recommended anywhere).</p></li>
+<li><p>33:10 Slide showing performance comparisons for different bitmap image types on different surfaces. Drawing an ARGB_8888 surface is three times faster on a 32 bit surface than a 16 bit surface. ARGB_4444 is slightly faster than ARGB_8888 on a 16 bit surface. RGB_565 is 12 times faster than ARGB_8888 and 8 times faster than ARGB_4444 when rendering to a 16 bit surface (as it&#8217;s essentially a memcpy on a 16 bit surface) but three times slower than ARGB_8888 and almost twice as slow as ARGB_4444 on a 32 bit surface.</p></li>
+<li><p>35:50 Demo of two different ways to copy a View into a Bitmap.</p></li>
+<li><p>37:30 Chet takes over, talks about Animations. Animations enable better user experiences and can help users use the application, especially on smaller screens. The current (as of the talk) SDK has an animation superclass which controls timing, repetition, interpolation and ending states. Nonlinear interpolation on animations such as view sliding is important as it looks much better than linear motion.</p></li>
+<li><p>40:30 Android allows for Transforming operations (translation, rotation, scale), Fading, Sequences (allowing you to choreograph multiple animations), Cross-fading, and Layout animations (ViewGroups can animate the display of their children via animations rather than displaying them instantly).</p></li>
+<li><p>41:40 Animations are about making things <em>look animated</em> rather than actually <em>being</em> animated. <strong>This means that moving views via animations doesn&#8217;t actually move the view. </strong>If you move a button, you need to move the actual object afterwards to ensure that it will handle input events for the correct position. This is because the ViewGroup, when rendering it&#8217;s children, detects first if an animation is playing on the child before rendering it. If it is, it renders the current state of the animation rather then the View&#8217;s original settings.</p></li>
+<li><p>43:16 Fading is done by interpolating alpha values, which again is not the transparency of the View, but the transparency that the View will be drawn with (see previous point).</p></li>
+<li><p>45:30 Layout animations are based on staggering some template animation for each child of the view.</p></li>
+<li><p>46:50 With animations you can setDrawingCacheEnabled(True) to allow the animation to represent itself as a Bitmap which means that the animated object doesn&#8217;t need to be re-rendered each frame. This is a large performance increase and is used in Android everywhere transparently. <strong>As soon as a finger touches a view (for example a ScrollView) each of the Views in the ViewGroup are transformed into Bitmaps via setDrawingCacheEnabled which allows them to be scrolled quickly without having to re-render them.</strong> When a Bitmap is off the screen it can be recycled and used by another View.</p></li>
+<li><p>You can follow Romain Guy at @romainguy and curious-creature.org.</p></li>
+<li><p>You can follow Chet Haase at @chethaase and graphics-geek.blogspot.com.</p></li>
+</ul>
+
+
+<p>Slides of this talk can be found at <a href="http://marakana.com/f/212">http://marakana.com/f/212</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Adding tab-completion to Git commands in Bash]]></title>
+    <link href="http://mfoo.github.com/blog/2011/12/02/adding-tab-completion-to-git-commands-in-bash/"/>
+    <updated>2011-12-02T08:35:14+00:00</updated>
+    <id>http://mfoo.github.com/blog/2011/12/02/adding-tab-completion-to-git-commands-in-bash</id>
+    <content type="html"><![CDATA[<p>I occasionally use the Git Bash shell in Windows and always miss the ability to tab complete the git commands when in other shells. A couple of days ago I found a bash script that enables this functionality when reading a <a href="http://blog.mozilla.com/webdev/2011/11/21/git-using-topic-branches-and-interactive-rebasing-effectively/">post on effectively using topic branches in Git by the mozilla web dev team</a>. It enables tab completion as shown below:</p>
+
+<pre><code>$ git sta&lt;tab&gt;&lt;tab&gt;
+stage    stash    status
+</code></pre>
+
+<p>I&#8217;ve added it to my <a href="https://github.com/mfoo/dotfiles/blob/master/.git-completion.bash">dotfiles repository on GitHub</a>, or you can access the latest file in the git release tarball at contrib/completion/git-completion.bash.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using compressed assets in LibRocket via PhysicsFS]]></title>
+    <link href="http://mfoo.github.com/blog/2011/09/04/using-compressed-assets-in-librocket-via-physicsfs/"/>
+    <updated>2011-09-04T10:37:45+01:00</updated>
+    <id>http://mfoo.github.com/blog/2011/09/04/using-compressed-assets-in-librocket-via-physicsfs</id>
+    <content type="html"><![CDATA[<p><a href="librocket.com">LibRocket</a> is a system that allows you to define user interface elements for OpenGL/DirectX applications in HTML and CSS. As well as being easy to get started with and powerful, this is really useful as it means you can load UI elements from files that can be edited without needing to recompile the application. It provides several interface classes that you can customise based on your current platform to allow it to play nice with any other libraries you may be using.</p>
+
+<p>I&#8217;ve been storing compressed project assets using <a href="icculus.org/physfs/">PhysicsFS</a>, which allows for direct read/write access to compressed files such as zip files. After a little fiddling, I produced the class below that allows LibRocket to read it&#8217;s assets via PhysicsFS.</p>
+
+<p>RocketFileSystemInterface.h:</p>
+
+<p>[code lang=&#8221;cpp&#8221;]</p>
+
+<h1>ifndef <em>ROCKETFILESYSTEMINTERFACE_H</em></h1>
+
+<h1>define <em>ROCKETFILESYSTEMINTERFACE_H</em></h1>
+
+<h1>include &lt;Rocket/Core/FileInterface.h></h1>
+
+<p>/<em>*
+ * A FileInterface for libRocket (http://librocket.com/) that enables the
+ * reading of files via PhysicsFS (http://icculus.org/physfs/) directly from a
+ * compressed archive.
+ *
+ * Note: The PhysicsFS system must be initialised before this class is used via
+ * PHYSFS_init() and any archives must be made searchable via
+ * PHYSFS_addToSearchPath().
+ *
+ * Author: Martin Foot
+ * Date: 4th September 2011
+ </em>/
+namespace Delta {
+class RocketFileSystemInterface : public Rocket::Core::FileInterface {</p>
+
+<pre><code>public:
+    RocketFileSystemInterface();
+    ~RocketFileSystemInterface();
+
+    /**
+     * Get a read only filehandle to the specified file.
+     * @param path  The filename in the compressed archive.
+     * @return A Rocket filehandle to the opened file. This can be NULL on
+     * failure.
+     */
+    Rocket::Core::FileHandle Open(const Rocket::Core::String&amp; path);
+
+    /**
+     * Close a previously opened file.
+     * @param file  The Rocket filehandle to close.
+     */
+    void Close(Rocket::Core::FileHandle file);
+
+    /**
+     * Attempt to read the specified number of bytes into the provided
+     * buffer. If the specified number of bytes is greater than the size of
+     * the file, only  bytes will be copied.
+     * @param buffer    The buffer to read into.
+     * @param size  The number of bytes to read.
+     * @param file  The Rocket filehandle.
+     * @return  The actual number of bytes that was read into the buffer.
+     */
+    size_t Read(void* buffer, size_t size, Rocket::Core::FileHandle file);
+
+    /**
+     * Seek to a point in the previously opened file.
+     * @param file  The Rocket filehandle.
+     * @param offset    The number of bytes to seek to relative to the
+     * supplied origin.
+     * @param   One of SEEK_SET (seek relative to the beginning of the file),
+     * SEEK_CUR (seek relative to the current position in the file) or
+     * SEEK_END (relative to the end of the file).
+     * @return  Whether seeking was a success or not.
+     */
+    bool Seek(Rocket::Core::FileHandle file, long offset, int origin);
+
+    /**
+     * Get the length of the file.
+     * @param file  The Rocket filehandle.
+     * @return  The size in bytes of the file.
+     */
+    size_t Length(Rocket::Core::FileHandle file);
+
+    /**
+     * Get the current read pointer offset.
+     * @param file  The Rocket filehandle.
+     * @return  The current offset. Returns 0 on failure.
+     */
+    size_t Tell(Rocket::Core::FileHandle file);
+};
+</code></pre>
+
+<p>}</p>
+
+<h1>endif // <em>ROCKETFILESYSTEMINTERFACE_H</em></h1>
+
+<p>[/code]</p>
+
+<p>RocketFileSystemInterface.cpp:</p>
+
+<p>[sourcecode language=&#8221;cpp&#8221;]</p>
+
+<h1>include &#8220;RocketFileSystemInterface.h&#8221;</h1>
+
+<h1>include &lt;Rocket/Core.h></h1>
+
+<h1>include &lt;Rocket/Core/Types.h></h1>
+
+<h1>include &lt;physfs.h></h1>
+
+<h1>include <cstdio></h1>
+
+<h1>include <string></h1>
+
+<h1>include &#8220;FileSystemInterface.h&#8221;</h1>
+
+<p>using Delta::FileSystemInterface;</p>
+
+<p>namespace Delta {</p>
+
+<p>RocketFileSystemInterface::RocketFileSystemInterface() : FileInterface() {};</p>
+
+<p>RocketFileSystemInterface::~RocketFileSystemInterface() {};</p>
+
+<p>Rocket::Core::FileHandle RocketFileSystemInterface::Open(const Rocket::Core::String&amp; path) {</p>
+
+<pre><code>if (!PHYSFS_exists(path.CString())) {
+    return NULL;
+}
+
+PHYSFS_file* file = PHYSFS_openRead(path.CString());
+return static_cast&lt;PHYSFS_file*&gt;((uintptr_t)file);
+</code></pre>
+
+<p>}</p>
+
+<p>void RocketFileSystemInterface::Close(Rocket::Core::FileHandle file) {</p>
+
+<pre><code>PHYSFS_close(static_cast&lt;PHYSFS_file*&gt;((void *)file));
+</code></pre>
+
+<p>}</p>
+
+<p>size_t RocketFileSystemInterface::Read(void* buffer, size_t size, Rocket::Core::FileHandle file) {</p>
+
+<pre><code>PHYSFS_file* ptr = static_cast&lt;PHYSFS_file*&gt;((void *) file);
+
+// Don't read past the end of the file or PhysicsFS will return an error.
+size_t length = PHYSFS_fileLength(ptr);
+if(size &gt; length) {
+    size = length;
+}
+
+size_t read = PHYSFS_read(ptr, buffer, size, 1);
+
+return read * size;
+</code></pre>
+
+<p>}</p>
+
+<p>bool RocketFileSystemInterface::Seek(Rocket::Core::FileHandle file, long offset, int origin) {</p>
+
+<pre><code>PHYSFS_file* ptr = static_cast&lt;PHYSFS_file*&gt;((void *)file);
+
+int response = 0;
+
+switch(origin) {
+    case SEEK_SET:
+        // Seek from the beginning of the file.
+        response = PHYSFS_seek(ptr, offset);
+        break;
+    case SEEK_CUR:
+        // Offset from the current position.
+        response = PHYSFS_seek(ptr, offset + PHYSFS_tell(ptr));
+        break;
+    case SEEK_END:
+        response = PHYSFS_seek(ptr, PHYSFS_fileLength(ptr));
+        break;
+}
+
+if(response == 0)
+    return false;
+
+return true;
+</code></pre>
+
+<p>}</p>
+
+<p>size_t RocketFileSystemInterface::Tell(Rocket::Core::FileHandle file) {</p>
+
+<pre><code>PHYSFS_file* ptr = static_cast&lt;PHYSFS_file*&gt;((void *)file);
+size_t offset = PHYSFS_tell(ptr);
+return offset;
+</code></pre>
+
+<p>}</p>
+
+<p>size_t RocketFileSystemInterface::Length(Rocket::Core::FileHandle file) {</p>
+
+<pre><code>PHYSFS_file* ptr = static_cast&lt;PHYSFS_file*&gt;((void *)file);
+return PHYSFS_fileLength(ptr);
+</code></pre>
+
+<p>}</p>
+
+<p>}
+[/sourcecode]</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Sending photos to a Python web server with Android]]></title>
+    <link href="http://mfoo.github.com/blog/2011/07/17/sending-photos-to-a-python-web-server-with-android/"/>
+    <updated>2011-07-17T10:22:08+01:00</updated>
+    <id>http://mfoo.github.com/blog/2011/07/17/sending-photos-to-a-python-web-server-with-android</id>
+    <content type="html"><![CDATA[<p>I recently involved in a project where we performed some computer vision object recognition and classification using neural networks and SVMs. It was necessary to use photos taken from an Android phone and it took a little while to get it working. Below is the solution I used, which involved creating a tiny Android application that took a photo, Base64 encoded it, then sent the data over HTTP POST to a Python BaseHTTPRequestHandler subclass which decoded the file and wrote it to disk.</p>
+
+<p>The solution uses a slightly modified version of <a href="http://coderzheaven.com/2011/04/25/android-upload-an-image-to-a-server/">this example for Android</a> that uses <a href="http://iharder.sourceforge.net/current/java/base64/">this Java Base64 encode/decode class</a>. The Python script is based on <a href="http://fragments.turtlemeat.com/pythonwebserver.php">an example by Jon Berg</a>.</p>
+
+<p>The Python web server is below:</p>
+
+<p>[sourcecode language=&#8221;python&#8221;]</p>
+
+<h1>!/usr/bin/env python</h1>
+
+<p>import cgi
+from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer</p>
+
+<p>class MyHandler(BaseHTTPRequestHandler):</p>
+
+<pre><code>def do_GET(self):
+    print "Somebody made a POST request."
+    return
+
+def do_POST(self):
+    """
+    Take the Base64 encoded string that the phone transmit, decode it and
+    save it as an image file called phone.jpg.
+    """
+    global rootnode
+    try:
+        ctype, pdict = cgi.parse_header(self.headers.getheader('content-type'))
+        print ctype
+        print pdict
+        if ctype == 'multipart/form-data':
+            query=cgi.parse_multipart(self.rfile, pdict)
+        elif ctype == 'application/x-www-form-urlencoded':
+            length = int(self.headers.getheader('content-length'))
+            query = cgi.parse_qs(self.rfile.read(length), keep_blank_values=1)
+
+        self.send_response(301)
+        self.send_header('Content-type', 'text/html')
+        self.end_headers()
+
+        upfilecontent = query.get('upfile')
+        self.wfile.write("POST OK.
+</code></pre>
+
+<p>&#8221;);</p>
+
+<pre><code>        f = open("phone.jpg", "wb")
+        f.write(upfilecontent[0].decode('base64'))
+        f.close()
+        print("File received.")
+
+        return
+    except Exception, err:
+        print Exception, err
+        pass
+</code></pre>
+
+<p>def main():</p>
+
+<pre><code>try:
+    server = HTTPServer(('', 8000), MyHandler)
+    print 'started httpserver...'
+    server.serve_forever()
+except KeyboardInterrupt:
+    print '^C received, shutting down server'
+    server.socket.close()
+</code></pre>
+
+<p>if <strong>name</strong> == &#8217;<strong>main</strong>&#8217;:</p>
+
+<pre><code>main()
+</code></pre>
+
+<p>[/sourcecode]</p>
+
+<p>And here&#8217;s the Android Activity (remember to add the <a href="http://developer.android.com/reference/android/Manifest.permission.html#CAMERA">CAMERA permission</a> to your manifest and add the above linked Base64 encoding class to your workspace and package).</p>
+
+<p>[sourcecode language=&#8221;java&#8221;]
+package com.elec6024.eardetection;</p>
+
+<p>/<em>*
+ * This Android Activity takes a photo and uploads it to a server.
+ * The server upload HTTP POST code is modified from this:
+ * http://coderzheaven.com/index.php/2011/04/android-upload-an-image-to-a-server/
+ </em>/
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;</p>
+
+<p>import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;</p>
+
+<p>import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.Toast;</p>
+
+<p>public class MainActivity extends Activity
+{</p>
+
+<pre><code>private Uri outputFileUri;
+private InputStream inputStream;
+public static final int PICTURE_ACTIVITY = 35434;
+
+/* Override the onCreate method */
+@Override
+public void onCreate(Bundle savedInstanceState)
+{
+    super.onCreate(savedInstanceState);
+
+    setContentView(R.layout.main);
+    final Button cameraButton = (Button)findViewById(R.id.camera_button);
+    cameraButton.setOnClickListener(new OnClickListener() {
+        @Override
+        public void onClick(View v){
+            // Check if there's external storage available and that it's writeable.
+            boolean mExternalStorageAvailable = false;
+            boolean mExternalStorageWriteable = false;
+            String state = Environment.getExternalStorageState();
+
+            if (Environment.MEDIA_MOUNTED.equals(state)) {
+                // We can read and write the media
+                mExternalStorageAvailable = mExternalStorageWriteable = true;
+            } else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+                // We can only read the media
+                mExternalStorageAvailable = true;
+                mExternalStorageWriteable = false;
+            } else {
+                // Something else is wrong. It may be one of many other states, but all we need
+                //  to know is we can neither read nor write
+                mExternalStorageAvailable = mExternalStorageWriteable = false;
+            }
+
+            if(mExternalStorageAvailable &amp;&amp; mExternalStorageWriteable){
+                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE); // Normally you would populate this with your custom intent.
+                File file = new File(Environment.getExternalStorageDirectory(),"imagefile.jpg");
+                outputFileUri = Uri.fromFile(file);
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
+                startActivityForResult(cameraIntent, PICTURE_ACTIVITY);
+            }
+        }
+    });
+}
+
+@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+    super.onActivityResult(requestCode, resultCode, intent);
+
+    if (requestCode == PICTURE_ACTIVITY &amp;&amp; resultCode == Activity.RESULT_OK) {
+
+        File file = new File(Environment.getExternalStorageDirectory(),"imagefile.jpg");
+        if(file.exists()){
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+            // Enclose this in a scope so that when it's over we can call the garbage collector (the phone doesn't have a lot of memory!)
+            {
+                Bitmap image = BitmapFactory.decodeFile(file.getPath());
+                Bitmap scaled = Bitmap.createScaledBitmap(image, (int)(image.getWidth() * 0.3), (int)(image.getHeight() * 0.3), false);
+                scaled.compress(Bitmap.CompressFormat.JPEG, 90, stream);
+            }
+
+            System.gc();
+
+            byte [] byte_arr = stream.toByteArray();
+            String image_str = Base64.encodeBytes(byte_arr);
+            ArrayList nameValuePairs = new ArrayList();
+
+            nameValuePairs.add(new BasicNameValuePair("upfile",image_str));
+
+            try {
+                HttpClient httpclient = new DefaultHttpClient();
+                final String URL = "http://192.168.2.3:8000";
+                HttpPost httppost = new HttpPost(URL);
+                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                HttpResponse response = httpclient.execute(httppost);
+                String the_string_response = convertResponseToString(response);
+                Toast.makeText(MainActivity.this, "Response " + the_string_response, Toast.LENGTH_LONG).show();
+            } catch(Exception e){
+                  Toast.makeText(MainActivity
+                          .this, "ERROR " + e.getMessage(), Toast.LENGTH_LONG).show();
+                  System.out.println("Error in http connection "+e.toString());
+                  e.printStackTrace();
+            }
+        }
+    }
+}
+
+public String convertResponseToString(HttpResponse response) throws IllegalStateException, IOException{
+    String res = "";
+    StringBuffer buffer = new StringBuffer();
+    inputStream = response.getEntity().getContent();
+    int contentLength = (int) response.getEntity().getContentLength(); //getting content length…..
+        Toast.makeText(MainActivity.this, "contentLength : " + contentLength, Toast.LENGTH_LONG).show();
+    if (contentLength &lt; 0){         }         else{                byte[] data = new byte[512];                int len = 0;                try                {                    while (-1 != (len = inputStream.read(data)) )                    {                        buffer.append(new String(data, 0, len)); //converting to string and appending  to stringbuffer…..                    }                }                catch (IOException e)                {                    e.printStackTrace();                }                try                {                    inputStream.close(); // closing the stream…..                }                catch (IOException e)                {                    e.printStackTrace();                }                res = buffer.toString();     // converting stringbuffer to string…..                Toast.makeText(MainActivity.this, "Result : " + res, Toast.LENGTH_LONG).show();                //System.out.println("Response =&gt; " +  EntityUtils.toString(response.getEntity()));
+    }
+    return res;
+</code></pre>
+
+<p>   }
+}</p>
+
+<p>[/sourcecode]</p>
+
+<p>You&#8217;ll also need the layout file for the application:</p>
+
+<p>[sourcecode language=&#8221;xml&#8221;]
+&lt;?xml version=&#8221;1.0&#8221; encoding=&#8221;utf-8&#8221;?>
+&lt;LinearLayout xmlns:android=&#8221;http://schemas.android.com/apk/res/android&#8221;</p>
+
+<pre><code>android:orientation="vertical"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+&gt;
+&lt;ImageView android:layout_weight="2" 
+    android:id="@+id/imageview"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" /&gt;
+&lt;Button
+android:id="@+id/camera_button"
+android:layout_weight="1"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:text="@string/camera_button_text" 
+android:textSize="@dimen/big_text"/&gt;
+</code></pre>
+
+<p></LinearLayout></p>
+
+<p>[/sourcecode]</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using Doxygen and Google C++ Testing Framework with CMake]]></title>
+    <link href="http://mfoo.github.com/blog/2011/07/10/using-doxygen-and-google-c-testing-framework-with-cmake/"/>
+    <updated>2011-07-10T06:35:52+01:00</updated>
+    <id>http://mfoo.github.com/blog/2011/07/10/using-doxygen-and-google-c-testing-framework-with-cmake</id>
+    <content type="html"><![CDATA[<p><strong>What is CMake?</strong></p>
+
+<p><a href="http://www.cmake.org">CMake</a> is a build system that makes it incredibly easy to distribute and compile source code packages on multiple platforms. It will automatically scan dependencies, searching in the correct (for standard installs) places for each platform and warning if they are not met. Once it has calculated what&#8217;s necessary to build the project it can generate build scripts and project files for several popular IDEs including Eclipse, XCode, Unix Makefiles, and Visual Studio (<a href="http://www.cmake.org/cmake/project/about.html">read their about page to learn more</a>).</p>
+
+<p><strong>CMake with Doxygen</strong></p>
+
+<p>As well as building your source, CMake can also run <a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> to generate documentation after a build. Here&#8217;s a sample that I use based on the example <a href="http://majewsky.wordpress.com/2010/08/14/tip-of-the-day-cmake-and-doxygen/">here</a>:</p>
+
+<p>[code]</p>
+
+<h6>#</h6>
+
+<h1>Documentation Generation</h1>
+
+<p>#</p>
+
+<h1>Build documentation using Doxygen (www.doxygen.org)</h1>
+
+<h1>Builds the docs in the docs/ directory (HTML and LaTeX formats for a .pdf)</h1>
+
+<h6>#</h6>
+
+<p>find_package(Doxygen)</p>
+
+<p>if(DOXYGEN_FOUND)</p>
+
+<pre><code>configure_file(${PROJECT_SOURCE_DIR}/doc/Doxyfile.in ${PROJECT_SOURCE_DIR}/doc/Doxyfile @ONLY)
+add_custom_target(doc ALL ${DOXYGEN_EXECUTABLE} ${PROJECT_SOURCE_DIR}/doc/Doxyfile  COMMENT "Generating API documentation with Doxygen" VERBATIM)
+</code></pre>
+
+<p>endif(DOXYGEN_FOUND)
+[/code]</p>
+
+<p>This will take a file called Doxyfile.in (rename your Doxyfile if you&#8217;re just getting started) and substitute any values that you&#8217;ve specified into the file. This means that by changing a variable in the CMakeLists.txt you can have that change show up in your documentation. Inside the Doxyfile.in file you can specify things like this:</p>
+
+<p>[code]
+PROJECT_NAME = &#8220;@PROJECT_NAME@&#8221;
+PROJECT_NUMBER = &#8220;@PROJECT_VERSION_MAJOR@.@PROJECT_VERSION_MINOR@&#8221;
+PROJECT_LOGO = @CMAKE_CURRENT_SOURCE_DIR@/assets/project_logo.png
+OUTPUT_DIRECTORY = @CMAKE_CURRENT_BINARY_DIR@/doc
+INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@/src @CMAKE_CURRENT_SOURCE_DIR@/test/src @CMAKE_CURRENT_SOURCE_DIR@/src/Core.h.in
+EXAMPLE_PATH = @CMAKE_CURRENT_SOURCE_DIR@/examples
+IMAGE_PATH = @CMAKE_CURRENT_SOURCE_DIR@/assets
+[/code]</p>
+
+<p><strong>CMake and CTest with Google C++ Testing Framework</strong></p>
+
+<p>CMake makes it very easy to add other projects that use CMake to the build as a dependency. <a href="http://code.google.com/p/googletest/">Google&#8217;s C++ Testing Framework</a> provides a CMakeLists.txt, so all you need to do in order to add gtest to your project is point your CMakeLists.txt to the gtest folder. Mine&#8217;s in the &#8216;lib&#8217; folder:</p>
+
+<p>[code]</p>
+
+<h6>#</h6>
+
+<h1>Testing</h1>
+
+<p>#</p>
+
+<h1>Build GTest (See http://code.google.com/p/googletest/)</h1>
+
+<h1>Run different GTest test programs.</h1>
+
+<h6>#</h6>
+
+<p>enable_testing(true)</p>
+
+<h1>Build GTest</h1>
+
+<p>add_subdirectory(lib/gtest-1.6.0)</p>
+
+<p>include_directories(${gtest_SOURCE_DIR} ${gtest_SOURCE_DIR}/include)</p>
+
+<h1>Compile the test sources.</h1>
+
+<p>add_executable(runTests test/src/test.cpp)</p>
+
+<h1>Link the test sources to the gtest libraries.</h1>
+
+<p>target_link_libraries(runTests ${LIB} gtest gtest_main)</p>
+
+<h1>Add that executable to the CTests testing framework.</h1>
+
+<p>add_test(</p>
+
+<pre><code>FixedSizeArrayTests runTests
+</code></pre>
+
+<p>)
+[/code]</p>
+
+<p>The only problem here is that while in GTest you don&#8217;t need to enumerate each file, using CMake&#8217;s CTest facility you will do. This could be fixed by defining a simple macro that will add all the tests in a folder. <a href="https://code.ros.org/svn/opencv/trunk/opencv/samples/cpp/CMakeLists.txt">This is a good starting point.</a> The above code will enable the &#8216;test&#8217; build target in the Makefile.</p>
+
+<p>In addition, gtest provides the option to output it&#8217;s test results to JUnit-compliant XML files. In order to do this you need to have a minimum of CMake version 2.8 (so set cmake_minimum_required(VERSION 2.8)) and then you can set the CTest environment variable &#8220;xml&#8221; like this:</p>
+
+<p>[code]
+set_tests_properties(FixedSizeArrayTests PROPERTIES ENVIRONMENT &#8220;GTEST_OUTPUT=xml&#8221;)
+[/code]</p>
+
+<p>This is especially useful if you&#8217;re using a build system such as <a href="http://www.jenkins-ci.org">Jenkins</a> (if so, be sure to look at the <a href="https://wiki.jenkins-ci.org/display/JENKINS/cmakebuilder+Plugin">CMakebuilder plugin</a>) as you can set Jenkins to perform testing and then display JUnit test results with each build.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Automatically download National Geographic's Photo of the Day and set it as your desktop background]]></title>
+    <link href="http://mfoo.github.com/blog/2011/07/08/automatically-download-national-geographics-photo-of-the-day-and-set-it-as-your-desktop-background/"/>
+    <updated>2011-07-08T06:14:04+01:00</updated>
+    <id>http://mfoo.github.com/blog/2011/07/08/automatically-download-national-geographics-photo-of-the-day-and-set-it-as-your-desktop-background</id>
+    <content type="html"><![CDATA[<p>National Geographic is an exceptional source of photos and imagery. I wrote a short Python script that&#8217;s been tested on Linux and Mac OS X to read the <a href="http://twitter.com/#!/NatGeo">@NatGeo</a> Twitter stream and automatically download their Photo of the Day featured image. Occasionally the photo of the day is provided by a National Geographic reader and these don&#8217;t provide high-res download links (likely due to licensing and permissions) so the script ignores these.</p>
+
+<p> If you&#8217;re running Linux, it will attempt to set the Gnome background wallpaper to the downloaded image, and by default it downloads to ~/Dropbox/Wallpapers. This can be changed by modifying the DOWNLOAD_FOLDER variable. The bonus of it downloading to Dropbox is that I can run the script in a cron job on my Linux desktop and have the wallpapers appear on all my other machines &#8212; especially nice as my laptop displays wallpapers randomly from the Wallpapers folder.</p>
+
+<p>[code lang=&#8221;python&#8221;]</p>
+
+<h1>!/usr/bin/env python</h1>
+
+<p>&#8221;&#8221;&#8221;
+natgeowp.py</p>
+
+<p>Fetches the National Geographic Photo of the Day from the @NatGeo Twitter
+stream, downloads it, and tries to set it as the background wallpaper.</p>
+
+<p>Can be scheduled to run in a cron job with crontab.</p>
+
+<p>Martin Foot <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#111;&#58;&#109;&#97;&#114;&#x74;&#x69;&#110;&#64;&#109;&#102;&#111;&#x6f;&#x74;&#x2e;&#x63;&#x6f;&#109;">&#109;&#x61;&#114;&#116;&#x69;&#110;&#64;&#109;&#102;&#111;&#x6f;&#x74;&#46;&#x63;&#x6f;&#109;</a></p>
+
+<p>This is a cleaned up version of my original script after seeing Christian
+Stefanescu&#8217;s NASA image of the day wallpaper script -
+http://0chris.com/nasa-image-day-script-python.html
+&#8221;&#8221;&#8221;</p>
+
+<p>try:</p>
+
+<pre><code>from urllib.request import urlopen
+</code></pre>
+
+<p>except ImportError:</p>
+
+<pre><code># We're using Python 2.x, not Python 3.x
+from urllib import urlopen
+</code></pre>
+
+<p>import json
+import re
+import os
+import commands
+import platform</p>
+
+<h1>Configurable settings</h1>
+
+<p>FEED_URL = &#8216;http://twitter.com/statuses/user_timeline.json?id=NatGeo&#8217;
+DOWNLOAD_FOLDER = os.path.join(os.getenv(&#8216;HOME&#8217;), &#8216;Dropbox&#8217;, &#8216;Wallpapers&#8217;)</p>
+
+<p>def fetch_tweets(feed_url):</p>
+
+<pre><code>"""
+Return JSON object of the Twitter stream.
+"""
+# Don't edit below
+twitter = urlopen(feed_url)
+tweets = twitter.read()
+twitter.close()
+tweets = json.loads(tweets)
+return tweets
+</code></pre>
+
+<p>def filter_tweets(haystack):</p>
+
+<pre><code>"""
+Filter out any tweets that don't contain the words "Photo of the Day"
+"""
+needle = 'Photo of the Day'
+
+found = []
+
+# Loop through tweets, newest last.
+for tweet in haystack:
+    if tweet['text'].startswith(needle):
+        # We've found a photo, extract the URL (tweet seems to be
+        # automated, we can assume there will be one).
+        pic_url = re.search("(http://\S+)", tweet['text'])#.groups()[0]
+
+        if pic_url != None:
+            pic_url = pic_url.groups()[0]
+            found.append(pic_url)
+
+return found
+</code></pre>
+
+<p>def check_downloadable(urls):</p>
+
+<pre><code>"""
+Loop through a list of National Geographic Photo of the Day URLs, and if
+they provide a download link, record it. Some images such as
+reader-submitted images don't provide a link, likely due to licensing
+issues. We won't download these.
+"""
+found = []
+
+for pic_url in urls:
+    text = str(urlopen(pic_url).read())
+    pic_url = re.search('a href="(\S+)"&gt;Download Wallpaper', text)
+
+    # Not all photos have a download link
+    if pic_url != None:
+        pic_url = pic_url.groups()[0]
+
+        found.append(pic_url)
+
+return found
+</code></pre>
+
+<p>def download_photos(urls):</p>
+
+<pre><code>"""
+Download the list of files to the DOWNLOAD_FOLDER directory.
+"""
+for url in urls:
+    print 'Downloading ' + url
+    filename = re.search(".*/(.+)", url).groups()[0]
+    path = os.path.join(DOWNLOAD_FOLDER, filename)
+
+    imageFile = open(path, "wb")
+    imageFile.write(urlopen(url).read())
+    imageFile.close()
+
+return path
+</code></pre>
+
+<p>def set_gnome_wallpaper(file_path):</p>
+
+<pre><code>command = "gconftool-2 --set \
+        /desktop/gnome/background/picture_filename \
+        --type string '%s'" % file_path
+status, output = commands.getstatusoutput(command)
+return status
+</code></pre>
+
+<p>if <strong>name</strong> == &#8217;<strong>main</strong>&#8217;:</p>
+
+<pre><code>tweets = fetch_tweets(FEED_URL)
+image_urls = filter_tweets(tweets)
+downloadable_urls = check_downloadable(image_urls)
+
+if len(downloadable_urls) &gt; 0:
+    most_recent = download_photos(downloadable_urls)
+
+    osplatform = platform.system()
+
+    # If we're on Linux, try and set the desktop wallpaper with gconftool
+    # (TODO: Non-Gnome desktop environments).
+    if osplatform == "Linux":
+        set_gnome_wallpaper(most_recent)
+</code></pre>
+
+<p>[/code]</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Enfuse for Extended Dynamic Range and Focus Stacking in Microscopy]]></title>
+    <link href="http://mfoo.github.com/blog/2011/07/08/enfuse-for-extended-dynamic-range-and-focus-stacking-in-microscopy/"/>
+    <updated>2011-07-08T04:09:53+01:00</updated>
+    <id>http://mfoo.github.com/blog/2011/07/08/enfuse-for-extended-dynamic-range-and-focus-stacking-in-microscopy</id>
+    <content type="html"><![CDATA[<p>[caption id=&#8221;attachment_146&#8221; align=&#8221;aligncenter&#8221; width=&#8221;656&#8221; caption=&#8221;The right eye and antennae of a bee produced from a stack of different photographs combined with Enfuse.&#8221;]<a href="http://www.mfoot.com/wp-content/uploads/2011/07/bee_closeup.png"><img src="http://www.mfoot.com/wp-content/uploads/2011/07/bee_closeup.png" alt="Bee Closeup" /></a>[/caption]</p>
+
+<p><a href="http://enblend.sourceforge.net/">Enfuse</a> is a piece of open source software that is designed for combining multiple images containing different exposures of the same scene into a single image that is well-exposed as possible. This process is called exposure fusion, not to be confused with the popular high dynamic range (HDR) techniques. HDR techniques build a single high dynamic range source image and then apply a tone mapping operator to compress it into a range that a monitor can display or a printer can print. <em>Enfuse</em> skips this step and tries to combine pixels from each source image directly into an output image by assigning each pixel a weighting based on contrast, exposure and saturation calculations in the pixel&#8217;s local area. Pixels from each coordinate in the image stack are then combined based on their weightings.</p>
+
+<p>This method of combining pixels means that not only is <em>Enfuse</em> good at combining multiple exposures, but it is good at combining focus stacks &#8212; images that are focussed on different parts of the subject. By weighting the decision heavily on local neighborhood contrast rather than saturation and exposure and telling <em>Enfuse</em> to only use the pixel with the highest weighting from the stack (rather than combining pixels in the stack based on weighting) we can perform focus stacking.</p>
+
+<p>I recently tried <em>Enfuse</em> on images captured directly from a microscope and have shown that it&#8217;s very useful when the subject contains both light and dark (and matte and glossy) areas where it&#8217;s difficult to illuminate correctly with a single lighting setup. The images below show six different exposures of a piece of mould growing on a coffee cup that was in the PhD lab at the time. There&#8217;s a crack in the sample and the light from underneath shines through, making it difficult to see the image detail in that area without underexposing the top.</p>
+
+<p><a href="http://www.mfoot.com/wp-content/uploads/2011/07/1031_small.png"><img src="http://www.mfoot.com/wp-content/uploads/2011/07/1031_small.png" alt="" /></a><a href="http://www.mfoot.com/wp-content/uploads/2011/07/1030_small.png"><img src="http://www.mfoot.com/wp-content/uploads/2011/07/1030_small.png" alt="" /></a><a href="http://www.mfoot.com/wp-content/uploads/2011/07/1029_small.png"><img src="http://www.mfoot.com/wp-content/uploads/2011/07/1029_small.png" alt="" /></a></p>
+
+<p><a href="http://www.mfoot.com/wp-content/uploads/2011/07/1028_small.png"><img src="http://www.mfoot.com/wp-content/uploads/2011/07/1028_small.png" alt="" /></a><a href="http://www.mfoot.com/wp-content/uploads/2011/07/1027_small.png"><img src="http://www.mfoot.com/wp-content/uploads/2011/07/1027_small.png" alt="" /></a><a href="http://www.mfoot.com/wp-content/uploads/2011/07/1026_small.png"><img src="http://www.mfoot.com/wp-content/uploads/2011/07/1026_small.png" alt="" /></a></p>
+
+<p>When these are combined in <em>Enfuse</em> we get an output that looks like the one below with no over- or under-exposed areas.</p>
+
+<p>[caption id=&#8221;attachment_131&#8221; align=&#8221;aligncenter&#8221; width=&#8221;400&#8221; caption=&#8221;Exposure fused composite&#8221;]<a href="http://www.mfoot.com/wp-content/uploads/2011/07/hdr181031_small.jpg"><img src="http://www.mfoot.com/wp-content/uploads/2011/07/hdr181031_small.jpg" alt="Exposure fused composite" /></a>[/caption]</p>
+
+<p>I wrote a Python wrapper for the microscope-mounted camera to capture photos and another Python wrapper for the stage&#8217;s RS-232 instruction set and set up an automated process to take six different exposures at a time and then move the stage in the Z axis and repeat. After combining each of the six images into an exposure-fused output and then combining those images in a focus stack we can produce something like this:</p>
+
+<p>[caption id=&#8221;attachment_132&#8221; align=&#8221;aligncenter&#8221; width=&#8221;400&#8221; caption=&#8221;Output of using Enfuse to focus stack a stack of exposure-fused images. Note that the lines in the image aren&#8217;t produced by Enfuse, there were some problems with the data capture and some parts of the image were lost.&#8221;]<a href="http://www.mfoot.com/wp-content/uploads/2011/07/stacked18.png"><img src="http://www.mfoot.com/wp-content/uploads/2011/07/stacked18.png" alt="Stacked Mould Images" /></a>[/caption]</p>
+
+<p>Now we&#8217;ve shown that focus stacking works nicely on exposure fused images from the microscope, we can expand the program to move the stage around and build up a mosaic as shown below.</p>
+
+<p>[caption id=&#8221;attachment_136&#8221; align=&#8221;aligncenter&#8221; width=&#8221;700&#8221; caption=&#8221;A composite of 9 different exposure fused focus stacks.&#8221;]<a href="http://www.mfoot.com/wp-content/uploads/2011/07/mouldPanoIM.jpg"><img src="http://www.mfoot.com/wp-content/uploads/2011/07/mouldPanoIM.jpg" alt="Mould Mosaic" /></a>[/caption]</p>
+
+<p>With a different subject with a much greater physical depth (more Z-steps) we can produce something that looks like the bee below. This image is a composite of 3600 source images that were automatically combined with <em>Enfuse</em> and then were stitched together into the mosaic manually. The output is something that would never be visible to the human eye due to physical limitations of the lens, and the final composite is around 90 megapixels. The image here is an incredibly reduced version of it. A full resolution version can be found <a href="http://www.mfoot.com/3yp/bee.jpg">here (warning: 10 megabytes jpg file, 7680x11728px, may crash your browser)</a>.</p>
+
+<p>[caption id=&#8221;attachment_145&#8221; align=&#8221;aligncenter&#8221; width=&#8221;397&#8221; caption=&#8221;A composite of 3600 images fused with Enfuse and manually stitched.&#8221;]<a href="http://www.mfoot.com/wp-content/uploads/2011/07/bee1.png"><img src="http://www.mfoot.com/wp-content/uploads/2011/07/bee1.png" alt="Bee Mosaic" /></a>[/caption]</p>
+]]></content>
+  </entry>
+  
+</feed>

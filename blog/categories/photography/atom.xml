@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Photography | Martin Foot]]></title>
+  <link href="http://mfoo.github.com/blog/categories/photography/atom.xml" rel="self"/>
+  <link href="http://mfoo.github.com/"/>
+  <updated>2013-01-21T22:33:31+00:00</updated>
+  <id>http://mfoo.github.com/</id>
+  <author>
+    <name><![CDATA[Martin Foot]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Vim Cheatsheets]]></title>
+    <link href="http://mfoo.github.com/blog/2012/04/06/vim-cheatsheets/"/>
+    <updated>2012-04-06T19:18:37+01:00</updated>
+    <id>http://mfoo.github.com/blog/2012/04/06/vim-cheatsheets</id>
+    <content type="html"><![CDATA[<p>I've been using Vim for about four years, but I've recently started making the effort to use some of the more advanced features outside of the core set that I usually use. Surprisingly there's even some basic navigation commands that I never really learned that greatly improve editing efficiency, so I've been using a couple of cheat sheets that come highly recommended. Here they are:</p>
+
+<p><a href="http://www.viemu.com/a_vi_vim_graphical_cheat_sheet_tutorial.html">http://www.viemu.com/a_vi_vim_graphical_cheat_sheet_tutorial.html</a></p>
+
+<p><a href="https://github.com/LevelbossMike/vim_shortcut_wallpaper/">https://github.com/LevelbossMike/vim_shortcut_wallpaper/</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Weekly Link Roundup 27th Feb - 4th March]]></title>
+    <link href="http://mfoo.github.com/blog/2012/03/04/weekly-link-roundup-27th-feb-4th-march/"/>
+    <updated>2012-03-04T12:49:19+00:00</updated>
+    <id>http://mfoo.github.com/blog/2012/03/04/weekly-link-roundup-27th-feb-4th-march</id>
+    <content type="html"><![CDATA[<p>I'm going to start taking notes of a few interesting articles/websites that I find each week in order to share them with others and preserve them for myself. And so begins Week One. Links will cover any article that I find interesting, but will largely be grounded in science and technology.</p>
+
+<ol>
+<li><p>An <a href="http://blogs.discovermagazine.com/badastronomy/2012/03/02/stunning-time-lapse-video-the-light-of-stars/">awesome <strong>time-lapse video of night skies</strong></a> was posted the other day (embedded above). I love stunning videos of nature and this is no exception.</p></li>
+<li><p>Some scientists as part of a Russian research team have <a href="http://news.nationalgeographic.com/news/2012/02/120221-oldest-seeds-regenerated-plants-science/?source=link-tw20120229news-plant">reportedly managed to <strong>germinate seeds that were found under 124 feet (38 meters) of permafrost</strong></a> (annoyingly, it doesn't link to the source journal article), which were determined to be around 32,000 years old by radiocarbon dating. The article describes how knowledge of unfreezing and re-cultivating these seeds could benefit places such as the Svalbard Global Seed Vault.</p></li>
+<li><p>A new <a href="http://www.mozilla.org/en-US/collusion/">experimental plugin for Firefox</a> called Collision that allows you to <strong>visualise the connections between services that websites use to track you while you are online</strong>. It's certainly quite eye-opening about the number of websites that record your usage data and statistics. Mozilla writes: <em>Not all tracking is bad. Many services rely on user data to provide relevant content and enhance your online experience. But most tracking happens without users' consent and without their knowledge. That’s not okay. It should be you who decides when, how and if you want to be tracked. Collusion will be a powerful tool to help you do that</em></p></li>
+<li><p>The <a href="www.raspberrypi.org/">Raspberry Pi foundation</a> also recently announced that they have <strong>started shipping A and B model Raspberry Pis</strong>, although they are currently out of stock in both RS and Farnell. Using these distributors allows for a much higher production rate that scales to demand, and will help reduce shipping costs for people due to worldwide distribution networks. Can't wait until they are back in stock.</p></li>
+<li><p>A <a href="http://blogs.discovermagazine.com/loom/2012/03/02/tongue-parasites-to-people-of-earth-thank-you-for-your-overfishing/">scary post that describes </a><strong><a href="http://blogs.discovermagazine.com/loom/2012/03/02/tongue-parasites-to-people-of-earth-thank-you-for-your-overfishing/">a fish parasite</a> that enters the gills of a fish, devours its tongue, then positions itself in place of the tongue</strong>. Just the picture alone is creepy! Nature is awesome.</p></li>
+<li><p>A <a href="http://www.bbc.co.uk/iplayer/episode/b01cywtq/Horizon_20112012_The_Truth_About_Exercise/">BBC Horizon show</a> about <strong>what exercise really does and the best ways of getting the maximum benefit</strong> (probably UK only). This is coupled with <a href="http://blogs.discovermagazine.com/80beats/2012/03/02/just-3-days-of-lazing-around-will-weaken-your-ability-to-regulate-blood-sugar/">a post from DiscoverMagazine</a> on a new study that suggests <strong>healthy people will develop higher blood sugar after only three days of a sedentary lifestyle</strong>.</p></li>
+<li><p>A <a href="http://www.markshuttleworth.com/archives/939">post from Mark Shuttleworth</a> that shows the <strong>new HUD functionality coming in Ubuntu 12.04</strong>.</p></li>
+<li><p>A good collection of <a href="http://www.dextronet.com/micro-isv-insights/2012/01/30-books-everyone-in-software-business-should-read-and-why/"><strong>30 books that everyone in the software business should read and why</strong></a>. I know that five or six of these are already on my Amazon wishlist for when I have the time, and it's definitely a list worth looking at.</p></li>
+<li><p>An <a href="lists.busybox.net/pipermail/busybox/2010-December/074114.html">interesting explanation of <strong>why the bin, sbin, usr/bin, and usr/sbin folders exist</strong> in Unix</a> as well as why the programs located in each exist where they do.</p></li>
+<li><p>A <a href="http://highscalability.com/blog/2012/2/13/tumblr-architecture-15-billion-page-views-a-month-and-harder.html">detailed and very interesting article describing Tumblr's scalable architecture</a> and how it allows them to serve '500 million page views a day, a peak rate of ~40k requests per second, ~3TB of new data to store a day, all running on 1000+ servers'.</p></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Automatically download National Geographic's Photo of the Day and set it as your desktop background]]></title>
+    <link href="http://mfoo.github.com/blog/2011/07/08/automatically-download-national-geographics-photo-of-the-day-and-set-it-as-your-desktop-background/"/>
+    <updated>2011-07-08T06:14:04+01:00</updated>
+    <id>http://mfoo.github.com/blog/2011/07/08/automatically-download-national-geographics-photo-of-the-day-and-set-it-as-your-desktop-background</id>
+    <content type="html"><![CDATA[<p>National Geographic is an exceptional source of photos and imagery. I wrote a short Python script that's been tested on Linux and Mac OS X to read the <a href="http://twitter.com/#!/NatGeo">@NatGeo</a> Twitter stream and automatically download their Photo of the Day featured image. Occasionally the photo of the day is provided by a National Geographic reader and these don't provide high-res download links (likely due to licensing and permissions) so the script ignores these.</p>
+
+<p> If you're running Linux, it will attempt to set the Gnome background wallpaper to the downloaded image, and by default it downloads to ~/Dropbox/Wallpapers. This can be changed by modifying the DOWNLOAD_FOLDER variable. The bonus of it downloading to Dropbox is that I can run the script in a cron job on my Linux desktop and have the wallpapers appear on all my other machines --- especially nice as my laptop displays wallpapers randomly from the Wallpapers folder.</p>
+
+<p>[code lang="python"]</p>
+
+<h1>!/usr/bin/env python</h1>
+
+<p>"""
+natgeowp.py</p>
+
+<p>Fetches the National Geographic Photo of the Day from the @NatGeo Twitter
+stream, downloads it, and tries to set it as the background wallpaper.</p>
+
+<p>Can be scheduled to run in a cron job with crontab.</p>
+
+<p>Martin Foot <a href="&#109;&#97;&#105;&#x6c;&#116;&#x6f;&#58;&#109;&#x61;&#x72;&#116;&#105;&#x6e;&#x40;&#109;&#x66;&#111;&#111;&#x74;&#x2e;&#99;&#x6f;&#109;">&#109;&#x61;&#x72;&#x74;&#x69;&#110;&#64;&#x6d;&#102;&#111;&#x6f;&#116;&#46;&#99;&#111;&#109;</a></p>
+
+<p>This is a cleaned up version of my original script after seeing Christian
+Stefanescu's NASA image of the day wallpaper script -
+http://0chris.com/nasa-image-day-script-python.html
+"""</p>
+
+<p>try:</p>
+
+<pre><code>from urllib.request import urlopen
+</code></pre>
+
+<p>except ImportError:</p>
+
+<pre><code># We're using Python 2.x, not Python 3.x
+from urllib import urlopen
+</code></pre>
+
+<p>import json
+import re
+import os
+import commands
+import platform</p>
+
+<h1>Configurable settings</h1>
+
+<p>FEED_URL = 'http://twitter.com/statuses/user_timeline.json?id=NatGeo'
+DOWNLOAD_FOLDER = os.path.join(os.getenv('HOME'), 'Dropbox', 'Wallpapers')</p>
+
+<p>def fetch_tweets(feed_url):</p>
+
+<pre><code>"""
+Return JSON object of the Twitter stream.
+"""
+# Don't edit below
+twitter = urlopen(feed_url)
+tweets = twitter.read()
+twitter.close()
+tweets = json.loads(tweets)
+return tweets
+</code></pre>
+
+<p>def filter_tweets(haystack):</p>
+
+<pre><code>"""
+Filter out any tweets that don't contain the words "Photo of the Day"
+"""
+needle = 'Photo of the Day'
+
+found = []
+
+# Loop through tweets, newest last.
+for tweet in haystack:
+    if tweet['text'].startswith(needle):
+        # We've found a photo, extract the URL (tweet seems to be
+        # automated, we can assume there will be one).
+        pic_url = re.search("(http://\S+)", tweet['text'])#.groups()[0]
+
+        if pic_url != None:
+            pic_url = pic_url.groups()[0]
+            found.append(pic_url)
+
+return found
+</code></pre>
+
+<p>def check_downloadable(urls):</p>
+
+<pre><code>"""
+Loop through a list of National Geographic Photo of the Day URLs, and if
+they provide a download link, record it. Some images such as
+reader-submitted images don't provide a link, likely due to licensing
+issues. We won't download these.
+"""
+found = []
+
+for pic_url in urls:
+    text = str(urlopen(pic_url).read())
+    pic_url = re.search('a href="(\S+)"&gt;Download Wallpaper', text)
+
+    # Not all photos have a download link
+    if pic_url != None:
+        pic_url = pic_url.groups()[0]
+
+        found.append(pic_url)
+
+return found
+</code></pre>
+
+<p>def download_photos(urls):</p>
+
+<pre><code>"""
+Download the list of files to the DOWNLOAD_FOLDER directory.
+"""
+for url in urls:
+    print 'Downloading ' + url
+    filename = re.search(".*/(.+)", url).groups()[0]
+    path = os.path.join(DOWNLOAD_FOLDER, filename)
+
+    imageFile = open(path, "wb")
+    imageFile.write(urlopen(url).read())
+    imageFile.close()
+
+return path
+</code></pre>
+
+<p>def set_gnome_wallpaper(file_path):</p>
+
+<pre><code>command = "gconftool-2 --set \
+        /desktop/gnome/background/picture_filename \
+        --type string '%s'" % file_path
+status, output = commands.getstatusoutput(command)
+return status
+</code></pre>
+
+<p>if <strong>name</strong> == '<strong>main</strong>':</p>
+
+<pre><code>tweets = fetch_tweets(FEED_URL)
+image_urls = filter_tweets(tweets)
+downloadable_urls = check_downloadable(image_urls)
+
+if len(downloadable_urls) &gt; 0:
+    most_recent = download_photos(downloadable_urls)
+
+    osplatform = platform.system()
+
+    # If we're on Linux, try and set the desktop wallpaper with gconftool
+    # (TODO: Non-Gnome desktop environments).
+    if osplatform == "Linux":
+        set_gnome_wallpaper(most_recent)
+</code></pre>
+
+<p>[/code]</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Enfuse for Extended Dynamic Range and Focus Stacking in Microscopy]]></title>
+    <link href="http://mfoo.github.com/blog/2011/07/08/enfuse-for-extended-dynamic-range-and-focus-stacking-in-microscopy/"/>
+    <updated>2011-07-08T04:09:53+01:00</updated>
+    <id>http://mfoo.github.com/blog/2011/07/08/enfuse-for-extended-dynamic-range-and-focus-stacking-in-microscopy</id>
+    <content type="html"><![CDATA[<p>[caption id="attachment_146" align="aligncenter" width="656" caption="The right eye and antennae of a bee produced from a stack of different photographs combined with Enfuse."]<a href="http://www.mfoot.com/wp-content/uploads/2011/07/bee_closeup.png"><img src="http://www.mfoot.com/wp-content/uploads/2011/07/bee_closeup.png" alt="Bee Closeup" /></a>[/caption]</p>
+
+<p><a href="http://enblend.sourceforge.net/">Enfuse</a> is a piece of open source software that is designed for combining multiple images containing different exposures of the same scene into a single image that is well-exposed as possible. This process is called exposure fusion, not to be confused with the popular high dynamic range (HDR) techniques. HDR techniques build a single high dynamic range source image and then apply a tone mapping operator to compress it into a range that a monitor can display or a printer can print. <em>Enfuse</em> skips this step and tries to combine pixels from each source image directly into an output image by assigning each pixel a weighting based on contrast, exposure and saturation calculations in the pixel's local area. Pixels from each coordinate in the image stack are then combined based on their weightings.</p>
+
+<p>This method of combining pixels means that not only is <em>Enfuse</em> good at combining multiple exposures, but it is good at combining focus stacks --- images that are focussed on different parts of the subject. By weighting the decision heavily on local neighborhood contrast rather than saturation and exposure and telling <em>Enfuse</em> to only use the pixel with the highest weighting from the stack (rather than combining pixels in the stack based on weighting) we can perform focus stacking.</p>
+
+<p>I recently tried <em>Enfuse</em> on images captured directly from a microscope and have shown that it's very useful when the subject contains both light and dark (and matte and glossy) areas where it's difficult to illuminate correctly with a single lighting setup. The images below show six different exposures of a piece of mould growing on a coffee cup that was in the PhD lab at the time. There's a crack in the sample and the light from underneath shines through, making it difficult to see the image detail in that area without underexposing the top.</p>
+
+<p><a href="http://www.mfoot.com/wp-content/uploads/2011/07/1031_small.png"><img src="http://www.mfoot.com/wp-content/uploads/2011/07/1031_small.png" alt="" /></a><a href="http://www.mfoot.com/wp-content/uploads/2011/07/1030_small.png"><img src="http://www.mfoot.com/wp-content/uploads/2011/07/1030_small.png" alt="" /></a><a href="http://www.mfoot.com/wp-content/uploads/2011/07/1029_small.png"><img src="http://www.mfoot.com/wp-content/uploads/2011/07/1029_small.png" alt="" /></a></p>
+
+<p><a href="http://www.mfoot.com/wp-content/uploads/2011/07/1028_small.png"><img src="http://www.mfoot.com/wp-content/uploads/2011/07/1028_small.png" alt="" /></a><a href="http://www.mfoot.com/wp-content/uploads/2011/07/1027_small.png"><img src="http://www.mfoot.com/wp-content/uploads/2011/07/1027_small.png" alt="" /></a><a href="http://www.mfoot.com/wp-content/uploads/2011/07/1026_small.png"><img src="http://www.mfoot.com/wp-content/uploads/2011/07/1026_small.png" alt="" /></a></p>
+
+<p>When these are combined in <em>Enfuse</em> we get an output that looks like the one below with no over- or under-exposed areas.</p>
+
+<p>[caption id="attachment_131" align="aligncenter" width="400" caption="Exposure fused composite"]<a href="http://www.mfoot.com/wp-content/uploads/2011/07/hdr181031_small.jpg"><img src="http://www.mfoot.com/wp-content/uploads/2011/07/hdr181031_small.jpg" alt="Exposure fused composite" /></a>[/caption]</p>
+
+<p>I wrote a Python wrapper for the microscope-mounted camera to capture photos and another Python wrapper for the stage's RS-232 instruction set and set up an automated process to take six different exposures at a time and then move the stage in the Z axis and repeat. After combining each of the six images into an exposure-fused output and then combining those images in a focus stack we can produce something like this:</p>
+
+<p>[caption id="attachment_132" align="aligncenter" width="400" caption="Output of using Enfuse to focus stack a stack of exposure-fused images. Note that the lines in the image aren't produced by Enfuse, there were some problems with the data capture and some parts of the image were lost."]<a href="http://www.mfoot.com/wp-content/uploads/2011/07/stacked18.png"><img src="http://www.mfoot.com/wp-content/uploads/2011/07/stacked18.png" alt="Stacked Mould Images" /></a>[/caption]</p>
+
+<p>Now we've shown that focus stacking works nicely on exposure fused images from the microscope, we can expand the program to move the stage around and build up a mosaic as shown below.</p>
+
+<p>[caption id="attachment_136" align="aligncenter" width="700" caption="A composite of 9 different exposure fused focus stacks."]<a href="http://www.mfoot.com/wp-content/uploads/2011/07/mouldPanoIM.jpg"><img src="http://www.mfoot.com/wp-content/uploads/2011/07/mouldPanoIM.jpg" alt="Mould Mosaic" /></a>[/caption]</p>
+
+<p>With a different subject with a much greater physical depth (more Z-steps) we can produce something that looks like the bee below. This image is a composite of 3600 source images that were automatically combined with <em>Enfuse</em> and then were stitched together into the mosaic manually. The output is something that would never be visible to the human eye due to physical limitations of the lens, and the final composite is around 90 megapixels. The image here is an incredibly reduced version of it. A full resolution version can be found <a href="http://www.mfoot.com/3yp/bee.jpg">here (warning: 10 megabytes jpg file, 7680x11728px, may crash your browser)</a>.</p>
+
+<p>[caption id="attachment_145" align="aligncenter" width="397" caption="A composite of 3600 images fused with Enfuse and manually stitched."]<a href="http://www.mfoot.com/wp-content/uploads/2011/07/bee1.png"><img src="http://www.mfoot.com/wp-content/uploads/2011/07/bee1.png" alt="Bee Mosaic" /></a>[/caption]</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Bloodstock 2010]]></title>
+    <link href="http://mfoo.github.com/blog/2010/09/04/bloodstock-2010/"/>
+    <updated>2010-09-04T05:57:54+01:00</updated>
+    <id>http://mfoo.github.com/blog/2010/09/04/bloodstock-2010</id>
+    <content type="html"><![CDATA[<p>I've had my photos developed from this year's <a href="http://www.bloodstock.uk.com/">Bloodstock Festival</a> and am pretty happy with the results. The camera used is a Lomo Fisheye 2 and the film was an Kodak ISO 400 film that was two years passed the expiry date. The festival was a lot of fun and I hope to be attending next year as well. The bands were excellent but during the first two days it rained quite a lot. The campsites and entrance became very muddy and at one point there was even some mud wrestling (see bottom right picture after the break)!</p>
+
+<p><a href="http://www.mfoot.com/wp-content/uploads/2010/09/33.png"><img src="http://www.mfoot.com/wp-content/uploads/2010/09/33-300x200.png" alt="" /></a> <a href="http://www.mfoot.com/wp-content/uploads/2010/09/29.png"><img src="http://www.mfoot.com/wp-content/uploads/2010/09/29-300x201.png" alt="" /></a></p>
+
+<p><a href="http://www.mfoot.com/wp-content/uploads/2010/09/28.png"><img src="http://www.mfoot.com/wp-content/uploads/2010/09/28-300x200.png" alt="" /></a> <a href="http://www.mfoot.com/wp-content/uploads/2010/09/24.png"><img src="http://www.mfoot.com/wp-content/uploads/2010/09/24-300x203.png" alt="" /></a></p>
+]]></content>
+  </entry>
+  
+</feed>
