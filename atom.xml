@@ -4,7 +4,7 @@
   <title><![CDATA[Martin Foot]]></title>
   <link href="http://mfoo.github.com/atom.xml" rel="self"/>
   <link href="http://mfoo.github.com/"/>
-  <updated>2013-01-21T22:33:31+00:00</updated>
+  <updated>2013-01-22T22:12:00+00:00</updated>
   <id>http://mfoo.github.com/</id>
   <author>
     <name><![CDATA[Martin Foot]]></name>
@@ -1527,7 +1527,7 @@ stream, downloads it, and tries to set it as the background wallpaper.</p>
 
 <p>Can be scheduled to run in a cron job with crontab.</p>
 
-<p>Martin Foot <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#111;&#58;&#109;&#97;&#114;&#x74;&#x69;&#110;&#64;&#109;&#102;&#111;&#x6f;&#x74;&#x2e;&#x63;&#x6f;&#109;">&#109;&#x61;&#114;&#116;&#x69;&#110;&#64;&#109;&#102;&#111;&#x6f;&#x74;&#46;&#x63;&#x6f;&#109;</a></p>
+<p>Martin Foot <a href="&#109;&#97;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#109;&#97;&#114;&#116;&#105;&#110;&#64;&#109;&#x66;&#111;&#x6f;&#x74;&#x2e;&#x63;&#x6f;&#x6d;">&#x6d;&#x61;&#x72;&#116;&#x69;&#x6e;&#x40;&#109;&#x66;&#x6f;&#111;&#x74;&#46;&#x63;&#111;&#109;</a></p>
 
 <p>This is a cleaned up version of my original script after seeing Christian
 Stefanescu&#8217;s NASA image of the day wallpaper script -
