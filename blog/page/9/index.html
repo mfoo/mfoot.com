@@ -1,0 +1,605 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Martin Foot</title>
+  <meta name="author" content="Martin Foot">
+
+  
+  <meta name="description" content="I recently involved in a project where we performed some computer vision object recognition and classification using neural networks and SVMs. It was &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mfoo.github.com/blog/page/9/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Martin Foot" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Martin Foot</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:mfoo.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/17/sending-photos-to-a-python-web-server-with-android/">Sending Photos to a Python Web Server With Android</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-17T10:22:08+01:00" pubdate data-updated="true">Jul 17<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I recently involved in a project where we performed some computer vision object recognition and classification using neural networks and SVMs. It was necessary to use photos taken from an Android phone and it took a little while to get it working. Below is the solution I used, which involved creating a tiny Android application that took a photo, Base64 encoded it, then sent the data over HTTP POST to a Python BaseHTTPRequestHandler subclass which decoded the file and wrote it to disk.</p>
+
+<p>The solution uses a slightly modified version of <a href="http://coderzheaven.com/2011/04/25/android-upload-an-image-to-a-server/">this example for Android</a> that uses <a href="http://iharder.sourceforge.net/current/java/base64/">this Java Base64 encode/decode class</a>. The Python script is based on <a href="http://fragments.turtlemeat.com/pythonwebserver.php">an example by Jon Berg</a>.</p>
+
+<p>The Python web server is below:</p>
+
+<p>[sourcecode language=&#8221;python&#8221;]</p>
+
+<h1>!/usr/bin/env python</h1>
+
+<p>import cgi
+from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer</p>
+
+<p>class MyHandler(BaseHTTPRequestHandler):</p>
+
+<pre><code>def do_GET(self):
+    print "Somebody made a POST request."
+    return
+
+def do_POST(self):
+    """
+    Take the Base64 encoded string that the phone transmit, decode it and
+    save it as an image file called phone.jpg.
+    """
+    global rootnode
+    try:
+        ctype, pdict = cgi.parse_header(self.headers.getheader('content-type'))
+        print ctype
+        print pdict
+        if ctype == 'multipart/form-data':
+            query=cgi.parse_multipart(self.rfile, pdict)
+        elif ctype == 'application/x-www-form-urlencoded':
+            length = int(self.headers.getheader('content-length'))
+            query = cgi.parse_qs(self.rfile.read(length), keep_blank_values=1)
+
+        self.send_response(301)
+        self.send_header('Content-type', 'text/html')
+        self.end_headers()
+
+        upfilecontent = query.get('upfile')
+        self.wfile.write("POST OK.
+</code></pre>
+
+<p>&#8221;);</p>
+
+<pre><code>        f = open("phone.jpg", "wb")
+        f.write(upfilecontent[0].decode('base64'))
+        f.close()
+        print("File received.")
+
+        return
+    except Exception, err:
+        print Exception, err
+        pass
+</code></pre>
+
+<p>def main():</p>
+
+<pre><code>try:
+    server = HTTPServer(('', 8000), MyHandler)
+    print 'started httpserver...'
+    server.serve_forever()
+except KeyboardInterrupt:
+    print '^C received, shutting down server'
+    server.socket.close()
+</code></pre>
+
+<p>if <strong>name</strong> == &#8217;<strong>main</strong>&#8217;:</p>
+
+<pre><code>main()
+</code></pre>
+
+<p>[/sourcecode]</p>
+
+<p>And here&#8217;s the Android Activity (remember to add the <a href="http://developer.android.com/reference/android/Manifest.permission.html#CAMERA">CAMERA permission</a> to your manifest and add the above linked Base64 encoding class to your workspace and package).</p>
+
+<p>[sourcecode language=&#8221;java&#8221;]
+package com.elec6024.eardetection;</p>
+
+<p>/<em>*
+ * This Android Activity takes a photo and uploads it to a server.
+ * The server upload HTTP POST code is modified from this:
+ * http://coderzheaven.com/index.php/2011/04/android-upload-an-image-to-a-server/
+ </em>/
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;</p>
+
+<p>import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;</p>
+
+<p>import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.Toast;</p>
+
+<p>public class MainActivity extends Activity
+{</p>
+
+<pre><code>private Uri outputFileUri;
+private InputStream inputStream;
+public static final int PICTURE_ACTIVITY = 35434;
+
+/* Override the onCreate method */
+@Override
+public void onCreate(Bundle savedInstanceState)
+{
+    super.onCreate(savedInstanceState);
+
+    setContentView(R.layout.main);
+    final Button cameraButton = (Button)findViewById(R.id.camera_button);
+    cameraButton.setOnClickListener(new OnClickListener() {
+        @Override
+        public void onClick(View v){
+            // Check if there's external storage available and that it's writeable.
+            boolean mExternalStorageAvailable = false;
+            boolean mExternalStorageWriteable = false;
+            String state = Environment.getExternalStorageState();
+
+            if (Environment.MEDIA_MOUNTED.equals(state)) {
+                // We can read and write the media
+                mExternalStorageAvailable = mExternalStorageWriteable = true;
+            } else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+                // We can only read the media
+                mExternalStorageAvailable = true;
+                mExternalStorageWriteable = false;
+            } else {
+                // Something else is wrong. It may be one of many other states, but all we need
+                //  to know is we can neither read nor write
+                mExternalStorageAvailable = mExternalStorageWriteable = false;
+            }
+
+            if(mExternalStorageAvailable &amp;&amp; mExternalStorageWriteable){
+                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE); // Normally you would populate this with your custom intent.
+                File file = new File(Environment.getExternalStorageDirectory(),"imagefile.jpg");
+                outputFileUri = Uri.fromFile(file);
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
+                startActivityForResult(cameraIntent, PICTURE_ACTIVITY);
+            }
+        }
+    });
+}
+
+@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+    super.onActivityResult(requestCode, resultCode, intent);
+
+    if (requestCode == PICTURE_ACTIVITY &amp;&amp; resultCode == Activity.RESULT_OK) {
+
+        File file = new File(Environment.getExternalStorageDirectory(),"imagefile.jpg");
+        if(file.exists()){
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+            // Enclose this in a scope so that when it's over we can call the garbage collector (the phone doesn't have a lot of memory!)
+            {
+                Bitmap image = BitmapFactory.decodeFile(file.getPath());
+                Bitmap scaled = Bitmap.createScaledBitmap(image, (int)(image.getWidth() * 0.3), (int)(image.getHeight() * 0.3), false);
+                scaled.compress(Bitmap.CompressFormat.JPEG, 90, stream);
+            }
+
+            System.gc();
+
+            byte [] byte_arr = stream.toByteArray();
+            String image_str = Base64.encodeBytes(byte_arr);
+            ArrayList nameValuePairs = new ArrayList();
+
+            nameValuePairs.add(new BasicNameValuePair("upfile",image_str));
+
+            try {
+                HttpClient httpclient = new DefaultHttpClient();
+                final String URL = "http://192.168.2.3:8000";
+                HttpPost httppost = new HttpPost(URL);
+                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                HttpResponse response = httpclient.execute(httppost);
+                String the_string_response = convertResponseToString(response);
+                Toast.makeText(MainActivity.this, "Response " + the_string_response, Toast.LENGTH_LONG).show();
+            } catch(Exception e){
+                  Toast.makeText(MainActivity
+                          .this, "ERROR " + e.getMessage(), Toast.LENGTH_LONG).show();
+                  System.out.println("Error in http connection "+e.toString());
+                  e.printStackTrace();
+            }
+        }
+    }
+}
+
+public String convertResponseToString(HttpResponse response) throws IllegalStateException, IOException{
+    String res = "";
+    StringBuffer buffer = new StringBuffer();
+    inputStream = response.getEntity().getContent();
+    int contentLength = (int) response.getEntity().getContentLength(); //getting content length…..
+        Toast.makeText(MainActivity.this, "contentLength : " + contentLength, Toast.LENGTH_LONG).show();
+    if (contentLength &lt; 0){         }         else{                byte[] data = new byte[512];                int len = 0;                try                {                    while (-1 != (len = inputStream.read(data)) )                    {                        buffer.append(new String(data, 0, len)); //converting to string and appending  to stringbuffer…..                    }                }                catch (IOException e)                {                    e.printStackTrace();                }                try                {                    inputStream.close(); // closing the stream…..                }                catch (IOException e)                {                    e.printStackTrace();                }                res = buffer.toString();     // converting stringbuffer to string…..                Toast.makeText(MainActivity.this, "Result : " + res, Toast.LENGTH_LONG).show();                //System.out.println("Response =&gt; " +  EntityUtils.toString(response.getEntity()));
+    }
+    return res;
+</code></pre>
+
+<p>   }
+}</p>
+
+<p>[/sourcecode]</p>
+
+<p>You&#8217;ll also need the layout file for the application:</p>
+
+<p>[sourcecode language=&#8221;xml&#8221;]
+&lt;?xml version=&#8221;1.0&#8221; encoding=&#8221;utf-8&#8221;?>
+&lt;LinearLayout xmlns:android=&#8221;http://schemas.android.com/apk/res/android&#8221;</p>
+
+<pre><code>android:orientation="vertical"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+&gt;
+&lt;ImageView android:layout_weight="2" 
+    android:id="@+id/imageview"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" /&gt;
+&lt;Button
+android:id="@+id/camera_button"
+android:layout_weight="1"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:text="@string/camera_button_text" 
+android:textSize="@dimen/big_text"/&gt;
+</code></pre>
+
+<p></LinearLayout></p>
+
+<p>[/sourcecode]</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/10/using-doxygen-and-google-c-testing-framework-with-cmake/">Using Doxygen and Google C++ Testing Framework With CMake</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-10T06:35:52+01:00" pubdate data-updated="true">Jul 10<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>What is CMake?</strong></p>
+
+<p><a href="http://www.cmake.org">CMake</a> is a build system that makes it incredibly easy to distribute and compile source code packages on multiple platforms. It will automatically scan dependencies, searching in the correct (for standard installs) places for each platform and warning if they are not met. Once it has calculated what&#8217;s necessary to build the project it can generate build scripts and project files for several popular IDEs including Eclipse, XCode, Unix Makefiles, and Visual Studio (<a href="http://www.cmake.org/cmake/project/about.html">read their about page to learn more</a>).</p>
+
+<p><strong>CMake with Doxygen</strong></p>
+
+<p>As well as building your source, CMake can also run <a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> to generate documentation after a build. Here&#8217;s a sample that I use based on the example <a href="http://majewsky.wordpress.com/2010/08/14/tip-of-the-day-cmake-and-doxygen/">here</a>:</p>
+
+<p>[code]</p>
+
+<h6>#</h6>
+
+<h1>Documentation Generation</h1>
+
+<p>#</p>
+
+<h1>Build documentation using Doxygen (www.doxygen.org)</h1>
+
+<h1>Builds the docs in the docs/ directory (HTML and LaTeX formats for a .pdf)</h1>
+
+<h6>#</h6>
+
+<p>find_package(Doxygen)</p>
+
+<p>if(DOXYGEN_FOUND)</p>
+
+<pre><code>configure_file(${PROJECT_SOURCE_DIR}/doc/Doxyfile.in ${PROJECT_SOURCE_DIR}/doc/Doxyfile @ONLY)
+add_custom_target(doc ALL ${DOXYGEN_EXECUTABLE} ${PROJECT_SOURCE_DIR}/doc/Doxyfile  COMMENT "Generating API documentation with Doxygen" VERBATIM)
+</code></pre>
+
+<p>endif(DOXYGEN_FOUND)
+[/code]</p>
+
+<p>This will take a file called Doxyfile.in (rename your Doxyfile if you&#8217;re just getting started) and substitute any values that you&#8217;ve specified into the file. This means that by changing a variable in the CMakeLists.txt you can have that change show up in your documentation. Inside the Doxyfile.in file you can specify things like this:</p>
+
+<p>[code]
+PROJECT_NAME = &#8220;@PROJECT_NAME@&#8221;
+PROJECT_NUMBER = &#8220;@PROJECT_VERSION_MAJOR@.@PROJECT_VERSION_MINOR@&#8221;
+PROJECT_LOGO = @CMAKE_CURRENT_SOURCE_DIR@/assets/project_logo.png
+OUTPUT_DIRECTORY = @CMAKE_CURRENT_BINARY_DIR@/doc
+INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@/src @CMAKE_CURRENT_SOURCE_DIR@/test/src @CMAKE_CURRENT_SOURCE_DIR@/src/Core.h.in
+EXAMPLE_PATH = @CMAKE_CURRENT_SOURCE_DIR@/examples
+IMAGE_PATH = @CMAKE_CURRENT_SOURCE_DIR@/assets
+[/code]</p>
+
+<p><strong>CMake and CTest with Google C++ Testing Framework</strong></p>
+
+<p>CMake makes it very easy to add other projects that use CMake to the build as a dependency. <a href="http://code.google.com/p/googletest/">Google&#8217;s C++ Testing Framework</a> provides a CMakeLists.txt, so all you need to do in order to add gtest to your project is point your CMakeLists.txt to the gtest folder. Mine&#8217;s in the &#8216;lib&#8217; folder:</p>
+
+<p>[code]</p>
+
+<h6>#</h6>
+
+<h1>Testing</h1>
+
+<p>#</p>
+
+<h1>Build GTest (See http://code.google.com/p/googletest/)</h1>
+
+<h1>Run different GTest test programs.</h1>
+
+<h6>#</h6>
+
+<p>enable_testing(true)</p>
+
+<h1>Build GTest</h1>
+
+<p>add_subdirectory(lib/gtest-1.6.0)</p>
+
+<p>include_directories(${gtest_SOURCE_DIR} ${gtest_SOURCE_DIR}/include)</p>
+
+<h1>Compile the test sources.</h1>
+
+<p>add_executable(runTests test/src/test.cpp)</p>
+
+<h1>Link the test sources to the gtest libraries.</h1>
+
+<p>target_link_libraries(runTests ${LIB} gtest gtest_main)</p>
+
+<h1>Add that executable to the CTests testing framework.</h1>
+
+<p>add_test(</p>
+
+<pre><code>FixedSizeArrayTests runTests
+</code></pre>
+
+<p>)
+[/code]</p>
+
+<p>The only problem here is that while in GTest you don&#8217;t need to enumerate each file, using CMake&#8217;s CTest facility you will do. This could be fixed by defining a simple macro that will add all the tests in a folder. <a href="https://code.ros.org/svn/opencv/trunk/opencv/samples/cpp/CMakeLists.txt">This is a good starting point.</a> The above code will enable the &#8216;test&#8217; build target in the Makefile.</p>
+
+<p>In addition, gtest provides the option to output it&#8217;s test results to JUnit-compliant XML files. In order to do this you need to have a minimum of CMake version 2.8 (so set cmake_minimum_required(VERSION 2.8)) and then you can set the CTest environment variable &#8220;xml&#8221; like this:</p>
+
+<p>[code]
+set_tests_properties(FixedSizeArrayTests PROPERTIES ENVIRONMENT &#8220;GTEST_OUTPUT=xml&#8221;)
+[/code]</p>
+
+<p>This is especially useful if you&#8217;re using a build system such as <a href="http://www.jenkins-ci.org">Jenkins</a> (if so, be sure to look at the <a href="https://wiki.jenkins-ci.org/display/JENKINS/cmakebuilder+Plugin">CMakebuilder plugin</a>) as you can set Jenkins to perform testing and then display JUnit test results with each build.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/10/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/8/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/01/introduction-to-genetics-and-evolution/">Introduction to Genetics and Evolution</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/01/vim-precision-editing-at-the-speed-of-thought/">Vim - precision editing at the speed of thought</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/26/custom-rake-tasks-for-dbdrop-dbcreate-dbmigrate-dbseed/">Custom Rake Tasks for db:drop db:create db:migrate db:seed</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/26/a-simple-lindenmayer-system-renderer/">A Simple Lindenmayer System Renderer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/22/conways-game-of-life-in-coffeescript/">Conway&#8217;s Game of Life in CoffeeScript</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/mfoo">@mfoo</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'mfoo',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("martinfoot", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/martinfoot" class="twitter-follow-button" data-show-count="false">Follow @martinfoot</a>
+  
+</section>
+
+
+<section>
+  <h1>Stack Overflow</h1>
+  <a href="http://stackoverflow.com/users/825879/martinfoot"><img src="http://stackoverflow.com/users/flair/825879.png" width="208" height="58" alt="profile for martinfoot at Stack Overflow, Q&amp;A for professional and enthusiast programmers" title="profile for martinfoot at Stack Overflow, Q&amp;A for professional and enthusiast programmers">
+</a>
+</section>
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Martin Foot -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

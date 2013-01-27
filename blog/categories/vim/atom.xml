@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: vim | Martin Foot]]></title>
+  <link href="http://mfoo.github.com/blog/categories/vim/atom.xml" rel="self"/>
+  <link href="http://mfoo.github.com/"/>
+  <updated>2013-01-22T22:12:00+00:00</updated>
+  <id>http://mfoo.github.com/</id>
+  <author>
+    <name><![CDATA[Martin Foot]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Vim - precision editing at the speed of thought]]></title>
+    <link href="http://mfoo.github.com/blog/2013/01/01/vim-precision-editing-at-the-speed-of-thought/"/>
+    <updated>2013-01-01T20:08:00+00:00</updated>
+    <id>http://mfoo.github.com/blog/2013/01/01/vim-precision-editing-at-the-speed-of-thought</id>
+    <content type="html"><![CDATA[<p>I came across a presentation from <a href="http://drewneil.com/">Drew Neil</a> of
+<a href="http://vimcasts.org/">Vimcasts</a> fame, all about what makes Vim the editor that
+it is. I've seen several of the Vimcasts videos and always learn something new,
+but this presentation gives a nice overview of the history of Vim and why some
+of the features of the modal text editor evolved. Worth a watch (49 minutes).</p>
+
+<iframe src="http://player.vimeo.com/video/53144573" width="500" height="281"
+frameborder="0" webkitAllowFullScreen mozallowfullscreen></iframe>
+
+
+<p><a href="http://drewneil.com/">Vim - precision editing at the speed of thought</a> from
+<a href="http://drewneil.com/">&Oslash;redev Conference</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>

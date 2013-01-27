@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Notes on Android Graphics and Animations - Martin Foot</title>
+  <meta name="author" content="Martin Foot">
+
+  
+  <meta name="description" content="This post contains my notes on the Youtube Video &#8221;Learn about Android Graphics &amp; Animations from Google&#8217;s Android UI Toolkit Team&# &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mfoo.github.com/blog/2011/12/04/notes-on-android-graphics-and-animations/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Martin Foot" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Martin Foot</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:mfoo.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Notes on Android Graphics and Animations</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-04T13:34:33+00:00" pubdate data-updated="true">Dec 4<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>This post contains my notes on the Youtube Video &#8221;<a href="http://www.youtube.com/watch?v=duefsFTJXzc">Learn about Android Graphics &amp; Animations from Google&#8217;s Android UI Toolkit Team</a>&#8221; which shows a talk given by Romain Guy and Chet Haase from Google at the San Francisco Android User Group, Nov 20th 2010. Note that at the time of writing the video is already quite old, but much of it is still relevant and it&#8217;s well worth a watch for anybody interested in working with graphics in Android. This post is partly for me to remember and refer back to, but hopefully others will find it useful. The video is embedded below and notes can be found after the break:</p>
+
+<p>http://www.youtube.com/watch?v=duefsFTJXzc</p>
+
+<p>So, summary of the video:</p>
+
+<ul>
+<li><p><strong>Surface</strong> is the name for the buffer that objects are rendered into, whether on-screen or off-screen.</p></li>
+<li><p>05:23: <strong>PixelFlinger</strong> is the equivalent of a JIT for the software implementation of OpenGL that&#8217;s used in the Android emulator. This is pretty interesting, it generates assembly code at runtime based on what render operations you&#8217;re performing.</p></li>
+<li><p>06:00: <strong>View</strong>s are the basic UI components, for instance each of the UI widgets inherits from View. <strong>ViewGroup</strong>s contain zero or more views and provide the base class for layouts and view containers, allowing you to modify the contents of the container and set properties for how the view children are displayed. <strong>SurfaceView</strong>s are special Views that allow you to place Surfaces at certain points in the screen. Android also provides classes such as the <a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html">GLSurfaceView</a> which enables OpenGL to render into the Surface and the <a href="http://developer.android.com/reference/android/widget/VideoView.html">VideoView</a> which allows videos to be rendered as well as providing video playback controls.</p></li>
+<li><p>06:40 Applications can render via a Canvas (which uses Google&#8217;s Skia library) or via RenderScript (which currently makes OpenGL calls) or via OpenGL directly. Each rendering method eventually renders onto the specified kind of Surface.</p></li>
+<li><p>07:25 Android supports OpenGL ES 1.x and 2.0, and you can use either of these on a device that supports it, early devices and devices running versions before Android 2.2 will not support OpenGL ES 2.0 - see <a href="https://secure.wikimedia.org/wikipedia/en/wiki/OpenGL_ES#Usage">here</a> for a list of devices that support each version. If you are using the Android Emulator then you will be using PixelFlinger which only supports OpenGL ES 1.x.</p></li>
+<li><p>08:15 Whenever a frame is drawn, <strong>SurfaceFlinger</strong> produces a composite from each visible View and renders them to a Surface (frame buffer) via either OpenGL or PixelFlinger depending on whether the software GL implementation is being used or not. Older devices used a 2D blitter called MDP.</p></li>
+<li><p> 09:20 Android won&#8217;t redraw a View unless it&#8217;s both visible and flagged (&#8216;dirty&#8217;) by calling it&#8217;s <a href="http://developer.android.com/reference/android/view/View.html#invalidate(">invalidate()</a>) method. This invalidate call will propagate up to any ViewGroups in the view hierarchy to the <strong>ViewRoot</strong> which will lock the Surface of the window and then call draw() on all of it&#8217;s children. When that&#8217;s done the ViewRoot will unlock the canvas and swap the buffers. All windows on Android are double buffered.</p></li>
+<li><p>15:00 Demo from Chet about how to add animations and effects on Views. Animations can be used for subtle indications - for instance to indicate whether an image is selected or not it&#8217;s nice to have an animation/transitioning effect rather than an abrupt change in the UI.</p></li>
+<li><p>16:56 Unlike Java2D, Android&#8217;s Canvas is virtually stateless and uses <strong>Paint</strong>s to specify font size, text colour, colour, opacity, filtering, dithering, anti-aliasing etc. These objects contain a lot of state information and are therefore fairly heavy-weight. Making a new Paint object every frame is not a good idea as you will soon saturate the heap and cause Garbage Collection.</p></li>
+<li><p>18:15 <strong>Shaders</strong> specify how to draw horizontal or vertical spans of colours (for example different kinds of gradients), i.e. how to fill a shape. These are not the same as GLSL shaders. <strong>ComposeShader</strong> will blend two shaders together and fill the shape with that. <strong>ColorFilter</strong>s perform operations on each pixel they are applied to.</p></li>
+<li><p>21:00 <strong>XferModes</strong> or blending modes such as Porter-Duff (scientists who defined 12 equations that explain how transparency affects colours) and Darken, Lighten, Multiply and Screen allow modifying the colours of a Canvas. For instance, a BitmapShader and a LinearGradient can be combined with a ComposeShader to draw a bitmap that fades out.</p></li>
+<li><p>23:17 Demo from Chet showing some example code for using creating new Bitmaps that arise from applying Shaders on Bitmaps. Shaders are created and then the Paint object is told to use that shader. You can then simply draw a rectangle to the screen using the specified Paint and it will perform the shader operations you specified on that rectangle.</p></li>
+<li><p>25:00<strong> Bitmap</strong>s are either mutable or immutable and have the concept of resolution. Android allows you to specify different assets for different screen resolutions in the same package, and if you place a drawable in the medium resolution folder and are running on a phone which reports itself as high resolution, Android will use that information to scale the Bitmap automatically when it is displayed. Bitmaps can be large objects so they can be recycled without having to wait for the garbage collector. Supported Bitmap formats are <strong>ALPHA_8 </strong>(for alpha masks), <strong>ARGB_4444</strong> (this isn&#8217;t recommended, uses 4 bits for each component and therefore doesn&#8217;t look very good), <strong>ARGB_8888</strong> (recommended, 32 bit images, allows for transparency), and <strong>RGB_565</strong> (doesn&#8217;t contain alpha channel, limited precision for colours, faster to draw, uses dithering). JPEG images do not contain transparency and pre-Gingerbread were loaded automatically with RGB_565. <strong>This meant that jpg images automatically lost some quality pre-gingerbread</strong>. Post Gingerbread all images are loaded by default as ARGB_8888 (and application memory usage limits are increased to compensate). When loading a Bitmap, make sure to specify the format that you want, otherwise it will be loaded as it&#8217;s default and every time the Bitmap is drawn it will need to be converted. For instance, pre-Gingerbread the default bit depth for a Surface is 16 bits, so a 32 bit image will need to be converted before rendering which can be slow. You can control quality of this rendering by enabling/disabling dithering on the Paint object and the Drawable object that the Bitmap&#8217;s being used by. Blending should be avoided with the alpha channel. If Android detects an image is completely opaque it can perform a faster rendering pass.</p></li>
+<li><p>30:00 Demo by Romain showing the effects of precision loss when rendering 32 bit images onto a 16 bit window (introduces artefacts, gradients look banded). Enabling dithering removes the banding somewhat and improves the gradient. Using a 32 bit window ARGB_8888 with no dithering looks fine while ARGB_4444 still looks bad (and hence isn&#8217;t recommended anywhere).</p></li>
+<li><p>33:10 Slide showing performance comparisons for different bitmap image types on different surfaces. Drawing an ARGB_8888 surface is three times faster on a 32 bit surface than a 16 bit surface. ARGB_4444 is slightly faster than ARGB_8888 on a 16 bit surface. RGB_565 is 12 times faster than ARGB_8888 and 8 times faster than ARGB_4444 when rendering to a 16 bit surface (as it&#8217;s essentially a memcpy on a 16 bit surface) but three times slower than ARGB_8888 and almost twice as slow as ARGB_4444 on a 32 bit surface.</p></li>
+<li><p>35:50 Demo of two different ways to copy a View into a Bitmap.</p></li>
+<li><p>37:30 Chet takes over, talks about Animations. Animations enable better user experiences and can help users use the application, especially on smaller screens. The current (as of the talk) SDK has an animation superclass which controls timing, repetition, interpolation and ending states. Nonlinear interpolation on animations such as view sliding is important as it looks much better than linear motion.</p></li>
+<li><p>40:30 Android allows for Transforming operations (translation, rotation, scale), Fading, Sequences (allowing you to choreograph multiple animations), Cross-fading, and Layout animations (ViewGroups can animate the display of their children via animations rather than displaying them instantly).</p></li>
+<li><p>41:40 Animations are about making things <em>look animated</em> rather than actually <em>being</em> animated. <strong>This means that moving views via animations doesn&#8217;t actually move the view. </strong>If you move a button, you need to move the actual object afterwards to ensure that it will handle input events for the correct position. This is because the ViewGroup, when rendering it&#8217;s children, detects first if an animation is playing on the child before rendering it. If it is, it renders the current state of the animation rather then the View&#8217;s original settings.</p></li>
+<li><p>43:16 Fading is done by interpolating alpha values, which again is not the transparency of the View, but the transparency that the View will be drawn with (see previous point).</p></li>
+<li><p>45:30 Layout animations are based on staggering some template animation for each child of the view.</p></li>
+<li><p>46:50 With animations you can setDrawingCacheEnabled(True) to allow the animation to represent itself as a Bitmap which means that the animated object doesn&#8217;t need to be re-rendered each frame. This is a large performance increase and is used in Android everywhere transparently. <strong>As soon as a finger touches a view (for example a ScrollView) each of the Views in the ViewGroup are transformed into Bitmaps via setDrawingCacheEnabled which allows them to be scrolled quickly without having to re-render them.</strong> When a Bitmap is off the screen it can be recycled and used by another View.</p></li>
+<li><p>You can follow Romain Guy at @romainguy and curious-creature.org.</p></li>
+<li><p>You can follow Chet Haase at @chethaase and graphics-geek.blogspot.com.</p></li>
+</ul>
+
+
+<p>Slides of this talk can be found at <a href="http://marakana.com/f/212">http://marakana.com/f/212</a>.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Martin Foot</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-04T13:34:33+00:00" pubdate data-updated="true">Dec 4<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>Android</a>, <a class='category' href='/blog/categories/game-development/'>Game Development</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://mfoo.github.com/blog/2011/12/04/notes-on-android-graphics-and-animations/" data-via="martinfoot" data-counturl="http://mfoo.github.com/blog/2011/12/04/notes-on-android-graphics-and-animations/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/12/02/adding-tab-completion-to-git-commands-in-bash/" title="Previous Post: Adding tab-completion to Git commands in Bash">&laquo; Adding tab-completion to Git commands in Bash</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/12/14/building-boost-1-47-for-android-using-cmake-and-the-ndk/" title="Next Post: Building Boost 1.47 for Android using CMake and the NDK">Building Boost 1.47 for Android using CMake and the NDK &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/01/introduction-to-genetics-and-evolution/">Introduction to Genetics and Evolution</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/01/vim-precision-editing-at-the-speed-of-thought/">Vim - precision editing at the speed of thought</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/26/custom-rake-tasks-for-dbdrop-dbcreate-dbmigrate-dbseed/">Custom Rake Tasks for db:drop db:create db:migrate db:seed</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/26/a-simple-lindenmayer-system-renderer/">A Simple Lindenmayer System Renderer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/22/conways-game-of-life-in-coffeescript/">Conway's Game of Life in CoffeeScript</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/mfoo">@mfoo</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'mfoo',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("martinfoot", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/martinfoot" class="twitter-follow-button" data-show-count="false">Follow @martinfoot</a>
+  
+</section>
+
+
+<section>
+  <h1>Stack Overflow</h1>
+  <a href="http://stackoverflow.com/users/825879/martinfoot"><img src="http://stackoverflow.com/users/flair/825879.png" width="208" height="58" alt="profile for martinfoot at Stack Overflow, Q&amp;A for professional and enthusiast programmers" title="profile for martinfoot at Stack Overflow, Q&amp;A for professional and enthusiast programmers">
+</a>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Martin Foot -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Using Doxygen and Google C++ Testing Framework with CMake - Martin Foot</title>
+  <meta name="author" content="Martin Foot">
+
+  
+  <meta name="description" content="What is CMake? CMake is a build system that makes it incredibly easy to distribute and compile source code packages on multiple platforms. It will &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mfoo.github.com/blog/2011/07/10/using-doxygen-and-google-c-testing-framework-with-cmake/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Martin Foot" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Martin Foot</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:mfoo.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Using Doxygen and Google C++ Testing Framework With CMake</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-10T06:35:52+01:00" pubdate data-updated="true">Jul 10<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><strong>What is CMake?</strong></p>
+
+<p><a href="http://www.cmake.org">CMake</a> is a build system that makes it incredibly easy to distribute and compile source code packages on multiple platforms. It will automatically scan dependencies, searching in the correct (for standard installs) places for each platform and warning if they are not met. Once it has calculated what&#8217;s necessary to build the project it can generate build scripts and project files for several popular IDEs including Eclipse, XCode, Unix Makefiles, and Visual Studio (<a href="http://www.cmake.org/cmake/project/about.html">read their about page to learn more</a>).</p>
+
+<p><strong>CMake with Doxygen</strong></p>
+
+<p>As well as building your source, CMake can also run <a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> to generate documentation after a build. Here&#8217;s a sample that I use based on the example <a href="http://majewsky.wordpress.com/2010/08/14/tip-of-the-day-cmake-and-doxygen/">here</a>:</p>
+
+<p>[code]</p>
+
+<h6>#</h6>
+
+<h1>Documentation Generation</h1>
+
+<p>#</p>
+
+<h1>Build documentation using Doxygen (www.doxygen.org)</h1>
+
+<h1>Builds the docs in the docs/ directory (HTML and LaTeX formats for a .pdf)</h1>
+
+<h6>#</h6>
+
+<p>find_package(Doxygen)</p>
+
+<p>if(DOXYGEN_FOUND)</p>
+
+<pre><code>configure_file(${PROJECT_SOURCE_DIR}/doc/Doxyfile.in ${PROJECT_SOURCE_DIR}/doc/Doxyfile @ONLY)
+add_custom_target(doc ALL ${DOXYGEN_EXECUTABLE} ${PROJECT_SOURCE_DIR}/doc/Doxyfile  COMMENT "Generating API documentation with Doxygen" VERBATIM)
+</code></pre>
+
+<p>endif(DOXYGEN_FOUND)
+[/code]</p>
+
+<p>This will take a file called Doxyfile.in (rename your Doxyfile if you&#8217;re just getting started) and substitute any values that you&#8217;ve specified into the file. This means that by changing a variable in the CMakeLists.txt you can have that change show up in your documentation. Inside the Doxyfile.in file you can specify things like this:</p>
+
+<p>[code]
+PROJECT_NAME = &#8220;@PROJECT_NAME@&#8221;
+PROJECT_NUMBER = &#8220;@PROJECT_VERSION_MAJOR@.@PROJECT_VERSION_MINOR@&#8221;
+PROJECT_LOGO = @CMAKE_CURRENT_SOURCE_DIR@/assets/project_logo.png
+OUTPUT_DIRECTORY = @CMAKE_CURRENT_BINARY_DIR@/doc
+INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@/src @CMAKE_CURRENT_SOURCE_DIR@/test/src @CMAKE_CURRENT_SOURCE_DIR@/src/Core.h.in
+EXAMPLE_PATH = @CMAKE_CURRENT_SOURCE_DIR@/examples
+IMAGE_PATH = @CMAKE_CURRENT_SOURCE_DIR@/assets
+[/code]</p>
+
+<p><strong>CMake and CTest with Google C++ Testing Framework</strong></p>
+
+<p>CMake makes it very easy to add other projects that use CMake to the build as a dependency. <a href="http://code.google.com/p/googletest/">Google&#8217;s C++ Testing Framework</a> provides a CMakeLists.txt, so all you need to do in order to add gtest to your project is point your CMakeLists.txt to the gtest folder. Mine&#8217;s in the &#8216;lib&#8217; folder:</p>
+
+<p>[code]</p>
+
+<h6>#</h6>
+
+<h1>Testing</h1>
+
+<p>#</p>
+
+<h1>Build GTest (See http://code.google.com/p/googletest/)</h1>
+
+<h1>Run different GTest test programs.</h1>
+
+<h6>#</h6>
+
+<p>enable_testing(true)</p>
+
+<h1>Build GTest</h1>
+
+<p>add_subdirectory(lib/gtest-1.6.0)</p>
+
+<p>include_directories(${gtest_SOURCE_DIR} ${gtest_SOURCE_DIR}/include)</p>
+
+<h1>Compile the test sources.</h1>
+
+<p>add_executable(runTests test/src/test.cpp)</p>
+
+<h1>Link the test sources to the gtest libraries.</h1>
+
+<p>target_link_libraries(runTests ${LIB} gtest gtest_main)</p>
+
+<h1>Add that executable to the CTests testing framework.</h1>
+
+<p>add_test(</p>
+
+<pre><code>FixedSizeArrayTests runTests
+</code></pre>
+
+<p>)
+[/code]</p>
+
+<p>The only problem here is that while in GTest you don&#8217;t need to enumerate each file, using CMake&#8217;s CTest facility you will do. This could be fixed by defining a simple macro that will add all the tests in a folder. <a href="https://code.ros.org/svn/opencv/trunk/opencv/samples/cpp/CMakeLists.txt">This is a good starting point.</a> The above code will enable the &#8216;test&#8217; build target in the Makefile.</p>
+
+<p>In addition, gtest provides the option to output it&#8217;s test results to JUnit-compliant XML files. In order to do this you need to have a minimum of CMake version 2.8 (so set cmake_minimum_required(VERSION 2.8)) and then you can set the CTest environment variable &#8220;xml&#8221; like this:</p>
+
+<p>[code]
+set_tests_properties(FixedSizeArrayTests PROPERTIES ENVIRONMENT &#8220;GTEST_OUTPUT=xml&#8221;)
+[/code]</p>
+
+<p>This is especially useful if you&#8217;re using a build system such as <a href="http://www.jenkins-ci.org">Jenkins</a> (if so, be sure to look at the <a href="https://wiki.jenkins-ci.org/display/JENKINS/cmakebuilder+Plugin">CMakebuilder plugin</a>) as you can set Jenkins to perform testing and then display JUnit test results with each build.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Martin Foot</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-10T06:35:52+01:00" pubdate data-updated="true">Jul 10<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/programming/'>Programming</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://mfoo.github.com/blog/2011/07/10/using-doxygen-and-google-c-testing-framework-with-cmake/" data-via="martinfoot" data-counturl="http://mfoo.github.com/blog/2011/07/10/using-doxygen-and-google-c-testing-framework-with-cmake/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/07/08/automatically-download-national-geographics-photo-of-the-day-and-set-it-as-your-desktop-background/" title="Previous Post: Automatically download National Geographic's Photo of the Day and set it as your desktop background">&laquo; Automatically download National Geographic's Photo of the Day and set it as your desktop background</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/07/17/sending-photos-to-a-python-web-server-with-android/" title="Next Post: Sending photos to a Python web server with Android">Sending photos to a Python web server with Android &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/01/introduction-to-genetics-and-evolution/">Introduction to Genetics and Evolution</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/01/vim-precision-editing-at-the-speed-of-thought/">Vim - precision editing at the speed of thought</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/26/custom-rake-tasks-for-dbdrop-dbcreate-dbmigrate-dbseed/">Custom Rake Tasks for db:drop db:create db:migrate db:seed</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/26/a-simple-lindenmayer-system-renderer/">A Simple Lindenmayer System Renderer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/22/conways-game-of-life-in-coffeescript/">Conway's Game of Life in CoffeeScript</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/mfoo">@mfoo</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'mfoo',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("martinfoot", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/martinfoot" class="twitter-follow-button" data-show-count="false">Follow @martinfoot</a>
+  
+</section>
+
+
+<section>
+  <h1>Stack Overflow</h1>
+  <a href="http://stackoverflow.com/users/825879/martinfoot"><img src="http://stackoverflow.com/users/flair/825879.png" width="208" height="58" alt="profile for martinfoot at Stack Overflow, Q&amp;A for professional and enthusiast programmers" title="profile for martinfoot at Stack Overflow, Q&amp;A for professional and enthusiast programmers">
+</a>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Martin Foot -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

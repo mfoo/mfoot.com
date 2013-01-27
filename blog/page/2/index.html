@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Martin Foot</title>
+  <meta name="author" content="Martin Foot">
+
+  
+  <meta name="description" content="Resetting the database in Ruby seems to be quite a painful task if you (or your team) make changes to the seed data / schema. rake db:drop db:create &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mfoo.github.com/blog/page/2/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Martin Foot" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Martin Foot</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:mfoo.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/26/custom-rake-tasks-for-dbdrop-dbcreate-dbmigrate-dbseed/">Custom Rake Tasks for Db:drop Db:create Db:migrate Db:seed</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-26T10:27:03+01:00" pubdate data-updated="true">May 26<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Resetting the database in Ruby seems to be quite a painful task if you (or your team) make changes to the seed data / schema. <code>rake db:drop db:create db:migrate db:seed</code> is too verbose. Provided below are two custom rake tasks based on Justin French&#8217;s blog post <a href="http://justinfrench.com/notebook/a-custom-rake-task-to-reset-and-seed-your-database">here</a>:</p>
+
+<pre><code>rake db:rdb (reset database)
+rake db:trdb (reset database in test environment)
+</code></pre>
+
+<p>The first is equivalent to <code>rake db:drop db:create db:migrate db:seed</code>. The second is for test databases and will not perform a seed. It is equivalent to <code>RAILS_ENV=test rake db:drop db:create db:migrate</code>. Note that the second tasks actually ignores the current environment and will always use the &#8216;test&#8217; environment.</p>
+
+<p>Create a file under <code>RAILS_ROOT/lib/tasks/db.rake</code> and paste the code below. The new tasks should both show up with a <code>rake -T.</code></p>
+
+<pre><code>namespace :db do
+  desc "Drop, create, migrate then seed the database"
+  task :rdb =&gt; :environment do
+    Rake::Task['db:drop'].invoke
+    Rake::Task['db:create'].invoke
+    Rake::Task['db:migrate'].invoke
+    Rake::Task['db:seed'].invoke
+  end
+
+  desc "Drop, create, migrate the database with RAILS_ENV=test"
+  task :trdb =&gt; :environment do
+    Rails.env = 'test'
+    Rake::Task['db:drop'].invoke
+    Rake::Task['db:create'].invoke
+    Rake::Task['db:migrate'].invoke
+  end
+end
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/26/a-simple-lindenmayer-system-renderer/">A Simple Lindenmayer System Renderer</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-26T09:23:28+01:00" pubdate data-updated="true">May 26<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I spent some time last week reading about <a href="http://en.wikipedia.org/wiki/L-system">Lindenmayer Systems</a> (or L-Systems), then wrote a simple interactive L-System renderer in CoffeeScript that you can try out <a href="http://mfoo.github.com/L-System-Renderer/">on GitHub</a>.</p>
+
+<p><a href="http://www.mfoot.com/wp-content/uploads/2012/05/Screen-Shot-2012-05-26-at-08.02.06.png"><img src="http://www.mfoot.com/wp-content/uploads/2012/05/Screen-Shot-2012-05-26-at-08.02.06-1024x919.png" alt="" /></a></p>
+
+<p>L-Systems are a way of describing an image in terms of an axiom, a set of generation functions, and a set of rendering functions. They are represented as a string, and for each &#8216;generation&#8217;, the generation functions are applied to all symbols in that string to produce a new string. For example, given the axiom (starting truth) &#8216;A&#8217; and the generation functions &#8216;A -> BA&#8217;, and &#8216;B -> AB&#8217;, generation one will be &#8216;BA&#8217;, then generation two will be &#8216;ABBA&#8217;.</p>
+
+<p>We can then define a set of rendering functions that define what to draw when we reach each symbol such as &#8216;move forward 10 units&#8217; and &#8216;turn left 20 degrees&#8217;. With each generation the system gets bigger and bigger, and it&#8217;s fantastic to play with.</p>
+
+<p>For instance, the code below describes how to draw a <a href="http://en.wikipedia.org/wiki/Sierpinski_triangle">Sierpinski Triangle </a>using &#8216;turtle graphics&#8217; and a simple <a href="http://en.wikipedia.org/wiki/Stack_%28abstract_data_type%29">stack</a>:</p>
+
+<pre><code>    'Sierpinski Triangle':
+        axiom: 'A'
+        rules:
+            'A': 'B-A-B'
+            'B': 'A+B+A'
+        renderFunctions:
+            'A': (stack) -&gt;
+                turtle = stack.peek()
+                turtle.forward 10
+            'B': (stack) -&gt;
+                turtle = stack.peek()
+                turtle.forward 10
+            '-': (stack) -&gt;
+                turtle = stack.peek()
+                turtle.left 60
+            '+': (stack) -&gt;
+                turtle = stack.peek()
+                turtle.right 60
+</code></pre>
+
+<p>Which, when rendered for five generations looks like this:</p>
+
+<p><a href="http://www.mfoot.com/wp-content/uploads/2012/05/sierpinskitriangle.png"><img src="http://www.mfoot.com/wp-content/uploads/2012/05/sierpinskitriangle-300x166.png" alt="" /></a>The source code for the render is available <a href="https://github.com/mfoo/L-System-Renderer">here</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/3/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/01/introduction-to-genetics-and-evolution/">Introduction to Genetics and Evolution</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/01/vim-precision-editing-at-the-speed-of-thought/">Vim - precision editing at the speed of thought</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/26/custom-rake-tasks-for-dbdrop-dbcreate-dbmigrate-dbseed/">Custom Rake Tasks for db:drop db:create db:migrate db:seed</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/26/a-simple-lindenmayer-system-renderer/">A Simple Lindenmayer System Renderer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/22/conways-game-of-life-in-coffeescript/">Conway&#8217;s Game of Life in CoffeeScript</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/mfoo">@mfoo</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'mfoo',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("martinfoot", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/martinfoot" class="twitter-follow-button" data-show-count="false">Follow @martinfoot</a>
+  
+</section>
+
+
+<section>
+  <h1>Stack Overflow</h1>
+  <a href="http://stackoverflow.com/users/825879/martinfoot"><img src="http://stackoverflow.com/users/flair/825879.png" width="208" height="58" alt="profile for martinfoot at Stack Overflow, Q&amp;A for professional and enthusiast programmers" title="profile for martinfoot at Stack Overflow, Q&amp;A for professional and enthusiast programmers">
+</a>
+</section>
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Martin Foot -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
