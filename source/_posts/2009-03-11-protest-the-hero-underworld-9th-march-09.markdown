@@ -17,12 +17,12 @@ tags:
 I had the opportunity to photograph a gig for Rockfreaks in London with The Human Abstract, The Chariot, and Protest The Hero.
 
 
-Some of  pictures can be seen below:
+Some of the pictures can be seen below:
 
 
 
 
-![Protest_The_Hero_3_by_Leaping_Faith](http://www.mfoot.com/wp-content/uploads/2009/11/Protest_The_Hero_3_by_Leaping_Faith.jpg)![The_Chariot_1_by_Leaping_Faith](http://www.mfoot.com/wp-content/uploads/2009/11/The_Chariot_1_by_Leaping_Faith.jpg)
+![Protest_The_Hero_3_by_Leaping_Faith](/images/Protest_The_Hero_3_by_Leaping_Faith.jpg)![The_Chariot_1_by_Leaping_Faith](/images/The_Chariot_1_by_Leaping_Faith.jpg)
 
 
 
@@ -30,12 +30,12 @@ Some of  pictures can be seen below:
 
 
 
-![The_Human_Abstract_1_by_Leaping_Faith](http://www.mfoot.com/wp-content/uploads/2009/11/The_Human_Abstract_1_by_Leaping_Faith.jpg)![The_Chariot_2_by_Leaping_Faith](http://www.mfoot.com/wp-content/uploads/2009/11/The_Chariot_2_by_Leaping_Faith.jpg)
+![The_Human_Abstract_1_by_Leaping_Faith](/images/The_Human_Abstract_1_by_Leaping_Faith.jpg)![The_Chariot_2_by_Leaping_Faith](/images/The_Chariot_2_by_Leaping_Faith.jpg)
 
 
 
 
-![Protest_The_Hero_2_by_Leaping_Faith](http://www.mfoot.com/wp-content/uploads/2009/11/Protest_The_Hero_2_by_Leaping_Faith.jpg) ![Protest_The_Hero_1_by_Leaping_Faith](http://www.mfoot.com/wp-content/uploads/2009/11/Protest_The_Hero_1_by_Leaping_Faith.jpg)
+![Protest_The_Hero_2_by_Leaping_Faith](/images/Protest_The_Hero_2_by_Leaping_Faith.jpg) ![Protest_The_Hero_1_by_Leaping_Faith](/images/Protest_The_Hero_1_by_Leaping_Faith.jpg)
 
 
 And a full review of the gig can be found at the [Rockfreaks website](http://rockfreaks.net/?page=gigreviews&id=215).

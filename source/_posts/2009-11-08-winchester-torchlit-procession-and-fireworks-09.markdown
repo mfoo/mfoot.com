@@ -15,7 +15,7 @@ tags:
 Each year Winchester Round Table holds a fireworks display with a torchlit procession before it. I had never been before but as I missed Southampton's fireworks I decided to give it a try. The torchlit procession was something very magical, definitely worth seeing.
 
 
-![smallDSC06692](http://www.mfoot.com/wp-content/uploads/2009/11/smallDSC06692.png) ![smallDSC06699](http://www.mfoot.com/wp-content/uploads/2009/11/smallDSC06699.png)
+![smallDSC06692](/images/smallDSC06692.png) ![smallDSC06699](/images/smallDSC06699.png)
 
 
 
@@ -23,14 +23,14 @@ Each year Winchester Round Table holds a fireworks display with a torchlit proce
 
 
 
-![smallDSC06722](http://www.mfoot.com/wp-content/uploads/2009/11/smallDSC06722.png) ![smallDSC06725](http://www.mfoot.com/wp-content/uploads/2009/11/smallDSC06725.png)
+![smallDSC06722](/images/smallDSC06722.png) ![smallDSC06725](/images/smallDSC06725.png)
 
 
 
 
-![smallDSC06747](http://www.mfoot.com/wp-content/uploads/2009/11/smallDSC06747.png) ![smallDSC06732](http://www.mfoot.com/wp-content/uploads/2009/11/smallDSC06732.png)
+![smallDSC06747](/images/smallDSC06747.png) ![smallDSC06732](/images/smallDSC06732.png)
 
 
 
 
-![smallDSC06730](http://www.mfoot.com/wp-content/uploads/2009/11/smallDSC06730.png) ![smallDSC06728](http://www.mfoot.com/wp-content/uploads/2009/11/smallDSC06728.png)
+![smallDSC06730](/images/smallDSC06730.png) ![smallDSC06728](/images/smallDSC06728.png)

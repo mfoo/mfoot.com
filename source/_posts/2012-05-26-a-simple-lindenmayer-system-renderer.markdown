@@ -9,7 +9,7 @@ wordpress_id: 333
 
 I spent some time last week reading about [Lindenmayer Systems](http://en.wikipedia.org/wiki/L-system) (or L-Systems), then wrote a simple interactive L-System renderer in CoffeeScript that you can try out [on GitHub](http://mfoo.github.com/L-System-Renderer/).
 
-[![](http://www.mfoot.com/wp-content/uploads/2012/05/Screen-Shot-2012-05-26-at-08.02.06-1024x919.png)](http://www.mfoot.com/wp-content/uploads/2012/05/Screen-Shot-2012-05-26-at-08.02.06.png)
+[![](/images/Screen-Shot-2012-05-26-at-08.02.06-1024x919.png)](/images/Screen-Shot-2012-05-26-at-08.02.06.png)
 
 
 
@@ -42,6 +42,6 @@ For instance, the code below describes how to draw a [Sierpinski Triangle ](http
 
 Which, when rendered for five generations looks like this:
 
-[![](http://www.mfoot.com/wp-content/uploads/2012/05/sierpinskitriangle-300x166.png)](http://www.mfoot.com/wp-content/uploads/2012/05/sierpinskitriangle.png)The source code for the render is available [here](https://github.com/mfoo/L-System-Renderer).
+[![](/images/sierpinskitriangle-300x166.png)](/images/sierpinskitriangle.png)The source code for the render is available [here](https://github.com/mfoo/L-System-Renderer).
 
 

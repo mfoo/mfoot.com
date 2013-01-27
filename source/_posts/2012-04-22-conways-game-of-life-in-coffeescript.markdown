@@ -9,4 +9,4 @@ wordpress_id: 327
 
 I recently wanted to give [CoffeeScript](http://coffeescript.org/) a try, so I decided to implement Conway's Game of Life in CoffeeScript using an HTML5 canvas element for rendering. It was remarkably simple and CoffeeScript seems to be a big improvement over vanilla JavaScript in terms of terseness of syntax. It's easy to learn an cuts down on a lot of brackets etc. The demo and source code are [hosted on GitHub here](http://mfoo.github.com/CoffeeScript-Game-Of-Life/).
 
-[![](http://www.mfoot.com/wp-content/uploads/2012/04/canvas-300x180.png)](http://www.mfoot.com/wp-content/uploads/2012/04/canvas.png)
+[![](/images/canvas-300x180.png)](/images/canvas.png)
