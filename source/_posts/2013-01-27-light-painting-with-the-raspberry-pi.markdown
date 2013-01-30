@@ -50,7 +50,7 @@ devices while you're away from a plug for a long time.
 
 {% img right /images/rpi-light-painting-screenshot.png 232 412 'Android Screenshot' 'A screenshot of the web app from an Android device' %}
 
-The Rasperry Pi runs a small Python application written using the
+The Raspberry Pi runs a small Python application written using the
 [web.py](http://webpy.org/) framework. It uses [Twitter Bootstrap](http://twitter.github.com/bootstrap/)
 for style, layout, and responsive design, and the
 [RPi.GPIO](http://pypi.python.org/pypi/RPi.GPIO/) Python module for
