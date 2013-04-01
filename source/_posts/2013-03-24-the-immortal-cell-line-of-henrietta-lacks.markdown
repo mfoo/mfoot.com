@@ -2,7 +2,7 @@
 layout: post
 title: "The immortal cell line of Henrietta Lacks"
 date: 2013-03-24 13:08
-published: false
+published: true
 comments: true
 categories: 
 ---
@@ -24,10 +24,8 @@ scientists ever since due to their ease of use in testing, and were involved in
 experiments that have revolutionised modern medicine, including cloning,
 genetic mapping, and the development of the polio vaccine.
 
-Rebecca Skloot, author of the book [The Immortal Life of Henrietta
-Lacks](http://en.wikipedia.org/wiki/The_Immortal_Life_of_Henrietta_Lacks),
-recently [published an article in the New York
-Times](http://www.nytimes.com/2013/03/24/opinion/sunday/the-immortal-life-of-henrietta-lacks-the-sequel.html)
+Rebecca Skloot, author of the book [The Immortal Life of Henrietta Lacks](http://en.wikipedia.org/wiki/The_Immortal_Life_of_Henrietta_Lacks),
+recently [published an article in the New York Times](http://www.nytimes.com/2013/03/24/opinion/sunday/the-immortal-life-of-henrietta-lacks-the-sequel.html)
 after a team of European scientists published the genome sequence of the HeLa
 cells without the consent of the Lacks family. 
 
