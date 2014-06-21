@@ -15,6 +15,7 @@ group :development do
   gem 'liquid'
   gem 'pry'
   gem 's3_website'
+  gem 'rouge'
 end
 
 gem 'sinatra'

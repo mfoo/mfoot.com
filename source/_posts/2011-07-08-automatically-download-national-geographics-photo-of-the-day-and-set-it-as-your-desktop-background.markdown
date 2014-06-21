@@ -20,7 +20,7 @@ National Geographic is an exceptional source of photos and imagery. I wrote a sh
 
  If you're running Linux, it will attempt to set the Gnome background wallpaper to the downloaded image, and by default it downloads to ~/Dropbox/Wallpapers. This can be changed by modifying the DOWNLOAD_FOLDER variable. The bonus of it downloading to Dropbox is that I can run the script in a cron job on my Linux desktop and have the wallpapers appear on all my other machines --- especially nice as my laptop displays wallpapers randomly from the Wallpapers folder.
 
-[code lang="python"]
+{% highlight python %}
 #!/usr/bin/env python
 
 """
@@ -143,4 +143,4 @@ if __name__ == '__main__':
         # (TODO: Non-Gnome desktop environments).
         if osplatform == "Linux":
             set_gnome_wallpaper(most_recent)
-[/code]
+{% endhighlight %}

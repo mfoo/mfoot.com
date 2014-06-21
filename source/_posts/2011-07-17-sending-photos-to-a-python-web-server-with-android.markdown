@@ -24,7 +24,7 @@ The solution uses a slightly modified version of [this example for Android](http
 
 The Python web server is below:
 
-[sourcecode language="python"]
+{% highlight python %}
 #!/usr/bin/env python
 
 import cgi
@@ -81,11 +81,11 @@ def main():
 
 if __name__ == '__main__':
     main()
-[/sourcecode]
+{% endhighlight %}
 
 And here's the Android Activity (remember to add the [CAMERA permission](http://developer.android.com/reference/android/Manifest.permission.html#CAMERA) to your manifest and add the above linked Base64 encoding class to your workspace and package).
 
-[sourcecode language="java"]
+{% highlight java %}
 package com.elec6024.eardetection;
 
 /**
@@ -221,11 +221,11 @@ public class MainActivity extends Activity
    }
 }
 
-[/sourcecode]
+{% endhighlight %}
 
 You'll also need the layout file for the application:
 
-[sourcecode language="xml"]
+{% highlight xml %}
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
@@ -244,8 +244,4 @@ You'll also need the layout file for the application:
 	android:text="@string/camera_button_text" 
 	android:textSize="@dimen/big_text"/>
 </LinearLayout>
-
-
-[/sourcecode]
-
-
+{% endhighlight %}

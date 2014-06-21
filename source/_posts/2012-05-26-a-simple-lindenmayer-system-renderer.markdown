@@ -20,25 +20,26 @@ We can then define a set of rendering functions that define what to draw when we
 For instance, the code below describes how to draw a [Sierpinski Triangle ](http://en.wikipedia.org/wiki/Sierpinski_triangle)using 'turtle graphics' and a simple [stack](http://en.wikipedia.org/wiki/Stack_%28abstract_data_type%29):
 
     
-        'Sierpinski Triangle':
-            axiom: 'A'
-            rules:
-                'A': 'B-A-B'
-                'B': 'A+B+A'
-            renderFunctions:
-                'A': (stack) ->
-                    turtle = stack.peek()
-                    turtle.forward 10
-                'B': (stack) ->
-                    turtle = stack.peek()
-                    turtle.forward 10
-                '-': (stack) ->
-                    turtle = stack.peek()
-                    turtle.left 60
-                '+': (stack) ->
-                    turtle = stack.peek()
-                    turtle.right 60
-
+{% highlight javascript %}
+'Sierpinski Triangle':
+    axiom: 'A'
+    rules:
+        'A': 'B-A-B'
+        'B': 'A+B+A'
+    renderFunctions:
+        'A': (stack) ->
+            turtle = stack.peek()
+            turtle.forward 10
+        'B': (stack) ->
+            turtle = stack.peek()
+            turtle.forward 10
+        '-': (stack) ->
+            turtle = stack.peek()
+            turtle.left 60
+        '+': (stack) ->
+            turtle = stack.peek()
+            turtle.right 60
+{% endhighlight %}
 
 Which, when rendered for five generations looks like this:
 

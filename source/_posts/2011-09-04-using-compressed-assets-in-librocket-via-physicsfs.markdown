@@ -21,7 +21,7 @@ I've been storing compressed project assets using [PhysicsFS](icculus.org/physfs
 
 RocketFileSystemInterface.h:
 
-[code lang="cpp"]
+{% highlight cpp %}
 #ifndef _ROCKETFILESYSTEMINTERFACE_H_
 #define _ROCKETFILESYSTEMINTERFACE_H_
 
@@ -99,12 +99,11 @@ class RocketFileSystemInterface : public Rocket::Core::FileInterface {
 }
 
 #endif // _ROCKETFILESYSTEMINTERFACE_H_
-
-[/code]
+{% endhighlight %}
 
 RocketFileSystemInterface.cpp:
 
-[sourcecode language="cpp"]
+{% highlight cpp %}
 #include "RocketFileSystemInterface.h"
 
 #include <Rocket/Core.h>
@@ -187,4 +186,4 @@ size_t RocketFileSystemInterface::Length(Rocket::Core::FileHandle file) {
 }
 
 }
-[/sourcecode]
+{% endhighlight %}

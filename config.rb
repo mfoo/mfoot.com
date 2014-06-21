@@ -1,6 +1,8 @@
 # Require any additional compass plugins here.
 project_type = :stand_alone
 
+pygments = false
+
 # Publishing paths
 http_path = "/"
 http_images_path = "/images"
