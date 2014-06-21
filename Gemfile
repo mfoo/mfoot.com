@@ -14,6 +14,7 @@ group :development do
   gem 'stringex'
   gem 'liquid'
   gem 'pry'
+  gem 's3_website'
 end
 
 gem 'sinatra'
