@@ -89,7 +89,7 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name: mfootcom 
+disqus_short_name: mfootcom
 disqus_show_comment_count: false
 
 # Google Analytics
@@ -98,5 +98,6 @@ google_analytics_tracking_id: UA-24568117-1
 # Facebook Like
 facebook_like: false
 
+# Stack Overflow sidebar settings
 stackoverflow_user_name: martinfoot
 stackoverflow_user_id: 825879
