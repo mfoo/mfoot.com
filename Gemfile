@@ -5,7 +5,6 @@ group :development do
   gem 'rack'
   gem 'jekyll'
   gem 'rdiscount'
-  gem 'pygments.rb'
   gem 'RedCloth'
   gem 'haml'
   gem 'compass'
