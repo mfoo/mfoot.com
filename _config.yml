@@ -34,7 +34,6 @@ plugins: plugins
 code_dir: downloads/code
 category_dir: blog/categories
 markdown: rdiscount
-pygments: false # default python pygments have been replaced by pygments.rb
 highlighter: rouge
 
 paginate: 2          # Posts per page on the blog index
