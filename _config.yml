@@ -41,7 +41,7 @@ rdiscount:
     - smart
 highlighter: rouge
 
-paginate: 10          # Posts per page on the blog index
+paginate: 3          # Posts per page on the blog index
 paginate_path: "posts/:num"  # Directory base for pagination URLs eg. /posts/2/
 
 # pagination_dir: blog  # Directory base for pagination URLs eg. /blog/page/2/
