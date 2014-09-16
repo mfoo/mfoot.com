@@ -38,4 +38,4 @@ photos from the test roll, self developed in Ilfosol 3.
 ![Required tools](/images/2014/09/10-kodak-retinette/IMG_20130927_0008.jpg)
 
 This is one of the reasons I love old film cameras. How many pieces of modern
-technology do you own that will still be working in 60 years later?
+technology do you own that will still be working in 60 years?
