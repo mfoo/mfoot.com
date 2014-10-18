@@ -146,9 +146,9 @@ didn't have time to visit Antwerp, but I'll be sure to come back to Ghent when
 I do!
 
 The RZ67 survived the rain and being carried around for several days, but it's
-not the easiest thing to carry around. It's also a very slow camera to shoot
-with, but I was on my own and could take all the time I needed. I'm impressed
-with the quality of the negatives - my only real experience with medium format
-before was from a plastic-lensed Holga and a Yashica 635. The lenses are on a
-whole different level. I'll definitely be taking it with me on new adventures
-in the future.
+definitely not the easiest way to take photos on holiday. It's also a very slow
+camera to shoot with, but I was on my own and could take all the time I needed.
+I'm impressed with the quality of the negatives - my only real experience with
+medium format before was from a plastic-lensed Holga and a Yashica 635. The
+lenses are on a whole different level. I'll definitely be taking it with me on
+new adventures in the future.
