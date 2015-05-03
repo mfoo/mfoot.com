@@ -56,8 +56,6 @@ solder connection breaking. I then soldered each of the three cables into the
 board and a single row of three headers to connect to a breadboard for
 prototyping.
 
-!["Step 3"](/images/alpha-remote-trigger/step2.jpg)
-
 **Step 4**: Wire up the optoisolator
 
 Using an optoisolator means that you can't accidentally send any current
