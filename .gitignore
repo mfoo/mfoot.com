@@ -13,3 +13,4 @@ source/javascripts/all.js
 vendor
 node_modules
 Gemfile.lock
+s3_website.yml
