@@ -20,6 +20,8 @@ two or three lenses, and any small accessories. With the separators removed the
 RZ67 perfectly occupies the entire space with the 65mm lens attached (with the
 180 attached it does not fit).
 
+<!-- more -->
+
 The changeable back is something I've never experienced before. I've used
 plenty of 35mm film cameras and a couple of medium format TLRs but I've never
 been able to change film to suit the situation without having to rewind a roll

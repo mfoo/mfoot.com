@@ -20,6 +20,8 @@ City Park. It's a huge landmark and was filled with tourists, myself included.
 
 ![Tourists at Heroes' Square, Budapest](/images/2014/12/28-budapest-athens/IMG_20141101_0068.jpg)
 
+<!-- more -->
+
 It's a good idea to check Heroes' Square out at night as well, possibly after
 spending a relaxing evening at the nearby Széchenyi public baths. The picture
 below shows a restaurant on the edge of the lake in City Park in the evening.
