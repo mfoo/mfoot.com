@@ -1,0 +1,6 @@
+{% assign content = page.content | split: '<!-- more -->' | first %}
+{% include post_body.html %}
+{% if page.content contains '<!-- more -->' %}
+<a href="{{ page.url }}">Read more...</a>
+<br /><br/>
+{% endif %}

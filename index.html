@@ -1,0 +1,21 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  <h1 class="page-heading">Latest Post</h1>
+    {% assign page = site.posts.first %}
+    {% include post_truncated.html %}
+  </div>
+
+  <h1 class="page-heading">Recent Posts</h1>
+  {% for page in site.posts offset:1 limit:2 %}
+    {% include post_truncated.html %}
+  {% endfor %}
+
+  <p>To see more posts, visit the <a href="{{ "/archives" | prepend: site.baseurl }}">archives</a>.</p>
+
+  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+
+</div>
