@@ -118,7 +118,7 @@ on the other hand made his method available without restriction as a gift to the
 patenting is seen as a mistake by many people as it slowed growth in the calotype's uptake and
 it caused an additional cost for users.
 
-![Plate III. Articles Of China](https://www.gutenberg.org/files/33447/33447-h/images/plate_03.jpg)
+![Plate III. Articles Of China](/images/2015/05/24/plate_03.jpg)
 
 In The Pencil of Nature, Talbot provides several images showing the properties of his technique and
 suggests certain uses. In an image entitled 'Plate III. Articles Of China' (above) he suggests
@@ -135,7 +135,7 @@ negative varies depending on the colour of the light it is receiving. He notes t
 affect the paper almost as rapidly as white hues, but "on the contrary, green hues act very
 feebly".
 
-![Plate IV. Articles of Glass](https://www.gutenberg.org/files/33447/33447-h/images/plate_04.jpg)
+![Plate IV. Articles of Glass](/images/2015/05/24/plate_04.jpg)
 
 Talbot also describes what might be the earliest description of using a photographic reflector to
 enhance the available light and reduce shadow contrast when taking a picture.
@@ -158,12 +158,12 @@ There's an excellent description of how his negatives work as well:
 
 'Plate XX. Lace' is the first example he provides of such a negative:
 
-![Plate XX. Lace](https://www.gutenberg.org/files/33447/33447-h/images/plate_20.jpg)
+![Plate XX. Lace](/images/2015/05/24//plate_20.jpg)
 
 Each of the plates provided has a short description. My favourite is the photograph of Westminster
 Abbey from plate XXII:
 
-![Plate XXII. Westminster Abbey](https://www.gutenberg.org/files/33447/33447-h/images/plate_22.jpg)
+![Plate XXII. Westminster Abbey](/images/2015/05/24/plate_22.jpg)
 
 Being a resident of London, I find the description quite funny:
 
