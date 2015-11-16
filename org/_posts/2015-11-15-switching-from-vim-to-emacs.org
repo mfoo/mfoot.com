@@ -1,0 +1,85 @@
+#+BEGIN_HTML
+---
+layout: default
+title: Switching from Vim to Emacs
+excerpt: Switching from Vim to Emacs
+draft: true
+---
+#+END_HTML
+
+Last month I switched to Emacs after after 7 years of using Vim. I tried Emacs for the first time on a colleague's
+recommendation and after a month of using it I won't be going back.
+
+Vim isn't removed from my workflow. For quick changes of single files and for modifying files if I'm already on a
+server, vim will be my go-to editor. For everything else, emacs has taken over.
+
+It took a while to get emacs configured in a way that I liked, able to provide all of my favourite features of vim and
+then many more features on top of that. I did a fair amount of customisation (I believe all emacs users do this) as the
+out of the box user experience is truly abysmal. The defaults for simple things such as scrolling the page were
+crazy. The key combinations made no sense at all. I had to use my text editor to debug my text editor. Then I gave in
+and tried out [[http://mattbriggs.net/blog/2012/02/27/awesome-emacs-plugins-evil-mode/][evil-mode]], which provides vim-style keybindings for emacs. If you're used to vim this is fantastic. I
+don't need to learn a whole new set of commands for editing. Pretty much everything I used in vim works the same way on
+emacs. I have almost the whole set of vim features I used and then a whole host of things I could never do before. I
+said that I haven't removed vim from my workflow completely. I still prefer using vim for quick edits and for working on
+remote machines (but, ofcourse [[http://www.emacswiki.org/emacs/TrampMode][emacs can edit remote files, even SSHing through multiple boxes to get there]]). By using
+evil-mode I don't lose the vim skills that I'd be using editing those files.
+
+For most of my configuration I trawled the internet for peoples' =.emacs= files, tested each setting and imported the ones
+I liked. For the rest I searched for answers online or in the in-built help system when I found something I didn't
+like. Sometimes this means using other modes (essentially libraries providing functionality), sometimes it means using
+different functions instead of the built in ones. Suddenly you realise that /everything is configurable/.
+
+Don't like typing 'yes' or 'no' at confirmation prompts? Change the function that gets called when emacs needs to ask
+for a yes or no response.
+
+#+BEGIN_SRC emacs-lisp
+(defalias 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+
+Want to see more information about files in a directory such as human-readable sizes? Configure the =ls= switches used to
+show information about files on the filesystem:
+
+#+BEGIN_SRC emacs-lisp
+(setq dired-listing-switches "-alh")
+#+END_SRC
+
+Want to automatically enable the spell checker for certain file types? Want it to check spelling as you type,
+continuously? Want to be able to save words to a personal dictionary?
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'org-mode-hook (lambda () (flyspell-mode)))
+#+END_SRC
+
+Want that spell checker to only run on comments and strings when you're editing code? Use the programming version of the
+spell checker:
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'c++-mode-hook (lambda () (flyspell-prog-mode)))
+#+END_SRC
+
+Want emacs to run the a Ruby syntax checker and linter as you type? Install [[https://github.com/bbatsov/rubocop][rubocop]] and run [[https://github.com/flycheck/flycheck][flycheck]]:
+
+#+BEGIN_SRC emacs-lisp
+(flycheck-mode)
+#+END_SRC
+
+It's all there and it's all configurable. Once you experience configuration this way you see how much more powerful it
+is using a programming language to perform configuration rather than listing key-value pairs. I consider myself
+pragmatic rather than religious about text editors. I wouldn't be using a tool if I didn't think it was the best one for
+the job. I spent a long time hearing emacs fans raving about what it could do but I needed to spend the time actually
+trying it out for myself before I understood why they were so zealous.
+
+And then I discovered [[http://orgmode.org/][Ord mode]]. Org mode is astonishing. I can track every issue I'm working on, support tickets I have
+in play, thoughts about features that haven't made it to JIRA yet, store source code (highlighted in the correct
+language's syntax highlighter), execute bash scripts from inside the text file, run MySQL queries /and see the results
+formatted in a table/, even edit spreadsheets with actual cell and column formulae. I got emacs to export org-mode files
+that [[http://jekyllrb.com/docs/drafts/][Jekyll]] can use so I can write blog posts in org-mode. I used ~org-babel-load~ to store my emacs configuration in a
+well-documented org-mode file, which emacs then publishes alongside my blog posts in an [[/static/emacs-config/config.html][HTML file]]. This means that my
+configuration and the documentation for my configuration /are the same file/. There's a huge amount of features in
+org-mode and it's definitely worth a separate post. My goal here is just to introduce some of the things that make my
+life easier every single day.
+
+It's only now that I begin to really understand the jokes about people who use emacs as their operating system. Once
+you can do everything in one place, why would you leave it?
+
+http://imgs.xkcd.com/comics/real_programmers.png
