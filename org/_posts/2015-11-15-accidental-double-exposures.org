@@ -1,8 +1,7 @@
 #+BEGIN_HTML
 ---
-layout: default
+layout: post
 title: Accidental double exposures
-draft: true
 ---
 #+END_HTML
 
@@ -14,13 +13,13 @@ they're some of my most memorable photos from trips last year
 The first photo is in Athens near Monastiraki, not far from the Acropolis. Two separate night time shots of city streets
 combined to make something that doesn't quite represent either:
 
-[[../images/2015/11/IMG_20141029_0014.jpg]]
+[[img:2015/11/IMG_20141029_0014.jpg]]
 
 The second shot is from the Fushimi Inara Shrine near Kyoto, Japan. The shrine itself is stunningly beautiful and I was
 lucky enough to visit on a lovely sunny day when the cherry blossoms were blooming. I think this was caused by me
 accidentally tripping the multiple exposure latch on the Nikon.
 
-[[../images/2015/11/IMG_20150524_0021.jpg]]
+[[img:2015/11/IMG_20150524_0021.jpg]]
 
 I love getting shots like this back from the lab. It's usually very difficult to tell from the negative what is going on
 so you must wait for the scan to see the full awesomeness of such happy accidents. There also are some very creative

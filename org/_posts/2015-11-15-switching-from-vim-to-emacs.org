@@ -1,9 +1,7 @@
 #+BEGIN_HTML
 ---
-layout: default
+layout: post
 title: Switching from Vim to Emacs
-excerpt: Switching from Vim to Emacs
-draft: true
 ---
 #+END_HTML
 
@@ -69,12 +67,12 @@ pragmatic rather than religious about text editors. I wouldn't be using a tool i
 the job. I spent a long time hearing emacs fans raving about what it could do but I needed to spend the time actually
 trying it out for myself before I understood why they were so zealous.
 
-And then I discovered [[http://orgmode.org/][Ord mode]]. Org mode is astonishing. I can track every issue I'm working on, support tickets I have
+And then I discovered [[http://orgmode.org/][Org mode]]. Org mode is astonishing. I can track every issue I'm working on, support tickets I have
 in play, thoughts about features that haven't made it to JIRA yet, store source code (highlighted in the correct
 language's syntax highlighter), execute bash scripts from inside the text file, run MySQL queries /and see the results
 formatted in a table/, even edit spreadsheets with actual cell and column formulae. I got emacs to export org-mode files
 that [[http://jekyllrb.com/docs/drafts/][Jekyll]] can use so I can write blog posts in org-mode. I used ~org-babel-load~ to store my emacs configuration in a
-well-documented org-mode file, which emacs then publishes alongside my blog posts in an [[/static/emacs-config/config.html][HTML file]]. This means that my
+well-documented org-mode file, which emacs then publishes alongside my blog posts in an [[http://www.mfoot.com/static/emacs-config/config.html][HTML file]] This means that my
 configuration and the documentation for my configuration /are the same file/. There's a huge amount of features in
 org-mode and it's definitely worth a separate post. My goal here is just to introduce some of the things that make my
 life easier every single day.

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Martin Foot's Emacs Configuration</title>
-<!-- 2015-11-15 Sun 13:49 -->
+<!-- 2015-11-17 Tue 06:25 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Martin Foot" />
@@ -769,6 +769,7 @@ Configure the languages that Babel will automatically syntax highlight
    (calc . t)
    (java . t)
    (emacs-lisp . t)
+   (gnuplot . t)
   )
 )
 </pre>
@@ -927,6 +928,29 @@ information.
 <pre class="src src-emacs-lisp">(<span style="color: #859900; font-weight: bold;">use-package</span> <span style="color: #268bd2; font-weight: bold;">htmlize</span>
   <span style="color: #839496; font-weight: bold;">:ensure</span> t
 )
+</pre>
+</div>
+
+<p>
+In order to get images to work both inside emacs and inside the generated output I need to register a custom image
+format. Emacs currently will only generate <code>&lt;a href /&gt;</code> tags for images it can actually resolve on the filesystem. Since
+my images on my blog are hosted under <code>/images</code>, emacs will generate <code>file:///images</code> URLs which is not useful. The
+following allows me to use <code>img:../images/2015/11/photo.png</code> as an image reference and have both emacs and the html
+generator generate the correct paths. This is modified from <a href="http://stackoverflow.com/a/14841597">this StackOverflow answer</a>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">org-custom-link-img-follow</span> (path)
+  (org-open-file-with-emacs
+   (format <span style="color: #2aa198;">"../images/%s"</span> path)))
+
+(<span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">org-custom-link-img-export</span> (path desc format)
+  (<span style="color: #859900; font-weight: bold;">cond</span>
+   ((eq format 'html)
+    (format <span style="color: #2aa198;">"&lt;img src=\"/images/%s\" alt=\"%s\"/&gt;"</span> path desc))))
+
+(org-add-link-type <span style="color: #2aa198;">"img"</span> 'org-custom-link-img-follow 'org-custom-link-img-export)
 </pre>
 </div>
 
@@ -1543,7 +1567,7 @@ I use <a href="https://github.com/capitaomorte/yasnippet">yasnippet</a> for code
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Martin Foot</p>
-<p class="date">Created: 2015-11-15 Sun 13:49</p>
+<p class="date">Created: 2015-11-17 Tue 06:25</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
