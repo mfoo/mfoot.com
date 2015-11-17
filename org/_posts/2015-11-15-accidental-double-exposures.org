@@ -22,7 +22,8 @@ accidentally tripping the multiple exposure latch on the Nikon.
 [[img:2015/11/IMG_20150524_0021.jpg]]
 
 I love getting shots like this back from the lab. It's usually very difficult to tell from the negative what is going on
-so you must wait for the scan to see the full awesomeness of such happy accidents. There also are some very creative
-people out there making full use of the medium of multiple exposure, deliberately composing and shooting scenes for a
-desired effect. I highly recommend having a search around on Google Images and Flickr for some more examples, and I
-suggest you start [[http://www.thisiscolossal.com/tags/multiple-exposures/][here]].
+so you must wait for the scan to see the full awesomeness of such happy accidents. Some cameras (including my FM2N)
+actually support multiple exposure by re-arming the shutter without advancing the film. There also are some very
+creative people out there making full use of this - deliberately composing and shooting scenes for a desired effect. I
+highly recommend having a search around on Google Images and Flickr for some more examples, and I suggest you start
+[[http://www.thisiscolossal.com/tags/multiple-exposures/][here]].

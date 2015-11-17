@@ -1,0 +1,130 @@
+#+BEGIN_HTML
+---
+layout: post
+title: Using org-mode to blog with Jekyll
+---
+#+END_HTML
+
+Some years ago I moved to [[http://jekyllrb.com/][Jekyll]] from Wordpress and have been hosting this blog as a statically generated website on
+S3. Having recently discovered Emacs' [[http://orgmode.org/][org mode]] I wanted to see if I could write blog posts with it. Considering that
+this is the emacs community it was probably silly to doubt that nobody had done this before. It turns out that there's a
+whole post specifically about this on the org mode site: [[http://orgmode.org/worg/org-tutorials/org-jekyll.html][Using org to Blog with Jekyll]]. It's a little out-of-date as in
+org 8.2 the HTML export publishing function has changed, but that's the only difference.
+
+The process of using org-mode to blog with Jekyll involves using the org mode HTML export to publish a body-only export
+of your org-files. This means that it exports only the HTML inside the =<body></body>= tags and doesn't include anything
+else. It then places these output files inside Jekyll's =_posts= directory which Jekyll interprets and serves up. The
+trick is that you need to include your YAML front matter as an HTML block at the top of the org-mode post so that when
+org exports it it leaves it as it is:
+
+#+BEGIN_EXAMPLE
+#+BEGIN_SRC HTML
+---
+layout: post
+title: Using org-mode to write Jekyll blogs
+---
+#+END_SRC
+
+My blog post goes here.
+#+END_EXAMPLE
+
+This =BEGIN_HTML= block doesn't get HTML processed and leaves a file in the correct format for Jekyll to read.
+
+Inside your emacs configuration we then set up an Publishing Project which adds a new =Publish= menu option to the menu
+you'd see with =C-c C-e= normally. You can use =C-c C-e P x= to publish any publishing project from within any org-mode
+buffer, or you can run the function =org-publish <select project>= or =org-publish-all= from any buffer.
+
+I would suggest reading the documentation page linked above and adapting to the folder structure it recommends. You'll
+end up with something like this:
+
+#+begin_example
+.
+├── jekyll
+│   ├── archives
+│   ├── css
+│   ├── _drafts
+│   ├── images
+│   ├── _includes
+│   ├── _layouts
+│   ├── _posts
+│   ├── _sass
+│   ├── _site
+└── org
+    ├── images
+    └── _posts
+#+end_example
+
+Inside =org/_posts= I'll have files as normal but with =.org= extensions such as
+=2015-11-17-using-org-mode-to-write-jekyll-blogs.org=.
+
+Inside my emacs configuration I have the following:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-publish-project-alist
+  '(
+     ("org-mfoot" ; Export my blog to the Jekyll format for ~jekyll build~
+       ;; Path to your org files.
+       :base-directory "~/repositories/mfoot.com/org/"
+       :base-extension "org"
+
+       ;; Path to your Jekyll project.
+       :publishing-directory "~/repositories/mfoot.com/jekyll/"
+       :recursive t
+       :publishing-function org-html-publish-to-html
+       :html-extension "html"
+       :body-only t ;; Only export section between <body> </body>
+
+       :section-numbers nil
+       :with-toc nil
+       :auto-index nil
+       :auto-preamble nil
+       :body-only t
+       :auto-postamble nil
+     )
+
+    ("org-static-mfoot"
+      :base-directory "~/repositories/mfoot.com/org/"
+      :base-extension "css\\|js\\|png\\|jpg\\|gif"
+      :publishing-directory "~/repositories/mfoot.com/jekyll"
+      :recursive t
+      :publishing-function org-publish-attachment
+    )
+
+    ("mfoot.com" :components (
+      "org-mfoot"
+      "org-static-mfoot"
+    )
+  )
+)
+#+END_SRC
+
+If we see the last bit first, we've defined a project called =mfoot.com=. This is the name of the publishing project. It's
+a wrapper for two smaller components - =org-mfoot= and =org-static-mfoot=. =org-static-mfoot= uses the =org-publish-attachment=
+function which simply copes files without any processing directly from the source to the destination folder. The
+=base-extension= limits it to the typical file types I'd host, so putting anything inside the =mfoot.com/org= folder
+matching those extensions would have org-mode copy them to the =publishing-directory= folder with a matching directory
+structure, creating those directories if it needs to. The =org-mfoot= project uses the =org-html-publish-to-html= function
+which processes all of the org files. It disables a bunch of things and importantly sets =:body-only t=. This is the magic
+that lets it work with Jekyll.
+
+I had a problem with images that the documentation didn't cover. When using links in the format =[[../images/2015/11/foo.png]]=, org-mode would only generate relative paths from the output folder structure. As I'm storing the images in a parallel directory structure, this didn't work. While these worked in the blog's index page, the images would 404 when viewing the individual blog page because the URL changed. I found the solution in an [[http://stackoverflow.com/questions/14684263/how-to-org-mode-image-absolute-path-of-export-html][excellent StackOverflow answer]] and this worked perfectly. I added the following to my config file:
+
+#+BEGIN_SRC emacs-lisp
+(defun org-custom-link-img-follow (path)
+  (org-open-file-with-emacs
+   (format "../images/%s" path)))
+
+(defun org-custom-link-img-export (path desc format)
+  (cond
+   ((eq format 'html)
+    (format "<img src=\"/images/%s\" alt=\"%s\"/>" path desc))))
+
+(org-add-link-type "img" 'org-custom-link-img-follow 'org-custom-link-img-export)
+#+END_SRC
+
+and then changed images to use the =img:= prefix:
+
+=[[img:2015/11/IMG_20141029_0014.jpg]]=
+
+Now I can write blog posts inside org-mode in emacs, run =org-publish-all=, check the generated site with my background
+process running =jekyll serve=, then push the site to S3 with =s3_website=. Nice.
