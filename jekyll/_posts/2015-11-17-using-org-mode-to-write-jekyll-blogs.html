@@ -1,0 +1,156 @@
+---
+layout: post
+title: Using org-mode to blog with Jekyll
+---
+
+<p>
+Some years ago I moved to <a href="http://jekyllrb.com/">Jekyll</a> from Wordpress and have been hosting this blog as a statically generated website on
+S3. Having recently discovered Emacs' <a href="http://orgmode.org/">org mode</a> I wanted to see if I could write blog posts with it. Considering that
+this is the emacs community it was probably silly to doubt that nobody had done this before. It turns out that there's a
+whole post specifically about this on the org mode site: <a href="http://orgmode.org/worg/org-tutorials/org-jekyll.html">Using org to Blog with Jekyll</a>. It's a little out-of-date as in
+org 8.2 the HTML export publishing function has changed, but that's the only difference.
+</p>
+
+<p>
+The process of using org-mode to blog with Jekyll involves using the org mode HTML export to publish a body-only export
+of your org-files. This means that it exports only the HTML inside the <code>&lt;body&gt;&lt;/body&gt;</code> tags and doesn't include anything
+else. It then places these output files inside Jekyll's <code>_posts</code> directory which Jekyll interprets and serves up. The
+trick is that you need to include your YAML front matter as an HTML block at the top of the org-mode post so that when
+org exports it it leaves it as it is:
+</p>
+
+<pre class="example">
+#+BEGIN_SRC HTML
+---
+layout: post
+title: Using org-mode to write Jekyll blogs
+---
+#+END_SRC
+
+My blog post goes here.
+</pre>
+
+<p>
+This <code>BEGIN_HTML</code> block doesn't get HTML processed and leaves a file in the correct format for Jekyll to read.
+</p>
+
+<p>
+Inside your emacs configuration we then set up an Publishing Project which adds a new <code>Publish</code> menu option to the menu
+you'd see with <code>C-c C-e</code> normally. You can use <code>C-c C-e P x</code> to publish any publishing project from within any org-mode
+buffer, or you can run the function <code>org-publish &lt;select project&gt;</code> or <code>org-publish-all</code> from any buffer.
+</p>
+
+<p>
+I would suggest reading the documentation page linked above and adapting to the folder structure it recommends. You'll
+end up with something like this:
+</p>
+
+<pre class="example">
+.
+├── jekyll
+│   ├── archives
+│   ├── css
+│   ├── _drafts
+│   ├── images
+│   ├── _includes
+│   ├── _layouts
+│   ├── _posts
+│   ├── _sass
+│   ├── _site
+└── org
+    ├── images
+    └── _posts
+</pre>
+
+<p>
+Inside <code>org/_posts</code> I'll have files as normal but with <code>.org</code> extensions such as
+<code>2015-11-17-using-org-mode-to-write-jekyll-blogs.org</code>.
+</p>
+
+<p>
+Inside my emacs configuration I have the following:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(setq org-publish-project-alist
+  '(
+     (<span style="color: #2aa198;">"org-mfoot"</span> <span style="color: #586e75;">; </span><span style="color: #586e75;">Export my blog to the Jekyll format for ~jekyll build~</span>
+       <span style="color: #586e75;">;; </span><span style="color: #586e75;">Path to your org files.</span>
+       <span style="color: #839496; font-weight: bold;">:base-directory</span> <span style="color: #2aa198;">"~/repositories/mfoot.com/org/"</span>
+       <span style="color: #839496; font-weight: bold;">:base-extension</span> <span style="color: #2aa198;">"org"</span>
+
+       <span style="color: #586e75;">;; </span><span style="color: #586e75;">Path to your Jekyll project.</span>
+       <span style="color: #839496; font-weight: bold;">:publishing-directory</span> <span style="color: #2aa198;">"~/repositories/mfoot.com/jekyll/"</span>
+       <span style="color: #839496; font-weight: bold;">:recursive</span> t
+       <span style="color: #839496; font-weight: bold;">:publishing-function</span> org-html-publish-to-html
+       <span style="color: #839496; font-weight: bold;">:html-extension</span> <span style="color: #2aa198;">"html"</span>
+       <span style="color: #839496; font-weight: bold;">:body-only</span> t <span style="color: #586e75;">;; </span><span style="color: #586e75;">Only export section between &lt;body&gt; &lt;/body&gt;</span>
+
+       <span style="color: #839496; font-weight: bold;">:section-numbers</span> nil
+       <span style="color: #839496; font-weight: bold;">:with-toc</span> nil
+       <span style="color: #839496; font-weight: bold;">:auto-index</span> nil
+       <span style="color: #839496; font-weight: bold;">:auto-preamble</span> nil
+       <span style="color: #839496; font-weight: bold;">:body-only</span> t
+       <span style="color: #839496; font-weight: bold;">:auto-postamble</span> nil
+     )
+
+    (<span style="color: #2aa198;">"org-static-mfoot"</span>
+      <span style="color: #839496; font-weight: bold;">:base-directory</span> <span style="color: #2aa198;">"~/repositories/mfoot.com/org/"</span>
+      <span style="color: #839496; font-weight: bold;">:base-extension</span> <span style="color: #2aa198;">"css</span><span style="color: #859900; font-weight: bold;">\\</span><span style="color: #b58900; font-weight: bold;">|</span><span style="color: #2aa198;">js</span><span style="color: #859900; font-weight: bold;">\\</span><span style="color: #b58900; font-weight: bold;">|</span><span style="color: #2aa198;">png</span><span style="color: #859900; font-weight: bold;">\\</span><span style="color: #b58900; font-weight: bold;">|</span><span style="color: #2aa198;">jpg</span><span style="color: #859900; font-weight: bold;">\\</span><span style="color: #b58900; font-weight: bold;">|</span><span style="color: #2aa198;">gif"</span>
+      <span style="color: #839496; font-weight: bold;">:publishing-directory</span> <span style="color: #2aa198;">"~/repositories/mfoot.com/jekyll"</span>
+      <span style="color: #839496; font-weight: bold;">:recursive</span> t
+      <span style="color: #839496; font-weight: bold;">:publishing-function</span> org-publish-attachment
+    )
+
+    (<span style="color: #2aa198;">"mfoot.com"</span> <span style="color: #839496; font-weight: bold;">:components</span> (
+      <span style="color: #2aa198;">"org-mfoot"</span>
+      <span style="color: #2aa198;">"org-static-mfoot"</span>
+    )
+  )
+)
+</pre>
+</div>
+
+<p>
+If we see the last bit first, we've defined a project called <code>mfoot.com</code>. This is the name of the publishing project. It's
+a wrapper for two smaller components - <code>org-mfoot</code> and <code>org-static-mfoot</code>. <code>org-static-mfoot</code> uses the <code>org-publish-attachment</code>
+function which simply copes files without any processing directly from the source to the destination folder. The
+<code>base-extension</code> limits it to the typical file types I'd host, so putting anything inside the <code>mfoot.com/org</code> folder
+matching those extensions would have org-mode copy them to the <code>publishing-directory</code> folder with a matching directory
+structure, creating those directories if it needs to. The <code>org-mfoot</code> project uses the <code>org-html-publish-to-html</code> function
+which processes all of the org files. It disables a bunch of things and importantly sets <code>:body-only t</code>. This is the magic
+that lets it work with Jekyll.
+</p>
+
+<p>
+I had a problem with images that the documentation didn't cover. When using links in the format <code>[[../images/2015/11/foo.png]]</code>, org-mode would only generate relative paths from the output folder structure. As I'm storing the images in a parallel directory structure, this didn't work. While these worked in the blog's index page, the images would 404 when viewing the individual blog page because the URL changed. I found the solution in an <a href="http://stackoverflow.com/questions/14684263/how-to-org-mode-image-absolute-path-of-export-html">excellent StackOverflow answer</a> and this worked perfectly. I added the following to my config file:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">org-custom-link-img-follow</span> (path)
+  (org-open-file-with-emacs
+   (format <span style="color: #2aa198;">"../images/%s"</span> path)))
+
+(<span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">org-custom-link-img-export</span> (path desc format)
+  (<span style="color: #859900; font-weight: bold;">cond</span>
+   ((eq format 'html)
+    (format <span style="color: #2aa198;">"&lt;img src=\"/images/%s\" alt=\"%s\"/&gt;"</span> path desc))))
+
+(org-add-link-type <span style="color: #2aa198;">"img"</span> 'org-custom-link-img-follow 'org-custom-link-img-export)
+</pre>
+</div>
+
+<p>
+and then changed images to use the <code>img:</code> prefix:
+</p>
+
+<p>
+<code>[[img:2015/11/IMG_20141029_0014.jpg]]</code>
+</p>
+
+<p>
+Now I can write blog posts inside org-mode in emacs, run <code>org-publish-all</code>, check the generated site with my background
+process running <code>jekyll serve</code>, then push the site to S3 with <code>s3_website</code>. Nice.
+</p>
