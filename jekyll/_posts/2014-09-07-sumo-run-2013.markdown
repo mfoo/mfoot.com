@@ -3,7 +3,10 @@ layout: post
 title: "Sumo Run 2013"
 date: 2014-09-07 17:06:48 +0100
 comments: true
-categories: 
+categories:
+tags:
+- sumo run
+- battersea park
 ---
 
 Each year in Battersea Park, London, there is a charity event called the

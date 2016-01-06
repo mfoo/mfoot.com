@@ -4,6 +4,10 @@ title: "Fox Talbot and the Salt Print Process"
 comments: true
 categories: photography
 author: Martin Foot
+tags:
+- fox talbot
+- salt printing
+- pencil of nature
 ---
 
 ![The Salt and Silver exhibition at the Tate
@@ -67,7 +71,7 @@ development occurred after the initial exposure.
 > The paper being well dried, the leaves, etc. were spread upon it, and covered with a glass
 > pressed down tightly, and then placed in the sunshine; and when the paper grew dark, the whole was
 > carried into the shade, and the objects being removed from off the paper, were found to have left
-> their images very perfectly and beautifully impressed or delineated upon it. 
+> their images very perfectly and beautifully impressed or delineated upon it.
 
 When used as the photographic medium with a camera obscura however, the result was unsatisfactory
 and took a very long time -- too long to make it feasible and comparable to sketches. After a long
@@ -128,7 +132,7 @@ items in a court case against a thief:
 > And should a thief afterwards purloin the treasures—if the mute testimony of the picture were to
 > be produced against him in court—it would certainly be evidence of a novel kind; but what the
 > judge and jury might say to it, is a matter which I leave to the speculation of those who
-> possess legal acumen. 
+> possess legal acumen.
 
 In 'Plate IV. Articles Of Glass', Talbot describes his finding that the sensitivity of the paper
 negative varies depending on the colour of the light it is receiving. He notes that blue hues

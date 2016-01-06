@@ -2,6 +2,11 @@
 ---
 layout: post
 title: Using org-mode to blog with Jekyll
+tags:
+  - org-mode
+  - jekyll
+  - org-publish
+  - org-publish-project-alist
 ---
 #+END_HTML
 

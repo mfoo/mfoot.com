@@ -3,7 +3,13 @@ layout: post
 title: "Budapest and Athens with the FM2N"
 date: 2014-12-27 23:54:02 +0000
 comments: true
-categories: 
+categories:
+tags:
+- budapest
+- athens
+- nikon
+- fm2n
+- photographica fair
 ---
 
 Until recently I had never been to either Hungary or Greece, so I was quite

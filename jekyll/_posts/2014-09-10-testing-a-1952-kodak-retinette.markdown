@@ -3,7 +3,10 @@ layout: post
 title: "Testing a 1952 Kodak Retinette"
 date: 2014-09-10 21:49:20 +0100
 comments: true
-categories: 
+categories: photography
+tags:
+- kodak retinette
+- thames festival
 ---
 
 Last year I was given a Kodak Retinette 17b by my grandfather. I remember

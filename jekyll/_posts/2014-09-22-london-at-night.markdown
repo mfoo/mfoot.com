@@ -3,7 +3,10 @@ layout: post
 title: "London at night"
 date: 2014-09-22 20:57:01 +0100
 comments: true
-categories: 
+categories:
+tags:
+- london
+- night photography
 ---
 
 I recently purchased a second hand Mamiya RZ67 Pro II, an incredibly large

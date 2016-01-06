@@ -3,7 +3,12 @@ layout: post
 title: "On holiday with the Mamiya RZ67 Pro II"
 date: 2014-10-18 16:15:14 +0100
 comments: true
-categories: 
+categories:
+tags:
+- mamiya rz67 pro ii
+- brussels
+- bruges
+- ghent
 ---
 
 I recently bought a Mamiya RZ67 Pro II. This is a large, bulky 6x7 film camera

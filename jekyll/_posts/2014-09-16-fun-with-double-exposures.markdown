@@ -3,7 +3,11 @@ layout: post
 title: "Fun with double exposures"
 date: 2014-09-16 23:01:53 +0100
 comments: true
-categories: 
+categories:
+tags:
+- multiple exposure
+- splitzer
+- lc-a+
 ---
 
 I found this photo that I took a while ago and wanted to share it. It's a

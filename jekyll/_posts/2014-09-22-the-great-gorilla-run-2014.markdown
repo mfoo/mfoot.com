@@ -3,7 +3,11 @@ layout: post
 title: "The Great Gorilla Run 2014"
 date: 2014-09-22 23:47:10 +0100
 comments: true
-categories: 
+categories:
+tags:
+- london
+- fun run
+- great gorilla run
 ---
 
 The 21st of October 2014 saw the [Great Gorilla Run](http://greatgorillarun.org/)

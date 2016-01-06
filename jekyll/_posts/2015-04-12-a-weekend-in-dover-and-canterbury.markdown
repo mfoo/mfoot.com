@@ -3,8 +3,11 @@ layout: post
 title: "A weekend in Dover and Canterbury"
 date: 2015-04-12 09:30:09 +0100
 comments: true
-categories: 
+categories: travel
 author: Martin Foot
+tags:
+- canterbury
+- dover castle
 ---
 
 In April 2013 I took a weekend trip to Dover and Canterbury with a friend of

@@ -61,6 +61,7 @@ Here is the contents of my =~/.emacs= file:
 ;; Author: Martin Foot <martin@mfoot.com>
 
 ;; Load the config
+(require 'org)
 (org-babel-load-file (concat user-emacs-directory "config.org"))
 #+END_SRC
 
@@ -95,12 +96,11 @@ Then, since I use ~use-package~ for every package from the repositories, initial
       user-mail-address "martin@mfoot.com")
 #+END_SRC
 * Parentheses
-Use =electric-pair-mode= to automatically close inserted parentheses and braces. I explicitly disable this when using
-=org-mode= because when typing links it's annoying.
+Use =electric-pair-mode= to automatically close inserted parentheses and braces. I don't have this enabled in text modes
+because when using =org-mode= it makes inserting links annoying.
 
 #+BEGIN_SRC emacs-lisp
-(electric-pair-mode)
-(add-hook 'org-mode-hook (lambda () (electric-pair-mode nil)))
+(add-hook 'prog-mode-hook (lambda () (electric-pair-mode)))
 #+END_SRC
 
 =show-paren-mode= makes emacs highlight closing parentheses, braces, and curly braces.
@@ -110,19 +110,16 @@ Use =electric-pair-mode= to automatically close inserted parentheses and braces.
 (setq show-paren-delay 0) ; show the paren match immediately
 #+END_SRC
 
-Then I use =[[https://github.com/Fanael/rainbow-delimiters][rainbow-delimiters]]= to highlight nested parentheses in different colours. It has an annoying disclaimer that
-there's no global mode for it, so I've enabled it for org mode only. This conveniently applies to source code blocks
-inside org mode. This means I get the highlighting on any lisp configuration as well as code I'm working on from inside
-org mode.
+Then I use =[[https://github.com/Fanael/rainbow-delimiters][rainbow-delimiters]]= to highlight nested parentheses in different colours.
 
 #+BEGIN_SRC emacs-lisp
 (use-package rainbow-delimiters
   :ensure t
-  :config (rainbow-delimiters-mode)
+  :config
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 )
-
-(add-hook 'org-mode-hook (lambda () (rainbow-delimiters-mode)))
 #+END_SRC
+
 * Fill columns and line highlighting
 I find a 120 character line length is best for modern screens. Individual languages/major modes can override this.
 
@@ -138,6 +135,16 @@ I also like a highlight on the screen to show the current cursor line.
 #+BEGIN_SRC emacs-lisp
 (global-hl-line-mode)
 #+END_SRC
+* Indentation guides
+When working with structured code it's nice to have an indentation guide.
+
+#+BEGIN_SRC emacs-lisp
+(use-package indent-guide
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook (lambda () (indent-guide-mode)))
+)
+#+END_SRC
 * Shortcut help
 It's very difficult to remember all the shortcuts available in emacs. The =guide-key= plugin pops up a list of available
 suggestions after a little while.
@@ -145,6 +152,9 @@ suggestions after a little while.
 =:diminish guide-key-mode= configures the mode to not show up in the list of minor modes.
 
 I've configured it to wait 0.5 seconds before popping up the suggestions list.
+
+- =C-c= :: Active mode specific commands
+- =C-x= :: Emacs commands
 
 #+BEGIN_SRC emacs-lisp
 (use-package guide-key
@@ -157,7 +167,6 @@ I've configured it to wait 0.5 seconds before popping up the suggestions list.
   (guide-key-mode 1)
 )
 #+END_SRC
-
 * Line numbering and cursor position
 I enable line numbers globally and enable the cursor position being shown in the bottom left. Note: Enabling line
 numbers globally is not perfect as it includes things like lists of files when using =C-x f=. This doesn't really make
@@ -329,17 +338,6 @@ Insert tabs by default when auto-formatting.
 ;(global-whitespace-cleanup-mode)	; Enable whitespace-mode globally
 
 ;(setq whitespace-style (quote (spaces tabs newline space-mark tab-mark)))
-** Git
-I use the excellent [[http://magit.vc/][magit]] for emacs git integration. This is bound to =C-x g=.
-
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-x g") 'magit-status)
-(use-package magit
-  :ensure t
-  :bind (("C-x g" . magit-status))
-)
-#+END_SRC
-
 * Region selection
 =expand-region= makes it really easy to quickly select regions of text getting larger.
 
@@ -361,14 +359,20 @@ more things it became larger and larger and I had to split it into subcategories
 This table lists (and defines) the key bindings that I often use. Most are set to the defaults but it provides both an
 easy way to set variables and a handy reference. Check the source for how the table is used.
 
-TODO: These are the header rows but they cause problems with org-babel evaluation
+*Note* to future me: If the key is already bound and you're setting a default here, you can find out the name of the
+function with =C-h k <key combination>=.
+
+TODO: These are the header rows but they cause problems with org-babel evaluation. I would also like to use org's
+=monospace markup= but this is causing problems. I need to strip the "=" character out of the value in the table cells.
 
 | Key binding | Description | Function   |
 |-------------+-------------+------------|
 
 #+tblname: org-key-bindings
-| C-c a   | View agenda                                        | org-agenda |
-| C-c C-t | Assign or modify a TODO state for the current node | org-todo   |
+| C-c a   | View agenda                                                   | org-agenda  |
+| C-c b   | Switch buffer between different org mode files                | org-switchb |
+| C-c C-t | Assign or modify a TODO state for the current node            | org-todo    |
+| C-c C-a | View current task attachments / attach a file to current task | org-attach  |
 
 #+BEGIN_SRC emacs-lisp :var org-key-bindings=org-key-bindings
 (defun mfoot-define-key-bindings (input)
@@ -426,7 +430,7 @@ whether or not the file exists.
 
 #+BEGIN_SRC emacs-lisp
 (require 'cl) ; remove-if-not is inside the common-lisp package
-(setq org-agenda-files (remove-if-not 'file-exists-p '("~/Repositories/notes" "~/repositories/notes" "~/Dropbox/life")))
+(setq org-agenda-files (remove-if-not 'file-exists-p '("~/Repositories/notes" "~/repositories/notes" "~/Dropbox/life" "~/repositories/life")))
 #+END_SRC
 
 Set up a key binding for the org agenda
@@ -510,10 +514,12 @@ I use =ditaa= for block diagrams. This executes a java program and needs to know
 (setq org-ditaa-jar-path "/home/martin/bin/ditaa0_9.jar")
 #+END_SRC
 
-Since org mode is plain text, I also enable spell checking when I'm using it.
+Since org mode is plain text, I also enable spell checking when I'm using it. Note that =flyspell-mode= isn't autoenabled
+in org mode when in batch mode. This is because I use ~org-batch-agenda~ to export my agenda and flyspell breaks in batch
+mode.
 
 #+BEGIN_SRC emacs-lisp
-(add-hook 'org-mode-hook (lambda () (flyspell-mode)))
+(add-hook 'org-mode-hook (lambda () (if (not noninteractive (flyspell-mode)))))
 #+END_SRC
 
 I use graphical emacs so that I can display inline images. Set them to have a maximum size so large images don't fill
@@ -553,8 +559,34 @@ I would like a custom agenda view that shows me unscheduled TODO tasks:
 
 #+RESULTS:
 
+We'll also make the agenda view appear in the current window, not in a right split. It messes up existing splits.
+
+#+BEGIN_SRC emacs-lisp
+(setq org-agenda-window-setup 'current-window)
+#+END_SRC
+
+#+RESULTS:
+: current-window
+
 TODO: Investigate org-capture, org-agenda etc. See http://pages.sachachua.com/.emacs.d/Sacha.html#orgheadline45. There
 is a HUGE wealth of information here.
+*** Agenda notifications
+[[https://github.com/groksteve/org-alert][org-alert]] allows showing system notifications when agenda alerts are coming up.
+
+#+BEGIN_SRC emacs-lisp
+(use-package org-alert
+  :ensure t
+  :init
+  (setq alert-default-style 'libnotify)
+  (setq org-alert-notificatoin-title "Org Agenda Notification")
+  :config
+  (org-alert-enable)
+)
+#+END_SRC
+
+#+RESULTS:
+: t
+
 ** Avoiding Weasel Words
 This makes use of Sacha Chua's [[https://github.com/sachac/artbollocks-mode][artbollocks-mode]] to highlight 'weasel words'. This should help improve my writing by
 stopping me from using pointless terms.
@@ -732,8 +764,8 @@ Add vim-like navigation between panes in a window using windmove.
 (global-set-key (kbd "C-c <down>") 'windmove-down)
 #+END_SRC
 
-I use [[https://github.com/winterTTr/ace-jump-mode][ace-jump-mode]] for fast buffer navigation. It allows the use of =<space> <character to search for>= to highlight
-jump targets of that character. This has to be configured in =evil-mode=.
+I use [[https://github.com/abo-abo/avy][avy-mode]] for fast buffer navigation. As I use =evil-mode= I've bound =gc= to goto-char and =gl= to goto-line. This makes
+for some really fast navigation of the visible buffer.
 
 #+BEGIN_SRC emacs-lisp
 (use-package ace-jump-mode
@@ -743,7 +775,9 @@ jump targets of that character. This has to be configured in =evil-mode=.
       :ensure t
     )
   )
-  :config  (define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
+  :config
+  (define-key evil-normal-state-map (kbd "gc") 'avy-goto-char)
+  (define-key evil-normal-state-map (kbd "gl") 'avy-goto-line)
 )
 #+END_SRC
 * Reloading files
@@ -791,6 +825,19 @@ I've just started learning about Go so this is very basic. Enough to run through
   (add-hook 'before-save-hook 'gofmt-before-save)
 )))
 #+END_SRC
+** SCSS
+When doing web development, SCSS is really useful. We use [[https://github.com/antonj/scss-mode][scss-mode]] for this. By default hitting tab will insert four
+spaces. We'll modify this to use two in the same format that Twitter's Bootstrap library uses.
+
+#+BEGIN_SRC emacs-lisp
+(use-package scss-mode
+  :ensure t
+  :config
+  (setq css-indent-offset 2)
+  (setq tab-always-indent nil) ; electric-indent-mode will insert tabs otherwise to minimise whitespace characters
+)
+#+END_SRC
+
 * TODO Base editor configuration
 I came from Vim and some of the default emacs functionality felt weird to me.
 
@@ -800,11 +847,6 @@ I came from Vim and some of the default emacs functionality felt weird to me.
 (tool-bar-mode -1)
 
 ;; TODO: Try and get projectile-ag to work. Is git grep better?
-(setenv "PATH" (concat (getenv "PATH") ":" "/usr/local/bin"))
-(setenv "PATH" (concat  "/home/martin/.rvm/rubies/ruby-2.1.5/bin" ":" "/home/martin/.rvm/gems/ruby-2.1.5/bin" ":" (getenv "PATH")))
-(setenv "GEM_HOME" "/home/martin/.rvm/gems/ruby-2.1.5")
-(add-to-list 'exec-path "/home/martin/.rvm/gems/ruby-2.1.5/bin")
-(add-to-list 'exec-path "/home/martin/.rvm/rubies/ruby-2.1.5/bin")
 ;; Human readable sizes in dired
 (setq dired-listing-switches "-alh")
 
@@ -865,22 +907,6 @@ iterates over all of them, installing each one. My =~/.emacs= configures [[https
 	;; Puppet Mode lets you edit Puppet 3 manifests with GNU Emacs 24.
 	puppet-mode
 
-
-
-	;; https://github.com/pezra/rspec-mode
-	;;
-	;; Enable running rspec tests from inside emacs
-	rspec-mode
-
-
-	;; https://github.com/rejeep/ruby-end.el
-	;;
-	;; Automatically insert 'end' blocks when 'do' is typed in ruby
-	ruby-end
-
-
-	;; https://github.com/antonj/scss-mode
-	scss-mode
 
   ) "a list of packages to ensure are installed at launch.")
 
@@ -978,6 +1004,25 @@ mechanism backed by external commands exists as well).
   :config (projectile-global-mode)		  ; Enable projectile everywhere
 )
 #+END_SRC
+
+I use =helm-projectile-ag= quite a lot which requires the =ag= package.
+
+#+BEGIN_SRC emacs-lisp
+(use-package ag
+  :ensure t
+)
+#+END_SRC
+** Neotree
+Sometimes I need to see the directory structure for the current file. The [[http://www.emacswiki.org/emacs/NeoTree][NeoTree]] plugin helps here with a togglable
+pane that will pop up and disappear with the =F8= key.
+
+#+BEGIN_SRC emacs-lisp
+(use-package neotree
+  :ensure t
+  :bind
+  ([f8] . neotree-toggle)
+)
+#+END_SRC
 ** TODO Helm mode
 :LOGBOOK:
 - State "TODO"       from ""           [2015-11-21 Sat 10:01]
@@ -1004,6 +1049,16 @@ direction when you're looking for stuff in Emacs (like buffers, files, etc). It'
   )
   :bind ("M-x" . helm-M-x)
   :config (setq projectile-completion-system 'helm)
+)
+#+END_SRC
+
+Use [[https://github.com/yasuyk/helm-git-grep][helm-git-grep]] for fast searches within the current git directory.
+
+#+BEGIN_SRC emacs-lisp
+(use-package helm-git-grep
+  :ensure t
+  :config
+  (global-set-key (kbd "C-c g") 'helm-git-grep)
 )
 #+END_SRC
 
@@ -1060,11 +1115,47 @@ Major mode for editing CoffeeScript files.
 (use-package dockerfile-mode :ensure t)
 #+END_SRC
 ** Ruby configuration
+Provide a =ruby-mode= for editing ruby files.
 
 #+BEGIN_SRC emacs-lisp
 (use-package enh-ruby-mode
   :ensure t
   :config (setq ruby-deep-indent-paren nil)
+)
+#+END_SRC
+
+I use rspec a lot, and [[https://github.com/pezra/rspec-mode][rspec-mode]] is very useful.
+
+#+BEGIN_SRC emacs-lisp
+(use-package rspec-mode
+  :ensure t
+  :config
+  (setq rspec-use-rake-when-possible nil)
+  (setq rspec-use-bundler-when-possible t)
+  (setq rspec-use-rvm-when-possible t)
+  (setenv "PATH" (concat (getenv "PATH") ":" "/usr/local/bin"))
+  (setenv "PATH" (concat  "/home/martin/.rvm/rubies/ruby-2.1.5/bin" ":" "/home/martin/.rvm/gems/ruby-2.1.5/bin" ":" (getenv "PATH")))
+  (setenv "GEM_HOME" "/home/martin/.rvm/gems/ruby-2.1.5")
+  (add-to-list 'exec-path "/home/martin/.rvm/gems/ruby-2.1.5/bin")
+  (add-to-list 'exec-path "/home/martin/.rvm/rubies/ruby-2.1.5/bin")
+)
+#+END_SRC
+
+[[https://github.com/rejeep/ruby-end.el][ruby-end]] inserts =end= blocks whenever I type =do= automatically.
+
+#+BEGIN_SRC emacs-lisp
+(use-package ruby-end
+  :ensure t
+)
+#+END_SRC
+
+The following allows using =binding.pry= in =rspec-mode=.
+
+#+BEGIN_SRC emacs-lisp
+(use-package inf-ruby
+  :ensure t
+  :init
+  (add-hook 'after-init-hook 'inf-ruby-switch-setup)
 )
 #+END_SRC
 * Spell checking
@@ -1101,7 +1192,8 @@ I use [[https://github.com/capitaomorte/yasnippet][yasnippet]] for code snippet 
 (defun common-programming-language-hook ()
   "Mode configuration for working with source code files"
   (flycheck-mode)
-  (flyspell-prog-mode))
+  (flyspell-prog-mode)
+)
 
 ;(defun projectile-custom-hook ()
 ;  "Mode configuration for helm-projectile"
@@ -1138,13 +1230,7 @@ I use [[https://github.com/capitaomorte/yasnippet][yasnippet]] for code snippet 
 
 
 (add-to-list 'auto-mode-alist '("\\.hamlc$" . haml-mode))
-(add-to-list 'auto-mode-alist '("\\.json.jbuilder$" . ruby-mode))
 
-
-
-(setq rspec-use-rake-when-possible nil)
-(setq rspec-use-bundler-when-possible nil)
-(setq rspec-use-rvm-when-possible t)
 
 
 (setq circe-network-options

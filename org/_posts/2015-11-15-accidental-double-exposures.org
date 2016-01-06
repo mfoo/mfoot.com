@@ -2,6 +2,13 @@
 ---
 layout: post
 title: Accidental double exposures
+category: photography
+tags:
+  - 'double exposure'
+  - 'athens'
+  - 'fm2n'
+  - 'nikon'
+  - 'film photography'
 ---
 #+END_HTML
 

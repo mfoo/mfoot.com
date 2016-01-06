@@ -4,7 +4,11 @@ title: "The immortal cell line of Henrietta Lacks"
 date: 2013-03-24 13:08
 published: true
 comments: true
-categories: 
+categories:
+tags:
+- henrietta lacks
+- immortal cell line
+- books
 ---
 
 [Henrietta Lacks](http://en.wikipedia.org/wiki/Henrietta_Lacks) was a poor
@@ -27,7 +31,7 @@ genetic mapping, and the development of the polio vaccine.
 Rebecca Skloot, author of the book [The Immortal Life of Henrietta Lacks](http://en.wikipedia.org/wiki/The_Immortal_Life_of_Henrietta_Lacks),
 recently [published an article in the New York Times](http://www.nytimes.com/2013/03/24/opinion/sunday/the-immortal-life-of-henrietta-lacks-the-sequel.html)
 after a team of European scientists published the genome sequence of the HeLa
-cells without the consent of the Lacks family. 
+cells without the consent of the Lacks family.
 
 The story of the HeLa cell line is a fascinating one, and I remember that the
 virology podcast [This Week In Virology](http://www.twiv.tv/) had an episode a

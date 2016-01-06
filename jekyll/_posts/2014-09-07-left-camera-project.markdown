@@ -3,7 +3,10 @@ layout: post
 title: "Left Camera Project"
 date: 2014-09-07 18:18:04 +0100
 comments: true
-categories: 
+categories:
+tags:
+- left camera
+- disposable camera
 ---
 
 A fun photography project that I saw recently involves leaving a disposable

@@ -2,6 +2,12 @@
 ---
 layout: post
 title: Switching from Vim to Emacs
+category: emacs
+tags:
+  - vim
+  - emacs
+  - org
+  - evil-mode
 ---
 #+END_HTML
 

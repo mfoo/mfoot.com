@@ -4,6 +4,12 @@ title: "A road trip around the Cotswolds and Bath"
 comments: true
 categories: photography
 author: Martin Foot
+tags:
+- bath
+- cotswolds
+- nikon
+- fm2n
+- film photography
 ---
 
 In June 2014 I took a road trip with two of my friends from London. We set off

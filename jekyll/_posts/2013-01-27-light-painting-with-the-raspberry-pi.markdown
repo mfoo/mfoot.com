@@ -3,10 +3,16 @@ layout: post
 title: "Light Painting with the Raspberry Pi"
 date: 2013-01-30 22:34
 comments: true
-categories: 
+categories:
 - Photography
 - Raspberry Pi
 - Electronics
+tags:
+- raspberry pi
+- light painting
+- python
+- led stick
+- arduino
 ---
 
 ![](/images/DSC07335.png)
@@ -14,7 +20,7 @@ categories:
 I recently came across some images from Flickr user
 [TxPilot](http://www.flickr.com/photos/txross/sets/72157622234691540/), who has
 created a light painting wand controlled by an Arduino and has used it to
-create some stunning photos such as the one below. 
+create some stunning photos such as the one below.
 
 ![](http://24.media.tumblr.com/tumblr_lnz4766sYj1qbg80vo1_500.jpg)
 
@@ -28,7 +34,7 @@ trail. The images below show an example input file, and the kind of thing you
 can produce with it:
 
 
-Source image: 
+Source image:
 
 ![Gradient fill](/images/lightstick-gradient.png 100 32)
 

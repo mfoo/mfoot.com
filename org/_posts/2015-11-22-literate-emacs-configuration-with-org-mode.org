@@ -2,6 +2,12 @@
 ---
 layout: post
 title: Literate emacs configuration with org mode
+category: emacs
+tags:
+  - org-mode
+  - literate programming
+  - .emacs
+  - org-babel-load-file
 ---
 #+END_HTML
 

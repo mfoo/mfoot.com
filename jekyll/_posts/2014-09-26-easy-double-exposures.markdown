@@ -3,7 +3,9 @@ layout: post
 title: "Easy double exposures"
 date: 2014-09-26 00:41:13 +0100
 comments: true
-categories: 
+categories:
+tags:
+- double exposure
 ---
 
 I've always loved multiple exposure silhouettes, but haven't yet found a time

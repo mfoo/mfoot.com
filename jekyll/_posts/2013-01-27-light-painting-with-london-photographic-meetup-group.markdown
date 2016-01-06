@@ -3,7 +3,10 @@ layout: post
 title: "Light Painting with London Photographic Meetup Group"
 date: 2013-01-27 23:09
 comments: true
-categories: 
+categories: photography
+tags:
+  - light painting
+  - london photographic meetup
 ---
 
 I recently had the chance to go to a light painting workshop that was hosted by

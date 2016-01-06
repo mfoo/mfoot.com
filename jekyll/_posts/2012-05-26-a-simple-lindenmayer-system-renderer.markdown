@@ -5,6 +5,10 @@ layout: post
 slug: a-simple-lindenmayer-system-renderer
 title: A Simple Lindenmayer System Renderer
 wordpress_id: 333
+tags:
+  - coffeescript
+  - lindenmayer system
+  - serpinski triangle
 ---
 
 I spent some time last week reading about [Lindenmayer Systems](http://en.wikipedia.org/wiki/L-system) (or L-Systems), then wrote a simple interactive L-System renderer in CoffeeScript that you can try out [on GitHub](http://mfoo.github.com/L-System-Renderer/).
@@ -19,7 +23,7 @@ We can then define a set of rendering functions that define what to draw when we
 
 For instance, the code below describes how to draw a [Sierpinski Triangle ](http://en.wikipedia.org/wiki/Sierpinski_triangle)using 'turtle graphics' and a simple [stack](http://en.wikipedia.org/wiki/Stack_%28abstract_data_type%29):
 
-    
+
 {% highlight javascript %}
 'Sierpinski Triangle':
     axiom: 'A'
@@ -44,5 +48,3 @@ For instance, the code below describes how to draw a [Sierpinski Triangle ](http
 Which, when rendered for five generations looks like this:
 
 [![](/images/sierpinskitriangle-300x166.png)](/images/sierpinskitriangle.png)The source code for the render is available [here](https://github.com/mfoo/L-System-Renderer).
-
-

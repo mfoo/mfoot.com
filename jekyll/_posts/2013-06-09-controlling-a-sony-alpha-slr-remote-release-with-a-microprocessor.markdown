@@ -4,6 +4,13 @@ title: "Controlling a Sony Alpha SLR remote release with a microprocessor"
 date: 2013-06-09 08:57
 comments: true
 categories:
+tags:
+- arduino
+- atmel avr
+- time lapse
+- sony alpha
+- remote trigger
+- electronics
 ---
 
 I wanted to control my old Sony Alpha SLR with an Atmel AVR. It turns out it's

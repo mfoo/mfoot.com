@@ -3,7 +3,13 @@ layout: post
 title: "Setting up a personal wiki with AWS and Gollum"
 date: 2013-05-19 09:52
 comments: true
-categories: 
+categories:
+tags:
+- wiki
+- gollum
+- tiddlywiki
+- ec2
+- aws
 ---
 
 This post explains how to get a personal wiki using [Gollum](https://github.com/gollum/gollum)
@@ -103,4 +109,3 @@ A quick Google found one that looks like it will do the trick
 Note: This git repository has no remote, so this is your *only copy*. I suggest
 using an EBS volume to store your git repo, or for instance a nightly Cron job
 that pushes to another server.
-
