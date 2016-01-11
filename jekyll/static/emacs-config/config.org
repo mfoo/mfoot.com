@@ -4,13 +4,12 @@
 #+STARTUP: indent
 #+OPTIONS: ^:nil # Disable underscore causing subscript
 
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/htmlize.css"/>
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/readtheorg.css"/>
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="/static/readtheorg/css/htmlize.css"/>
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="/static/readtheorg/css/readtheorg.css"/>
 
 #+HTML_HEAD: <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 #+HTML_HEAD: <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-#+HTML_HEAD: <script type="text/javascript" src="http://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.js"></script>
-#+HTML_HEAD: <script type="text/javascript" src="http://www.pirilampo.org/styles/readtheorg/js/readtheorg.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="//static/readtheorg/js/readtheorg.js"></script>
 
 This file stores my emacs configuration. The latest version can be found [[https://github.com/mfoo/dotfiles/blob/master/.emacs.d/config.org][on GitHub]]. It is written using [[http://orgmode.org/][org-mode]] which
 is an excellent way to organise notes and, as it turns out, an excellent way to organise my configuration file. It is
@@ -351,7 +350,7 @@ Insert tabs by default when auto-formatting.
 * IN_PROGRESS Org Mode
 When I originally wrote this file I had a few simple customisations here. As I discovered new features and customised
 more things it became larger and larger and I had to split it into subcategories.
-** IN_PROGRESS Key bindings
+** Key bindings
 :LOGBOOK:
 - State "IN_PROGRESS" from "TODO"       [2015-12-03 Thu 10:17]
 - State "TODO"       from ""           [2015-12-03 Thu 09:51]
@@ -369,10 +368,21 @@ TODO: These are the header rows but they cause problems with org-babel evaluatio
 |-------------+-------------+------------|
 
 #+tblname: org-key-bindings
-| C-c a   | View agenda                                                   | org-agenda  |
-| C-c b   | Switch buffer between different org mode files                | org-switchb |
-| C-c C-t | Assign or modify a TODO state for the current node            | org-todo    |
-| C-c C-a | View current task attachments / attach a file to current task | org-attach  |
+| C-c a   | View agenda                                                                  | org-agenda                        |
+| C-c b   | Switch buffer between different org mode files                               | org-switchb                       |
+| C-c C-t | Assign or modify a TODO state for the current node                           | org-todo                          |
+| C-c C-a | View current task attachments / attach a file to current task                | org-attach                        |
+| C-c C-b | Move to previous heading at the same level                                   | org-backwards-heading-same-level  |
+| C-c C-d | Set the deadline for a task                                                  | org-deadline                      |
+| C-c C-e | Launch the org export dialog                                                 | org-export-dispatch               |
+| C-c C-w | Refile (move subtree elsewhere in document)                                  | org-refile                        |
+| C-c C-s | Schedule current note/task                                                   | org-schedule                      |
+| C-c C-t | Toggle todo state to any allowed                                             | org-todo                          |
+| C-c C-o | Open link at point                                                           | org-open-at-point                 |
+| C-c $   | Archive the subtree to the archive file (useful as large org files are slow) | org-archive-subtree               |
+| C-c '   | Edit the current code block in buffer in the correct major mode              | org-edit-special                  |
+| C-c *   | Recalculate formulas on an org mode table                                    | org-ctrl-c-star                   |
+| C-c {   | Enable the debugger for table formulas                                       | org-table-toggle-formula-debugger |
 
 #+BEGIN_SRC emacs-lisp :var org-key-bindings=org-key-bindings
 (defun mfoot-define-key-bindings (input)
@@ -711,6 +721,13 @@ TODO: Describe folder structure. Link to GitHub?
 ))
 #+END_SRC
 
+#+RESULTS:
+| org-mfoot                  | :base-directory | ~/repositories/mfoot.com/org/                                                    | :base-extension | org  | :publishing-directory | ~/repositories/mfoot.com/jekyll/                    | :recursive | t   | :publishing-function  | org-html-publish-to-html        | :html-extension      | html                     | :body-only           | t                      | :section-numbers | nil | :with-toc | nil | :auto-index | nil | :auto-preamble | nil | :body-only | t | :auto-postamble | nil |
+| org-static-mfoot           | :base-directory | ~/repositories/mfoot.com/org/                                                    | :base-extension | css\ | js\                   | png\                                                | jpg\       | gif | :publishing-directory | ~/repositories/mfoot.com/jekyll | :recursive           | t                        | :publishing-function | org-publish-attachment |                  |     |           |     |             |     |                |     |            |   |                 |     |
+| emacs-dotfiles-mfoot.com   | :base-directory | ~/repositories/dotfiles/.emacs.d/                                                | :base-extension | org  | :publishing-directory | ~/repositories/mfoot.com/jekyll/static/emacs-config | :exclude   | .*  | :include              | (config.org)                    | :publishing-function | org-html-publish-to-html | :html-extension      | html                   |                  |     |           |     |             |     |                |     |            |   |                 |     |
+| emacs-config.org-mfoot.com | :base-directory | ~/repositories/dotfiles/.emacs.d/                                                | :base-extension | org  | :publishing-directory | ~/repositories/mfoot.com/jekyll/static/emacs-config | :exclude   | .*  | :include              | (config.org)                    | :publishing-function | org-publish-attachment   |                      |                        |                  |     |           |     |             |     |                |     |            |   |                 |     |
+| mfoot.com                  | :components     | (org-mfoot org-static-mfoot emacs-dotfiles-mfoot.com emacs-config.org-mfoot.com) |                 |      |                       |                                                     |            |     |                       |                                 |                      |                          |                      |                        |                  |     |           |     |             |     |                |     |            |   |                 |     |
+
 In addition, I need to install the =htmlize= package to provide syntax highlighting when exporting HTML. See [[http://stackoverflow.com/questions/24082430/org-mode-no-syntax-highlighting-in-exported-html-page][here]] for more
 information.
 
@@ -768,7 +785,7 @@ I use [[https://github.com/abo-abo/avy][avy-mode]] for fast buffer navigation. A
 for some really fast navigation of the visible buffer.
 
 #+BEGIN_SRC emacs-lisp
-(use-package ace-jump-mode
+(use-package avy
   :ensure t
   :init (progn
     (use-package evil

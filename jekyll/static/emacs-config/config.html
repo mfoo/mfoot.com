@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Martin Foot's Emacs Configuration</title>
-<!-- 2016-01-05 Tue 21:38 -->
+<!-- 2016-01-11 Mon 21:38 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Martin Foot" />
@@ -88,12 +88,11 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/readtheorg.css"/>
+<link rel="stylesheet" type="text/css" href="/static/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/static/readtheorg/css/readtheorg.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="http://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.js"></script>
-<script type="text/javascript" src="http://www.pirilampo.org/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript" src="//static/readtheorg/js/readtheorg.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -175,7 +174,7 @@ for the JavaScript code in this tag.
 <li><a href="#sec-18">18. Region selection</a></li>
 <li><a href="#sec-19">19. <span class="todo IN_PROGRESS">IN_PROGRESS</span> Org Mode</a>
 <ul>
-<li><a href="#sec-19-1">19.1. <span class="todo IN_PROGRESS">IN_PROGRESS</span> Key bindings</a></li>
+<li><a href="#sec-19-1">19.1. Key bindings</a></li>
 <li><a href="#sec-19-2">19.2. Task tracking</a>
 <ul>
 <li><a href="#sec-19-2-1">19.2.1. Task transition timing</a></li>
@@ -816,7 +815,7 @@ more things it became larger and larger and I had to split it into subcategories
 </p>
 </div>
 <div id="outline-container-sec-19-1" class="outline-3">
-<h3 id="sec-19-1"><span class="section-number-3">19.1</span> <span class="todo IN_PROGRESS">IN_PROGRESS</span> Key bindings</h3>
+<h3 id="sec-19-1"><span class="section-number-3">19.1</span> Key bindings</h3>
 <div class="outline-text-3" id="text-19-1">
 <p>
 This table lists (and defines) the key bindings that I often use. Most are set to the defaults but it provides both an
@@ -885,6 +884,72 @@ TODO: These are the header rows but they cause problems with org-babel evaluatio
 <td class="left">C-c C-a</td>
 <td class="left">View current task attachments / attach a file to current task</td>
 <td class="left">org-attach</td>
+</tr>
+
+<tr>
+<td class="left">C-c C-b</td>
+<td class="left">Move to previous heading at the same level</td>
+<td class="left">org-backwards-heading-same-level</td>
+</tr>
+
+<tr>
+<td class="left">C-c C-d</td>
+<td class="left">Set the deadline for a task</td>
+<td class="left">org-deadline</td>
+</tr>
+
+<tr>
+<td class="left">C-c C-e</td>
+<td class="left">Launch the org export dialog</td>
+<td class="left">org-export-dispatch</td>
+</tr>
+
+<tr>
+<td class="left">C-c C-w</td>
+<td class="left">Refile (move subtree elsewhere in document)</td>
+<td class="left">org-refile</td>
+</tr>
+
+<tr>
+<td class="left">C-c C-s</td>
+<td class="left">Schedule current note/task</td>
+<td class="left">org-schedule</td>
+</tr>
+
+<tr>
+<td class="left">C-c C-t</td>
+<td class="left">Toggle todo state to any allowed</td>
+<td class="left">org-todo</td>
+</tr>
+
+<tr>
+<td class="left">C-c C-o</td>
+<td class="left">Open link at point</td>
+<td class="left">org-open-at-point</td>
+</tr>
+
+<tr>
+<td class="left">C-c $</td>
+<td class="left">Archive the subtree to the archive file (useful as large org files are slow)</td>
+<td class="left">org-archive-subtree</td>
+</tr>
+
+<tr>
+<td class="left">C-c '</td>
+<td class="left">Edit the current code block in buffer in the correct major mode</td>
+<td class="left">org-edit-special</td>
+</tr>
+
+<tr>
+<td class="left">C-c *</td>
+<td class="left">Recalculate formulas on an org mode table</td>
+<td class="left">org-ctrl-c-star</td>
+</tr>
+
+<tr>
+<td class="left">C-c {</td>
+<td class="left">Enable the debugger for table formulas</td>
+<td class="left">org-table-toggle-formula-debugger</td>
 </tr>
 </tbody>
 </table>
@@ -1457,7 +1522,7 @@ for some really fast navigation of the visible buffer.
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">use-package</span> <span style="color: #268bd2; font-weight: bold;">ace-jump-mode</span>
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">use-package</span> <span style="color: #268bd2; font-weight: bold;">avy</span>
   <span style="color: #839496; font-weight: bold;">:ensure</span> t
   <span style="color: #839496; font-weight: bold;">:init</span> <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">progn</span>
     <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">use-package</span> <span style="color: #268bd2; font-weight: bold;">evil</span>
@@ -2190,7 +2255,7 @@ I use <a href="https://github.com/capitaomorte/yasnippet">yasnippet</a> for code
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Martin Foot</p>
-<p class="date">Created: 2016-01-05 Tue 21:38</p>
+<p class="date">Created: 2016-01-11 Mon 21:38</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

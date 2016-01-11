@@ -16,6 +16,10 @@ this is the emacs community it was probably silly to doubt that nobody had done 
 whole post specifically about this on the org mode site: [[http://orgmode.org/worg/org-tutorials/org-jekyll.html][Using org to Blog with Jekyll]]. It's a little out-of-date as in
 org 8.2 the HTML export publishing function has changed, but that's the only difference.
 
+#+BEGIN_HTML
+<!-- more -->
+#+END_HTML
+
 The process of using org-mode to blog with Jekyll involves using the org mode HTML export to publish a body-only export
 of your org-files. This means that it exports only the HTML inside the =<body></body>= tags and doesn't include anything
 else. It then places these output files inside Jekyll's =_posts= directory which Jekyll interprets and serves up. The

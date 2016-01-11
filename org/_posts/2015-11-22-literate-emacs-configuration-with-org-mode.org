@@ -15,7 +15,6 @@ I've been using org mode with emacs more and more recently. It's exceptional. I 
 capabilities that make the switch to emacs increasingly worthwhile. This post is about configuring emacs and managing
 configuration in an approachable, coherent, and understandable way.
 
-
 * What is literate programming?
 
 From the [[https://en.wikipedia.org/wiki/Literate_programming][Wikipedia article for Literate programming]]:
@@ -26,11 +25,16 @@ explanation of the program logic in a natural language, such as English, intersp
 traditional source code, from which a compilable source code can be generated.
 #+END_QUOTE
 
-The concept is that a program is much easier to understand by any human being when it is mixed with prose about that
-program. We have comments in programming languages but other than algorithmic or structural comments which are often
-quite detailed, often I find myself reading code with single line comments that don't improve my understanding at
-all. Complex systems require complex descriptions.
+The core concept is that a program is much easier to understand by any human being when it is mixed with prose about
+that program. While often algorithmic or structural comments in code are quite detailed, I often find single line
+comments without much meaning that do little to help me understand the code. Complex systems require complex
+descriptions, and taking the time to properly annotate code is important. It's often quite difficult as well, as it's
+combined with a choice of where exactly to put the comment so that it's most useful - is there any documentation to
+update as well?
 
+#+BEGIN_HTML
+<!-- more -->
+#+END_HTML
 * What's wrong with configuration files?
 
 I only started using emacs recently. Every few days I changed a configuration setting to get the editor to do what I
@@ -38,8 +42,8 @@ wanted or to be more like the in-my-opinion superior vim defaults. I added and c
 got executed on certain language-specific programming mode hooks, changed line length and word wrapping settings,
 configured themes and highlighting, etc.
 
-I ended up with a =.emacs= file that was huge and when I came back to modify it I didn't completely understand the reason
-for each setting. What effect does it have? What is wrong with the default setting? The comments I had made tended to
+I ended up with a =.emacs= file that was huge and when I came back to modify it I didn't always remember the reason behind
+each setting. What effect does it have? What is wrong with the default setting? The comments I had made tended to
 explain what the line was doing but not why. A lot of lines didn't have comments at all. Here's an extract from my
 =.emacs= file from [[https://github.com/mfoo/dotfiles/blob/66a4b4a41e42e7c4c58e88c8718ea27febb59964/.emacshttps://github.com/mfoo/dotfiles/blob/66a4b4a41e42e7c4c58e88c8718ea27febb59964/.emacs][a recent commit]]:
 
@@ -113,22 +117,21 @@ vnoremap / /\v
 
 Here I've tried to keep the comments consistent but there's still settings, keybindings, and custom functions all in
 similar places. I've tried to keep the file separated by headers but they are only as good as the diligence I use when
-maintaining the file.
+maintaining the file. It's obvious that I've worked on these files bit by bit over time without spending much effort on
+making it understandable or organising the sections. This is entirely my fault, but I don't feel like the standard style
+of configuration files provides a framework to encourage people to do the right thing. They often end up as a jumbled
+bucket of unrelated settings. A maintenance quagmire. It feels like a laziness epidemic. The only cure is diligence when
+making changes.
 
-It's obvious that the problem is not the concept of the configuration file itself. I've worked on these files bit by bit
-over time without spending much effort on making it understandable or organising the sections. This is entirely my
-fault, but I don't feel like the standard style of configuration files provides a framework to encourage people to do
-the right thing. They often end up as a jumbled bucket of unrelated settings. A maintenance quagmire. It feels like a
-laziness epidemic. The only cure is diligence when making changes.
-
-Often going back and adding comments after-the-fact is often difficult if you don't remember why they were made. Given
-that I was just at the beginning of my emacs adventure and had made a relatively small number of changes I was at an
-ideal place to apply a framework that would encourage documentation and do it right from the start.
+Often going back and adding comments after-the-fact is difficult if you don't remember why the setting existed in the
+first place or what the defaults were. Given that I was just at the beginning of my emacs adventure and had made a
+relatively small number of changes I was at an ideal place to apply a framework that would encourage documentation and
+do it right from the start.
 
 * The literate way
 Enter org-mode. Org is a system for writing plain text notes with syntax highlighting, code execution, task scheduling,
 agenda management, and many more. The whole idea is that you can write notes and mix them with references to things like
-articles, images, example code combined with the output of that code after it is executed. For instance, imagine I'm
+articles, images, and example code combined with the output of that code after it is executed. For instance, imagine I'm
 taking notes on a support request that needs some database diving and I need to construct a query. I can make a SQL code
 block, tell org mode to use my local development database, then execute it. The results are shown in a table right under
 the SQL statement. Without ever leaving emacs. I can refine the query until I have exactly what I want before running it
@@ -196,8 +199,8 @@ And it gets better. Org mode has a built in exporting system for a whole bunch o
 my configuration file to HTML and it will add the appropriate menu structure and source code highlighting. All of the
 links stored in my org mode files become hyperlinks to documentation or project websites. It makes it incredibly easy to
 share configuration files so that the readers, too, can understand why I've changed each setting. If you're not
-convinced with how powerful this is yet, [[http://mfoot.com/static/emacs-config/config.html][Here's a link to the generated config]]. And [[http://mfoot.com/static/emacs-config/config.org][here's a link to the raw
-configuration file]]. I'd wager that even a non-emacs user can understand some of what's going on. You don't even need to
+convinced with how powerful this is yet, [[https://www.mfoot.com/static/emacs-config/config.html][Here's a link to the generated config]]. And [[https://www.mfoot.com/static/emacs-config/config.org][here's a link to the raw
+configuration file]] I'd wager that even a non-emacs user can understand some of what's going on. You don't even need to
 look at the setting, just read the description. Literate programming's most important feature for me is the fact that at
 some point in the future I'm going to need to remember why I changed something, and I feel like this is the ideal format
 to help me with that. Nothing else I've seen comes close. My documentation for my configuration file /is/ my configuration

@@ -28,6 +28,10 @@ said that I haven't removed vim from my workflow completely. I still prefer usin
 remote machines (but, ofcourse [[http://www.emacswiki.org/emacs/TrampMode][emacs can edit remote files, even SSHing through multiple boxes to get there]]). By using
 evil-mode I don't lose the vim skills that I'd be using editing those files.
 
+#+BEGIN_HTML
+<!-- more -->
+#+END_HTML
+
 For most of my configuration I trawled the internet for peoples' =.emacs= files, tested each setting and imported the ones
 I liked. For the rest I searched for answers online or in the in-built help system when I found something I didn't
 like. Sometimes this means using other modes (essentially libraries providing functionality), sometimes it means using
