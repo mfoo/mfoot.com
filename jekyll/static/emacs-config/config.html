@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-04-26 Tue 08:05 -->
+<!-- 2016-05-14 Sat 12:13 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Martin Foot's Emacs Configuration</title>
@@ -183,7 +183,7 @@ for the JavaScript code in this tag.
 </ul>
 </li>
 <li><a href="#orgheadline27">20. Region selection</a></li>
-<li><a href="#orgheadline39">21. Org Mode</a>
+<li><a href="#orgheadline41">21. Org Mode</a>
 <ul>
 <li><a href="#orgheadline28">21.1. Key bindings</a></li>
 <li><a href="#orgheadline31">21.2. Task tracking</a>
@@ -202,50 +202,63 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#orgheadline37">21.6. Screenshot attachment</a></li>
 <li><a href="#orgheadline38">21.7. Presentations</a></li>
-</ul>
-</li>
-<li><a href="#orgheadline40">22. Blog</a></li>
-<li><a href="#orgheadline41">23. Window navigation and scrolling</a></li>
-<li><a href="#orgheadline42">24. Reloading files</a></li>
-<li><a href="#orgheadline47">25. Programming language support</a>
+<li><a href="#orgheadline40">21.8. Additional URL schemes</a>
 <ul>
-<li><a href="#orgheadline43">25.1. YAML</a></li>
-<li><a href="#orgheadline44">25.2. C</a></li>
-<li><a href="#orgheadline45">25.3. Go</a></li>
-<li><a href="#orgheadline46">25.4. SCSS</a></li>
+<li><a href="#orgheadline39">21.8.1. <span class="todo TODO">TODO</span> Man pages</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline48">26. Autocompletion</a></li>
-<li><a href="#orgheadline49">27. Git</a></li>
-<li><a href="#orgheadline50">28. <span class="todo TODO">TODO</span> Base editor configuration</a></li>
-<li><a href="#orgheadline51">29. <span class="todo TODO">TODO</span> Package installation</a></li>
-<li><a href="#orgheadline52">30. Remote shells</a></li>
-<li><a href="#orgheadline55">31. Themes and visual config</a>
+</ul>
+</li>
+<li><a href="#orgheadline42">22. Blog</a></li>
+<li><a href="#orgheadline43">23. Window navigation and scrolling</a></li>
+<li><a href="#orgheadline44">24. Reloading files</a></li>
+<li><a href="#orgheadline49">25. Programming language support</a>
 <ul>
-<li><a href="#orgheadline53">31.1. Custom-safe-themes</a></li>
-<li><a href="#orgheadline54">31.2. Smart mode line</a></li>
+<li><a href="#orgheadline45">25.1. YAML</a></li>
+<li><a href="#orgheadline46">25.2. C</a></li>
+<li><a href="#orgheadline47">25.3. Go</a></li>
+<li><a href="#orgheadline48">25.4. SCSS</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline67">32. Editor augmentation</a>
+<li><a href="#orgheadline50">26. Linting prose</a></li>
+<li><a href="#orgheadline51">27. Autocompletion</a></li>
+<li><a href="#orgheadline52">28. Code folding</a></li>
+<li><a href="#orgheadline53">29. Git</a></li>
+<li><a href="#orgheadline55">30. <span class="todo TODO">TODO</span> Base editor configuration</a>
 <ul>
-<li><a href="#orgheadline56">32.1. Vim customisations</a></li>
-<li><a href="#orgheadline57">32.2. Projectile</a></li>
-<li><a href="#orgheadline58">32.3. Recentf mode</a></li>
-<li><a href="#orgheadline59">32.4. Neotree</a></li>
-<li><a href="#orgheadline60">32.5. <span class="todo TODO">TODO</span> Helm mode</a></li>
-<li><a href="#orgheadline61">32.6. Anzu</a></li>
-<li><a href="#orgheadline62">32.7. Rainbow mode</a></li>
-<li><a href="#orgheadline63">32.8. Coffee mode</a></li>
-<li><a href="#orgheadline64">32.9. Docker</a></li>
-<li><a href="#orgheadline65">32.10. Ruby configuration</a></li>
-<li><a href="#orgheadline66">32.11. CMake</a></li>
+<li><a href="#orgheadline54">30.1. Mouse support for terminals</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline68">33. Syntax highlighting and static analysis</a></li>
-<li><a href="#orgheadline69">34. Spell checking</a></li>
-<li><a href="#orgheadline70">35. Presenting</a></li>
-<li><a href="#orgheadline71">36. <span class="todo TODO">TODO</span> Code snippet handling</a></li>
-<li><a href="#orgheadline72">37. <span class="todo TODO">TODO</span> Other configuration</a></li>
+<li><a href="#orgheadline56">31. <span class="todo TODO">TODO</span> Package installation</a></li>
+<li><a href="#orgheadline57">32. Remote shells</a></li>
+<li><a href="#orgheadline61">33. Themes and visual config</a>
+<ul>
+<li><a href="#orgheadline58">33.1. Custom-safe-themes</a></li>
+<li><a href="#orgheadline59">33.2. Smart mode line</a></li>
+<li><a href="#orgheadline60">33.3. Displaying the time</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline74">34. Editor augmentation</a>
+<ul>
+<li><a href="#orgheadline62">34.1. Vim customisations</a></li>
+<li><a href="#orgheadline63">34.2. Projectile</a></li>
+<li><a href="#orgheadline64">34.3. Recentf mode</a></li>
+<li><a href="#orgheadline65">34.4. Neotree</a></li>
+<li><a href="#orgheadline66">34.5. <span class="todo TODO">TODO</span> Helm mode</a></li>
+<li><a href="#orgheadline67">34.6. Anzu</a></li>
+<li><a href="#orgheadline68">34.7. Rainbow mode</a></li>
+<li><a href="#orgheadline69">34.8. Coffee mode</a></li>
+<li><a href="#orgheadline70">34.9. Docker</a></li>
+<li><a href="#orgheadline71">34.10. Ruby configuration</a></li>
+<li><a href="#orgheadline72">34.11. CMake</a></li>
+<li><a href="#orgheadline73">34.12. MySQL</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline75">35. Syntax highlighting and static analysis</a></li>
+<li><a href="#orgheadline76">36. Spell checking</a></li>
+<li><a href="#orgheadline77">37. Presenting</a></li>
+<li><a href="#orgheadline78">38. <span class="todo TODO">TODO</span> Code snippet handling</a></li>
+<li><a href="#orgheadline79">39. <span class="todo TODO">TODO</span> Other configuration</a></li>
 </ul>
 </div>
 </div>
@@ -555,23 +568,10 @@ I've configured it to wait 0.5 seconds before popping up the suggestions list.
 <h2 id="orgheadline10"><span class="section-number-2">10</span> Line numbering and cursor position</h2>
 <div class="outline-text-2" id="text-10">
 <p>
-I enable line numbers globally and enable the cursor position being shown in the bottom left. Note: Enabling line
-numbers globally is not perfect as it includes things like lists of files when using <code>C-x f</code>. This doesn't really make
-sense.
+I've had a slight change of heart. Typically I would show line numbers everywhere, but now, instead, I leave them turned
+off to save space. If I need to jump to a specific line, I'm using Avy mode to enable <code>g l</code> for go to line. This is just
+as fast. See my <a href="config.html#orgheadline43">Window navigation and scrolling section</a>.
 </p>
-
-<p>
-This uses the <a href="http://elpa.gnu.org/packages/nlinum.html">nlinum-mode</a>, which is a more performant version of the built-in <code>linum-mode</code>. This is necessary when
-working on large files such as my org-mode notes files.
-</p>
-
-<div class="org-src-container">
-
-<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>add-hook 'text-mode-hook 'nlinum-mode<span style="color: #2aa198;">)</span>
-<span style="color: #2aa198;">(</span>add-hook 'prog-mode-hook 'nlinum-mode<span style="color: #2aa198;">)</span>
-<span style="color: #2aa198;">(</span>setq linum-format <span style="color: #2aa198;">"%d "</span><span style="color: #2aa198;">)</span> <span style="color: #586e75;">; </span><span style="color: #586e75;">Place a space after the line numbers so text doesn't begin instantly</span>
-</pre>
-</div>
 
 <p>
 I also show the current cursor position column number in the bottom left of the screen:
@@ -937,8 +937,8 @@ I highlight mixed spaces and tabs, and have whitespace mode clean out blank line
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline39" class="outline-2">
-<h2 id="orgheadline39"><span class="section-number-2">21</span> Org Mode</h2>
+<div id="outline-container-orgheadline41" class="outline-2">
+<h2 id="orgheadline41"><span class="section-number-2">21</span> Org Mode</h2>
 <div class="outline-text-2" id="text-21">
 <p>
 When I originally wrote this file I had a few simple customisations here. As I discovered new features and customised
@@ -1266,6 +1266,7 @@ Configure the languages that Babel will automatically syntax highlight
    <span style="color: #268bd2;">(</span>java . t<span style="color: #268bd2;">)</span>
    <span style="color: #268bd2;">(</span>emacs-lisp . t<span style="color: #268bd2;">)</span>
    <span style="color: #268bd2;">(</span>ruby . t<span style="color: #268bd2;">)</span>
+   <span style="color: #268bd2;">(</span>python . t<span style="color: #268bd2;">)</span>
   <span style="color: #b58900;">)</span>
 <span style="color: #2aa198;">)</span>
 </pre>
@@ -1476,10 +1477,65 @@ TODO: Get org-reveal installed.
 </div>
 </div>
 </div>
+<div id="outline-container-orgheadline40" class="outline-3">
+<h3 id="orgheadline40"><span class="section-number-3">21.8</span> Additional URL schemes</h3>
+<div class="outline-text-3" id="text-21-8">
+</div><div id="outline-container-orgheadline39" class="outline-4">
+<h4 id="orgheadline39"><span class="section-number-4">21.8.1</span> <span class="todo TODO">TODO</span> Man pages</h4>
+<div class="outline-text-4" id="text-21-8-1">
+<p>
+The following code adds a new link type from org that can link to man pages. It's taken from <a href="http://orgmode.org/manual/Adding-hyperlink-types.html">the org mode manual</a>.
+</p>
+
+<p>
+I need to improve this to see if I can link directly to a heading inside the man page.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">org</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span>org-add-link-type <span style="color: #2aa198;">"man"</span> 'org-man-open<span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-hook 'org-store-link-functions 'org-man-store-link<span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defcustom</span> <span style="color: #268bd2;">org-man-command</span> 'man
+  <span style="color: #2aa198;">"The Emacs command to be used to display a man page."</span>
+  <span style="color: #839496; font-weight: bold;">:group</span> 'org-link
+  <span style="color: #839496; font-weight: bold;">:type</span> '<span style="color: #b58900;">(</span>choice <span style="color: #268bd2;">(</span>const man<span style="color: #268bd2;">)</span> <span style="color: #268bd2;">(</span>const woman<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">org-man-open</span> <span style="color: #b58900;">(</span>path<span style="color: #b58900;">)</span>
+  <span style="color: #2aa198;">"Visit the manpage on PATH.</span>
+<span style="color: #2aa198;">PATH should be a topic that can be thrown at the man command."</span>
+  <span style="color: #b58900;">(</span>funcall org-man-command path<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">org-man-store-link</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198;">"Store a link to a manpage."</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">when</span> <span style="color: #268bd2;">(</span>memq major-mode '<span style="color: #6c71c4;">(</span>Man-mode woman-mode<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #586e75;">;; </span><span style="color: #586e75;">This is a man page, we do make this link</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">let*</span> <span style="color: #6c71c4;">(</span><span style="color: #859900;">(</span>page <span style="color: #b58900;">(</span>org-man-get-page-name<span style="color: #b58900;">)</span><span style="color: #859900;">)</span>
+           <span style="color: #859900;">(</span>link <span style="color: #b58900;">(</span>concat <span style="color: #2aa198;">"man:"</span> page<span style="color: #b58900;">)</span><span style="color: #859900;">)</span>
+           <span style="color: #859900;">(</span>description <span style="color: #b58900;">(</span>format <span style="color: #2aa198;">"Manpage for %s"</span> page<span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span>
+      <span style="color: #6c71c4;">(</span>org-store-link-props
+       <span style="color: #839496; font-weight: bold;">:type</span> <span style="color: #2aa198;">"man"</span>
+       <span style="color: #839496; font-weight: bold;">:link</span> link
+       <span style="color: #839496; font-weight: bold;">:description</span> description<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">org-man-get-page-name</span> <span style="color: #b58900;">()</span>
+  <span style="color: #2aa198;">"Extract the page name from the buffer name."</span>
+  <span style="color: #586e75;">;; </span><span style="color: #586e75;">This works for both `</span><span style="color: #268bd2; font-weight: bold;">Man-mode</span><span style="color: #586e75;">' and `</span><span style="color: #268bd2; font-weight: bold;">woman-mode</span><span style="color: #586e75;">'.</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">if</span> <span style="color: #268bd2;">(</span>string-match <span style="color: #2aa198;">" </span><span style="color: #859900; font-weight: bold;">\\</span><span style="color: #b58900; font-weight: bold;">(</span><span style="color: #2aa198;">\\S-+</span><span style="color: #859900; font-weight: bold;">\\</span><span style="color: #b58900; font-weight: bold;">)</span><span style="color: #2aa198;">\\*"</span> <span style="color: #6c71c4;">(</span>buffer-name<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+      <span style="color: #268bd2;">(</span>match-string 1 <span style="color: #6c71c4;">(</span>buffer-name<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span><span style="color: #cb4b16; font-weight: bold;">error</span> <span style="color: #2aa198;">"Cannot create link to this man page"</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 
-<div id="outline-container-orgheadline40" class="outline-2">
-<h2 id="orgheadline40"><span class="section-number-2">22</span> Blog</h2>
+
+<div id="outline-container-orgheadline42" class="outline-2">
+<h2 id="orgheadline42"><span class="section-number-2">22</span> Blog</h2>
 <div class="outline-text-2" id="text-22">
 <p>
 <a href="http://www.mfoot.com/">My blog</a> uses a static site generator called <a href="https://jekyllrb.com/">Jekyll</a>. This parses YAML files and produces static HTML content which I then
@@ -1531,17 +1587,17 @@ manipulation to insert the Google Analytics code at the end of the <code>&lt;bod
 <span style="color: #2aa198;">        &lt;/script&gt;"</span>
         <span style="color: #859900;">(</span>substring html-template pos<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-<span style="color: #586e75;">;</span><span style="color: #586e75;">(eval-after-load "org"</span>
-<span style="color: #586e75;">;  </span><span style="color: #586e75;">'(progn</span>
-<span style="color: #586e75;">;    </span><span style="color: #586e75;">(require 'ox-html)</span>
-<span style="color: #586e75;">;    </span><span style="color: #586e75;">(org-export-define-derived-backend 'mfoot-html-with-google-analytics 'html</span>
-<span style="color: #586e75;">;      </span><span style="color: #586e75;">:translate-alist</span>
-<span style="color: #586e75;">;      </span><span style="color: #586e75;">'(</span>
-<span style="color: #586e75;">;        </span><span style="color: #586e75;">(template . mfoot-append-google-analytics-tag)</span>
-<span style="color: #586e75;">;      </span><span style="color: #586e75;">)</span>
-<span style="color: #586e75;">;    </span><span style="color: #586e75;">)</span>
-<span style="color: #586e75;">;  </span><span style="color: #586e75;">)</span>
-<span style="color: #586e75;">;</span><span style="color: #586e75;">)</span>
+<span style="color: #2aa198;">(</span>eval-after-load <span style="color: #2aa198;">"org"</span>
+  '<span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">progn</span>
+    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">ox-html</span><span style="color: #268bd2;">)</span>
+    <span style="color: #268bd2;">(</span>org-export-define-derived-backend 'mfoot-html-with-google-analytics 'html
+      <span style="color: #839496; font-weight: bold;">:translate-alist</span>
+      '<span style="color: #6c71c4;">(</span>
+        <span style="color: #859900;">(</span>template . mfoot-append-google-analytics-tag<span style="color: #859900;">)</span>
+      <span style="color: #6c71c4;">)</span>
+    <span style="color: #268bd2;">)</span>
+  <span style="color: #b58900;">)</span>
+<span style="color: #2aa198;">)</span>
 
 <span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">mfoot-export-emacs-config-to-file</span>
   <span style="color: #b58900;">(</span>plist filename pub-dir<span style="color: #b58900;">)</span>
@@ -1649,8 +1705,8 @@ history.
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline41" class="outline-2">
-<h2 id="orgheadline41"><span class="section-number-2">23</span> Window navigation and scrolling</h2>
+<div id="outline-container-orgheadline43" class="outline-2">
+<h2 id="orgheadline43"><span class="section-number-2">23</span> Window navigation and scrolling</h2>
 <div class="outline-text-2" id="text-23">
 <p>
 Scroll smoothly rather than by paging
@@ -1705,8 +1761,8 @@ for some really fast navigation of the visible buffer.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline42" class="outline-2">
-<h2 id="orgheadline42"><span class="section-number-2">24</span> Reloading files</h2>
+<div id="outline-container-orgheadline44" class="outline-2">
+<h2 id="orgheadline44"><span class="section-number-2">24</span> Reloading files</h2>
 <div class="outline-text-2" id="text-24">
 <p>
 I swap branches a lot. <code>auto-reload-mode</code> will automatically reload opened buffers (prompting to save or not)
@@ -1719,8 +1775,8 @@ I swap branches a lot. <code>auto-reload-mode</code> will automatically reload o
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline47" class="outline-2">
-<h2 id="orgheadline47"><span class="section-number-2">25</span> Programming language support</h2>
+<div id="outline-container-orgheadline49" class="outline-2">
+<h2 id="orgheadline49"><span class="section-number-2">25</span> Programming language support</h2>
 <div class="outline-text-2" id="text-25">
 <p>
 I use flycheck mode for syntax highlighting and linting when programming. See <a href="https://github.com/flycheck/flycheck">https://github.com/flycheck/flycheck</a>
@@ -1735,8 +1791,8 @@ I use flycheck mode for syntax highlighting and linting when programming. See <a
 </div>
 </div>
 
-<div id="outline-container-orgheadline43" class="outline-3">
-<h3 id="orgheadline43"><span class="section-number-3">25.1</span> YAML</h3>
+<div id="outline-container-orgheadline45" class="outline-3">
+<h3 id="orgheadline45"><span class="section-number-3">25.1</span> YAML</h3>
 <div class="outline-text-3" id="text-25-1">
 <p>
 Add a major mode for yaml highlighting
@@ -1749,8 +1805,8 @@ Add a major mode for yaml highlighting
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline44" class="outline-3">
-<h3 id="orgheadline44"><span class="section-number-3">25.2</span> C</h3>
+<div id="outline-container-orgheadline46" class="outline-3">
+<h3 id="orgheadline46"><span class="section-number-3">25.2</span> C</h3>
 <div class="outline-text-3" id="text-25-2">
 <p>
 At work we use BSD-style C/C++. We also set the default indentation to four spaces.
@@ -1764,8 +1820,8 @@ At work we use BSD-style C/C++. We also set the default indentation to four spac
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline45" class="outline-3">
-<h3 id="orgheadline45"><span class="section-number-3">25.3</span> Go</h3>
+<div id="outline-container-orgheadline47" class="outline-3">
+<h3 id="orgheadline47"><span class="section-number-3">25.3</span> Go</h3>
 <div class="outline-text-3" id="text-25-3">
 <p>
 I've just started learning about Go so this is very basic. Enough to run through the tutorials.
@@ -1784,8 +1840,8 @@ I've just started learning about Go so this is very basic. Enough to run through
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline46" class="outline-3">
-<h3 id="orgheadline46"><span class="section-number-3">25.4</span> SCSS</h3>
+<div id="outline-container-orgheadline48" class="outline-3">
+<h3 id="orgheadline48"><span class="section-number-3">25.4</span> SCSS</h3>
 <div class="outline-text-3" id="text-25-4">
 <p>
 When doing web development, SCSS is really useful. We use <a href="https://github.com/antonj/scss-mode">scss-mode</a> for this. By default hitting tab will insert four
@@ -1807,10 +1863,32 @@ spaces. We'll modify this to use two in the same format that Twitter's Bootstrap
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgheadline48" class="outline-2">
-<h2 id="orgheadline48"><span class="section-number-2">26</span> Autocompletion</h2>
+<div id="outline-container-orgheadline50" class="outline-2">
+<h2 id="orgheadline50"><span class="section-number-2">26</span> Linting prose</h2>
 <div class="outline-text-2" id="text-26">
+<p>
+I came across a <a href="http://unconj.ca/blog/linting-prose-in-emacs.html">cool blog post</a> on linting prose in emacs with the <a href="http://proselint.com/">proselint package</a> for python wrapped as a flycheck
+checker.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>flycheck-define-checker proselint
+  <span style="color: #2aa198;">"A linter for prose."</span>
+  <span style="color: #839496; font-weight: bold;">:command</span> <span style="color: #b58900;">(</span><span style="color: #2aa198;">"proselint"</span> source-inplace<span style="color: #b58900;">)</span>
+  <span style="color: #839496; font-weight: bold;">:error-patterns</span>
+  <span style="color: #b58900;">(</span><span style="color: #268bd2;">(</span>warning line-start <span style="color: #6c71c4;">(</span>file-name<span style="color: #6c71c4;">)</span> <span style="color: #2aa198;">":"</span> line <span style="color: #2aa198;">":"</span> column <span style="color: #2aa198;">": "</span>
+        <span style="color: #6c71c4;">(</span>id <span style="color: #859900;">(</span>one-or-more <span style="color: #b58900;">(</span>not <span style="color: #268bd2;">(</span>any <span style="color: #2aa198;">" "</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span>
+        <span style="color: #6c71c4;">(</span>message<span style="color: #6c71c4;">)</span> line-end<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #839496; font-weight: bold;">:modes</span> <span style="color: #b58900;">(</span>text-mode markdown-mode org-mode<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<span style="color: #2aa198;">(</span>add-to-list 'flycheck-checkers 'proselint<span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline51" class="outline-2">
+<h2 id="orgheadline51"><span class="section-number-2">27</span> Autocompletion</h2>
+<div class="outline-text-2" id="text-27">
 <p>
 I use <a href="http://company-mode.github.io/">company-mode</a> for autocompletion. It's bound to <code>C-&lt;space&gt;</code> in a similar way to eclipse. Since I use <code>evil-mode</code> I
 don't use emacs' default mark combo.
@@ -1849,9 +1927,27 @@ don't use emacs' default mark combo.
 </div>
 </div>
 
-<div id="outline-container-orgheadline49" class="outline-2">
-<h2 id="orgheadline49"><span class="section-number-2">27</span> Git</h2>
-<div class="outline-text-2" id="text-27">
+<div id="outline-container-orgheadline52" class="outline-2">
+<h2 id="orgheadline52"><span class="section-number-2">28</span> Code folding</h2>
+<div class="outline-text-2" id="text-28">
+<p>
+I've discovered <code>yafolding-mode</code> for all my code folding needs.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">use-package</span> <span style="color: #268bd2; font-weight: bold;">yafolding</span>
+  <span style="color: #839496; font-weight: bold;">:config</span>
+  <span style="color: #b58900;">(</span>add-hook 'prog-mode-hook <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">lambda</span><span style="color: #6c71c4;">()</span>  <span style="color: #6c71c4;">(</span>yafolding-mode<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+<span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline53" class="outline-2">
+<h2 id="orgheadline53"><span class="section-number-2">29</span> Git</h2>
+<div class="outline-text-2" id="text-29">
 <p>
 <a href="https://github.com/magit/magit">Magit</a> is awesome. It's git integration with emacs and it's incredibly well made. Taking the time to learn it is highly
 advised.
@@ -1867,9 +1963,9 @@ advised.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline50" class="outline-2">
-<h2 id="orgheadline50"><span class="section-number-2">28</span> <span class="todo TODO">TODO</span> Base editor configuration</h2>
-<div class="outline-text-2" id="text-28">
+<div id="outline-container-orgheadline55" class="outline-2">
+<h2 id="orgheadline55"><span class="section-number-2">30</span> <span class="todo TODO">TODO</span> Base editor configuration</h2>
+<div class="outline-text-2" id="text-30">
 <p>
 I came from Vim and some of the default emacs functionality felt weird to me.
 </p>
@@ -1886,11 +1982,25 @@ I came from Vim and some of the default emacs functionality felt weird to me.
 </pre>
 </div>
 </div>
-</div>
+<div id="outline-container-orgheadline54" class="outline-3">
+<h3 id="orgheadline54"><span class="section-number-3">30.1</span> Mouse support for terminals</h3>
+<div class="outline-text-3" id="text-30-1">
+<p>
+Enable the mouse when running in a terminal.
+</p>
 
-<div id="outline-container-orgheadline51" class="outline-2">
-<h2 id="orgheadline51"><span class="section-number-2">29</span> <span class="todo TODO">TODO</span> Package installation</h2>
-<div class="outline-text-2" id="text-29">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">when</span> <span style="color: #b58900;">(</span>not <span style="color: #268bd2;">(</span>window-system<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>xterm-mouse-mode +1<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline56" class="outline-2">
+<h2 id="orgheadline56"><span class="section-number-2">31</span> <span class="todo TODO">TODO</span> Package installation</h2>
+<div class="outline-text-2" id="text-31">
 <p>
 All of the packages that I use get automatically installed. First we define <code>required-packages</code> and then a function that
 iterates over all of them, installing each one. My <code>~/.emacs</code> configures <a href="https://melpa.org/">Melpa</a> and <a href="https://marmalade-repo.org/">Marmalade</a> before this gets executed.
@@ -1972,9 +2082,9 @@ iterates over all of them, installing each one. My <code>~/.emacs</code> configu
 </div>
 </div>
 
-<div id="outline-container-orgheadline52" class="outline-2">
-<h2 id="orgheadline52"><span class="section-number-2">30</span> Remote shells</h2>
-<div class="outline-text-2" id="text-30">
+<div id="outline-container-orgheadline57" class="outline-2">
+<h2 id="orgheadline57"><span class="section-number-2">32</span> Remote shells</h2>
+<div class="outline-text-2" id="text-32">
 <p>
 I use <code>tramp</code> to edit files on remote machines. Locally I use <code>zsh</code> but this might not be installed on the target
 machine. Use <code>bash</code> when connecting to a remote host.
@@ -1992,12 +2102,12 @@ emacs" way, something like <a href="https://github.com/bbatsov/projectile/issues
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline55" class="outline-2">
-<h2 id="orgheadline55"><span class="section-number-2">31</span> Themes and visual config</h2>
-<div class="outline-text-2" id="text-31">
-</div><div id="outline-container-orgheadline53" class="outline-3">
-<h3 id="orgheadline53"><span class="section-number-3">31.1</span> Custom-safe-themes</h3>
-<div class="outline-text-3" id="text-31-1">
+<div id="outline-container-orgheadline61" class="outline-2">
+<h2 id="orgheadline61"><span class="section-number-2">33</span> Themes and visual config</h2>
+<div class="outline-text-2" id="text-33">
+</div><div id="outline-container-orgheadline58" class="outline-3">
+<h3 id="orgheadline58"><span class="section-number-3">33.1</span> Custom-safe-themes</h3>
+<div class="outline-text-3" id="text-33-1">
 <p>
 Emacs requires used themes to be whitelisted. This section contains all of the hash identifiers of themes I'm OK with
 loading.
@@ -2014,9 +2124,9 @@ loading.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline54" class="outline-3">
-<h3 id="orgheadline54"><span class="section-number-3">31.2</span> Smart mode line</h3>
-<div class="outline-text-3" id="text-31-2">
+<div id="outline-container-orgheadline59" class="outline-3">
+<h3 id="orgheadline59"><span class="section-number-3">33.2</span> Smart mode line</h3>
+<div class="outline-text-3" id="text-33-2">
 <p>
 <a href="https://github.com/Malabarba/smart-mode-line">Smart Mode Line</a> is a mode-line for emacs.
 </p>
@@ -2049,13 +2159,28 @@ This is customised to use the <code>solarized</code> theme.
 </div>
 </div>
 </div>
+<div id="outline-container-orgheadline60" class="outline-3">
+<h3 id="orgheadline60"><span class="section-number-3">33.3</span> Displaying the time</h3>
+<div class="outline-text-3" id="text-33-3">
+<p>
+Displaying the time in the bottom right of the mode line is useful. This displays the time, system load over the last
+minute, and if I have new emails.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>display-time-mode 1<span style="color: #2aa198;">)</span>
+</pre>
 </div>
-<div id="outline-container-orgheadline67" class="outline-2">
-<h2 id="orgheadline67"><span class="section-number-2">32</span> Editor augmentation</h2>
-<div class="outline-text-2" id="text-32">
-</div><div id="outline-container-orgheadline56" class="outline-3">
-<h3 id="orgheadline56"><span class="section-number-3">32.1</span> Vim customisations</h3>
-<div class="outline-text-3" id="text-32-1">
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline74" class="outline-2">
+<h2 id="orgheadline74"><span class="section-number-2">34</span> Editor augmentation</h2>
+<div class="outline-text-2" id="text-34">
+</div><div id="outline-container-orgheadline62" class="outline-3">
+<h3 id="orgheadline62"><span class="section-number-3">34.1</span> Vim customisations</h3>
+<div class="outline-text-3" id="text-34-1">
 <p>
 <a href="http://www.emacswiki.org/emacs/Evil">Evil mode</a> provides vim-style keybindings for emacs. It makes it much more usable for a long-time vim user. <a href="https://github.com/timcharper/evil-surround">Evil-surround</a>
 is an emacs wrapper of Tim Pope's <a href="https://github.com/tpope/vim-surround">vim-surround</a> plugin. <a href="https://github.com/krisajenkins/evil-tabs">Evil-tabs</a> is an emacs mode that allows tabs with vim's tab
@@ -2093,9 +2218,9 @@ Note: actually electric-indent-mode is used for this.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline57" class="outline-3">
-<h3 id="orgheadline57"><span class="section-number-3">32.2</span> Projectile</h3>
-<div class="outline-text-3" id="text-32-2">
+<div id="outline-container-orgheadline63" class="outline-3">
+<h3 id="orgheadline63"><span class="section-number-3">34.2</span> Projectile</h3>
+<div class="outline-text-3" id="text-34-2">
 <p>
 <a href="https://github.com/bbatsov/projectile">Projectile</a> is a project interaction library for Emacs. Its goal is to provide a nice set of features operating on a
 project level without introducing external dependencies(when feasible). For instance - finding project files has a
@@ -2123,9 +2248,9 @@ I use <code>helm-projectile-ag</code> quite a lot which requires the <code>ag</c
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline58" class="outline-3">
-<h3 id="orgheadline58"><span class="section-number-3">32.3</span> Recentf mode</h3>
-<div class="outline-text-3" id="text-32-3">
+<div id="outline-container-orgheadline64" class="outline-3">
+<h3 id="orgheadline64"><span class="section-number-3">34.3</span> Recentf mode</h3>
+<div class="outline-text-3" id="text-34-3">
 <p>
 As well as using Projectile for browsing projects, <a href="https://www.emacswiki.org/emacs/RecentFiles">recentf</a> shows recently opened files in the buffer list for fast
 switching to them.
@@ -2144,9 +2269,9 @@ switching to them.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline59" class="outline-3">
-<h3 id="orgheadline59"><span class="section-number-3">32.4</span> Neotree</h3>
-<div class="outline-text-3" id="text-32-4">
+<div id="outline-container-orgheadline65" class="outline-3">
+<h3 id="orgheadline65"><span class="section-number-3">34.4</span> Neotree</h3>
+<div class="outline-text-3" id="text-34-4">
 <p>
 Sometimes I need to see the directory structure for the current file. The <a href="http://www.emacswiki.org/emacs/NeoTree">NeoTree</a> plugin helps here with a togglable
 pane that will pop up and disappear with the <code>F8</code> key.
@@ -2162,9 +2287,9 @@ pane that will pop up and disappear with the <code>F8</code> key.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline60" class="outline-3">
-<h3 id="orgheadline60"><span class="section-number-3">32.5</span> <span class="todo TODO">TODO</span> Helm mode</h3>
-<div class="outline-text-3" id="text-32-5">
+<div id="outline-container-orgheadline66" class="outline-3">
+<h3 id="orgheadline66"><span class="section-number-3">34.5</span> <span class="todo TODO">TODO</span> Helm mode</h3>
+<div class="outline-text-3" id="text-34-5">
 <p>
 <a href="https://github.com/emacs-helm/helm">Helm</a> is incremental completion and selection narrowing framework for Emacs. It will help steer you in the right
 direction when you're looking for stuff in Emacs (like buffers, files, etc). It's awesome when combined with
@@ -2210,9 +2335,9 @@ shortcuts for things like <code>helm-occur</code>. Spend some time reading
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline61" class="outline-3">
-<h3 id="orgheadline61"><span class="section-number-3">32.6</span> Anzu</h3>
-<div class="outline-text-3" id="text-32-6">
+<div id="outline-container-orgheadline67" class="outline-3">
+<h3 id="orgheadline67"><span class="section-number-3">34.6</span> Anzu</h3>
+<div class="outline-text-3" id="text-34-6">
 <p>
 <a href="https://github.com/syohex/emacs-anzu">Anzu</a> shows how many strings match the regex you're replacing and show the effect of replacement as the substitution is
 typed. This is awesome. Using <code>%s/using/foo/</code> you'll see the change to <code>foo</code> in the buffer.
@@ -2235,9 +2360,9 @@ typed. This is awesome. Using <code>%s/using/foo/</code> you'll see the change t
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline62" class="outline-3">
-<h3 id="orgheadline62"><span class="section-number-3">32.7</span> Rainbow mode</h3>
-<div class="outline-text-3" id="text-32-7">
+<div id="outline-container-orgheadline68" class="outline-3">
+<h3 id="orgheadline68"><span class="section-number-3">34.7</span> Rainbow mode</h3>
+<div class="outline-text-3" id="text-34-7">
 <p>
 Highlights CSS colours in their actual colour. For instance (probably won't be visible in the export):
 </p>
@@ -2265,9 +2390,9 @@ This is enabled globally:
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline63" class="outline-3">
-<h3 id="orgheadline63"><span class="section-number-3">32.8</span> Coffee mode</h3>
-<div class="outline-text-3" id="text-32-8">
+<div id="outline-container-orgheadline69" class="outline-3">
+<h3 id="orgheadline69"><span class="section-number-3">34.8</span> Coffee mode</h3>
+<div class="outline-text-3" id="text-34-8">
 <p>
 Major mode for editing CoffeeScript files.
 </p>
@@ -2287,9 +2412,9 @@ Major mode for editing CoffeeScript files.
 </div>
 </div>
 
-<div id="outline-container-orgheadline64" class="outline-3">
-<h3 id="orgheadline64"><span class="section-number-3">32.9</span> Docker</h3>
-<div class="outline-text-3" id="text-32-9">
+<div id="outline-container-orgheadline70" class="outline-3">
+<h3 id="orgheadline70"><span class="section-number-3">34.9</span> Docker</h3>
+<div class="outline-text-3" id="text-34-9">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">use-package</span> <span style="color: #268bd2; font-weight: bold;">docker</span><span style="color: #2aa198;">)</span>
@@ -2298,9 +2423,9 @@ Major mode for editing CoffeeScript files.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline65" class="outline-3">
-<h3 id="orgheadline65"><span class="section-number-3">32.10</span> Ruby configuration</h3>
-<div class="outline-text-3" id="text-32-10">
+<div id="outline-container-orgheadline71" class="outline-3">
+<h3 id="orgheadline71"><span class="section-number-3">34.10</span> Ruby configuration</h3>
+<div class="outline-text-3" id="text-34-10">
 <p>
 Provide a <code>ruby-mode</code> for editing ruby files.
 </p>
@@ -2372,9 +2497,9 @@ The following allows using <code>binding.pry</code> in <code>rspec-mode</code>.
 </div>
 </div>
 
-<div id="outline-container-orgheadline66" class="outline-3">
-<h3 id="orgheadline66"><span class="section-number-3">32.11</span> CMake</h3>
-<div class="outline-text-3" id="text-32-11">
+<div id="outline-container-orgheadline72" class="outline-3">
+<h3 id="orgheadline72"><span class="section-number-3">34.11</span> CMake</h3>
+<div class="outline-text-3" id="text-34-11">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">use-package</span> <span style="color: #268bd2; font-weight: bold;">cmake-mode</span><span style="color: #2aa198;">)</span>
@@ -2382,10 +2507,26 @@ The following allows using <code>binding.pry</code> in <code>rspec-mode</code>.
 </div>
 </div>
 </div>
+
+<div id="outline-container-orgheadline73" class="outline-3">
+<h3 id="orgheadline73"><span class="section-number-3">34.12</span> MySQL</h3>
+<div class="outline-text-3" id="text-34-12">
+<p>
+Emacs has a built-in MySQL client. When using it, I want to disable line wrapping. I can use standard text navigation
+features to see what I need (<a href="https://zeekat.nl/articles/making-emacs-work-for-me.html">source</a>).
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>add-hook 'sql-interactive-mode-hook <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #268bd2;">()</span> <span style="color: #268bd2;">(</span>toggle-truncate-lines t<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+</pre>
 </div>
-<div id="outline-container-orgheadline68" class="outline-2">
-<h2 id="orgheadline68"><span class="section-number-2">33</span> Syntax highlighting and static analysis</h2>
-<div class="outline-text-2" id="text-33">
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline75" class="outline-2">
+<h2 id="orgheadline75"><span class="section-number-2">35</span> Syntax highlighting and static analysis</h2>
+<div class="outline-text-2" id="text-35">
 <p>
 I use <a href="https://github.com/flycheck/flycheck">flycheck</a> as a framework for syntax checking and static analysis. E.g. it will provide language-specific syntax
 checking for known languages. Some languages also provide linting as well via flycheck.
@@ -2398,9 +2539,9 @@ checking for known languages. Some languages also provide linting as well via fl
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline69" class="outline-2">
-<h2 id="orgheadline69"><span class="section-number-2">34</span> Spell checking</h2>
-<div class="outline-text-2" id="text-34">
+<div id="outline-container-orgheadline76" class="outline-2">
+<h2 id="orgheadline76"><span class="section-number-2">36</span> Spell checking</h2>
+<div class="outline-text-2" id="text-36">
 <p>
 I have several modes that execute <code>flyspell-mode</code>. There's a problem with this with xemacs by default: middle clicking to
 save a correction also inadvertently pastes whatever was in the selection buffer. This can be fixed by swapping around
@@ -2428,9 +2569,9 @@ I don't flyspell <code>org-mode</code> buffers inside the <code>PROPERTIES</code
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline70" class="outline-2">
-<h2 id="orgheadline70"><span class="section-number-2">35</span> Presenting</h2>
-<div class="outline-text-2" id="text-35">
+<div id="outline-container-orgheadline77" class="outline-2">
+<h2 id="orgheadline77"><span class="section-number-2">37</span> Presenting</h2>
+<div class="outline-text-2" id="text-37">
 <p>
 I've been using <a href="https://github.com/yjwen/org-reveal">org-reveal</a> for presentations.
 </p>
@@ -2446,9 +2587,9 @@ I've been using <a href="https://github.com/yjwen/org-reveal">org-reveal</a> for
 </p>
 </div>
 </div>
-<div id="outline-container-orgheadline71" class="outline-2">
-<h2 id="orgheadline71"><span class="section-number-2">36</span> <span class="todo TODO">TODO</span> Code snippet handling</h2>
-<div class="outline-text-2" id="text-36">
+<div id="outline-container-orgheadline78" class="outline-2">
+<h2 id="orgheadline78"><span class="section-number-2">38</span> <span class="todo TODO">TODO</span> Code snippet handling</h2>
+<div class="outline-text-2" id="text-38">
 <p>
 I use <a href="https://github.com/capitaomorte/yasnippet">yasnippet</a> for code snippet handling. This is enabled globally.
 </p>
@@ -2462,9 +2603,9 @@ I use <a href="https://github.com/capitaomorte/yasnippet">yasnippet</a> for code
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline72" class="outline-2">
-<h2 id="orgheadline72"><span class="section-number-2">37</span> <span class="todo TODO">TODO</span> Other configuration</h2>
-<div class="outline-text-2" id="text-37">
+<div id="outline-container-orgheadline79" class="outline-2">
+<h2 id="orgheadline79"><span class="section-number-2">39</span> <span class="todo TODO">TODO</span> Other configuration</h2>
+<div class="outline-text-2" id="text-39">
 <p>
 This section holds configuration from before I moved to using <code>org-babel</code> (i.e. it lived directly inside <code>~/.emacs</code>). It is
 here just because I haven't had the time or the impetus to categorise and document it.
@@ -2509,7 +2650,7 @@ here just because I haven't had the time or the impetus to categorise and docume
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Martin Foot</p>
-<p class="date">Created: 2016-04-26 Tue 08:05</p>
+<p class="date">Created: 2016-05-14 Sat 12:13</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <script type="text/javascript">
