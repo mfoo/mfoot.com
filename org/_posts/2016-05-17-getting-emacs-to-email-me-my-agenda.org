@@ -20,6 +20,10 @@ editor. You can pass it files to run or emacs lisp commands as string parameters
 on it already so I set up a simple cron job on my laptop that simply tells Emacs to export my agenda with the
 =org-batch-agenda= command and emails me the output.
 
+#+BEGIN_SRC html
+<!-- more -->
+#+END_SRC
+
 It's important to note that in batch mode Emacs won't read any standard configuration files unless you tell it to, so
 I've passed in the =-l ~/.emacs= flag to tell it to load my =.emacs=. This loads my [[/static/emacs-config/config.html][literate config]] using
 =org-babel-load-file= (see [[https://www.mfoot.com/blog/2015/11/22/literate-emacs-configuration-with-org-mode/][here]] for more information) which importantly contains the following lines:
