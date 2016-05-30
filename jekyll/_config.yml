@@ -13,4 +13,4 @@ permalink: /blog/:year/:month/:day/:title/
 
 # Build settings
 markdown: kramdown
-exclude: [TODO, s3_website.yml]
+exclude: [TODO, s3_website.yml, _posts/*.org]

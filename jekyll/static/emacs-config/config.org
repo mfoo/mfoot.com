@@ -780,11 +780,11 @@ manipulation to insert the Google Analytics code at the end of the =<body>= tag.
 (setq org-publish-project-alist
   '(
      ("org-mfoot" ; Export my blog to the Jekyll format for ~jekyll build~
-       :base-directory "~/repositories/mfoot.com/org/"
+       :base-directory "~/repositories/mfoot.com/jekyll/_posts"
        :base-extension "org"
 
        ;; Path to your Jekyll project.
-       :publishing-directory "~/repositories/mfoot.com/jekyll/"
+       :publishing-directory "~/repositories/mfoot.com/jekyll/_posts"
        :recursive t
        :publishing-function org-html-publish-to-html
        :html-extension "html"
@@ -798,13 +798,13 @@ manipulation to insert the Google Analytics code at the end of the =<body>= tag.
        :auto-postamble nil
      )
 
-    ("org-static-mfoot"
-          :base-directory "~/repositories/mfoot.com/org/"
-          :base-extension "css\\|js\\|png\\|jpg\\|gif"
-          :publishing-directory "~/repositories/mfoot.com/jekyll"
-          :recursive t
-          :publishing-function org-publish-attachment
-    )
+    ;("org-static-mfoot"
+    ;      :base-directory "~/repositories/mfoot.com/org/"
+    ;      :base-extension "css\\|js\\|png\\|jpg\\|gif"
+    ;      :publishing-directory "~/repositories/mfoot.com/jekyll"
+    ;      :recursive t
+    ;      :publishing-function org-publish-attachment
+    ;)
 
     ("emacs-dotfiles-mfoot.com" ; Publish an HTML version of this file to the static folder.
       :base-directory "~/repositories/dotfiles/.emacs.d/"
@@ -827,7 +827,7 @@ manipulation to insert the Google Analytics code at the end of the =<body>= tag.
 
     ("mfoot.com" :components (
       "org-mfoot"
-      "org-static-mfoot"
+      ;"org-static-mfoot"
       "emacs-dotfiles-mfoot.com"
       "emacs-config.org-mfoot.com"
     )

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-05-14 Sat 12:13 -->
+<!-- 2016-05-30 Mon 16:32 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Martin Foot's Emacs Configuration</title>
@@ -1609,11 +1609,11 @@ manipulation to insert the Google Analytics code at the end of the <code>&lt;bod
 <span style="color: #2aa198;">(</span>setq org-publish-project-alist
   '<span style="color: #b58900;">(</span>
      <span style="color: #268bd2;">(</span><span style="color: #2aa198;">"org-mfoot"</span> <span style="color: #586e75;">; </span><span style="color: #586e75;">Export my blog to the Jekyll format for ~jekyll build~</span>
-       <span style="color: #839496; font-weight: bold;">:base-directory</span> <span style="color: #2aa198;">"~/repositories/mfoot.com/org/"</span>
+       <span style="color: #839496; font-weight: bold;">:base-directory</span> <span style="color: #2aa198;">"~/repositories/mfoot.com/jekyll/_posts"</span>
        <span style="color: #839496; font-weight: bold;">:base-extension</span> <span style="color: #2aa198;">"org"</span>
 
        <span style="color: #586e75;">;; </span><span style="color: #586e75;">Path to your Jekyll project.</span>
-       <span style="color: #839496; font-weight: bold;">:publishing-directory</span> <span style="color: #2aa198;">"~/repositories/mfoot.com/jekyll/"</span>
+       <span style="color: #839496; font-weight: bold;">:publishing-directory</span> <span style="color: #2aa198;">"~/repositories/mfoot.com/jekyll/_posts"</span>
        <span style="color: #839496; font-weight: bold;">:recursive</span> t
        <span style="color: #839496; font-weight: bold;">:publishing-function</span> org-html-publish-to-html
        <span style="color: #839496; font-weight: bold;">:html-extension</span> <span style="color: #2aa198;">"html"</span>
@@ -1627,13 +1627,13 @@ manipulation to insert the Google Analytics code at the end of the <code>&lt;bod
        <span style="color: #839496; font-weight: bold;">:auto-postamble</span> nil
      <span style="color: #268bd2;">)</span>
 
-    <span style="color: #268bd2;">(</span><span style="color: #2aa198;">"org-static-mfoot"</span>
-          <span style="color: #839496; font-weight: bold;">:base-directory</span> <span style="color: #2aa198;">"~/repositories/mfoot.com/org/"</span>
-          <span style="color: #839496; font-weight: bold;">:base-extension</span> <span style="color: #2aa198;">"css</span><span style="color: #859900; font-weight: bold;">\\</span><span style="color: #b58900; font-weight: bold;">|</span><span style="color: #2aa198;">js</span><span style="color: #859900; font-weight: bold;">\\</span><span style="color: #b58900; font-weight: bold;">|</span><span style="color: #2aa198;">png</span><span style="color: #859900; font-weight: bold;">\\</span><span style="color: #b58900; font-weight: bold;">|</span><span style="color: #2aa198;">jpg</span><span style="color: #859900; font-weight: bold;">\\</span><span style="color: #b58900; font-weight: bold;">|</span><span style="color: #2aa198;">gif"</span>
-          <span style="color: #839496; font-weight: bold;">:publishing-directory</span> <span style="color: #2aa198;">"~/repositories/mfoot.com/jekyll"</span>
-          <span style="color: #839496; font-weight: bold;">:recursive</span> t
-          <span style="color: #839496; font-weight: bold;">:publishing-function</span> org-publish-attachment
-    <span style="color: #268bd2;">)</span>
+    <span style="color: #586e75;">;</span><span style="color: #586e75;">("org-static-mfoot"</span>
+    <span style="color: #586e75;">;      </span><span style="color: #586e75;">:base-directory "~/repositories/mfoot.com/org/"</span>
+    <span style="color: #586e75;">;      </span><span style="color: #586e75;">:base-extension "css\\|js\\|png\\|jpg\\|gif"</span>
+    <span style="color: #586e75;">;      </span><span style="color: #586e75;">:publishing-directory "~/repositories/mfoot.com/jekyll"</span>
+    <span style="color: #586e75;">;      </span><span style="color: #586e75;">:recursive t</span>
+    <span style="color: #586e75;">;      </span><span style="color: #586e75;">:publishing-function org-publish-attachment</span>
+    <span style="color: #586e75;">;</span><span style="color: #586e75;">)</span>
 
     <span style="color: #268bd2;">(</span><span style="color: #2aa198;">"emacs-dotfiles-mfoot.com"</span> <span style="color: #586e75;">; </span><span style="color: #586e75;">Publish an HTML version of this file to the static folder.</span>
       <span style="color: #839496; font-weight: bold;">:base-directory</span> <span style="color: #2aa198;">"~/repositories/dotfiles/.emacs.d/"</span>
@@ -1656,7 +1656,7 @@ manipulation to insert the Google Analytics code at the end of the <code>&lt;bod
 
     <span style="color: #268bd2;">(</span><span style="color: #2aa198;">"mfoot.com"</span> <span style="color: #839496; font-weight: bold;">:components</span> <span style="color: #6c71c4;">(</span>
       <span style="color: #2aa198;">"org-mfoot"</span>
-      <span style="color: #2aa198;">"org-static-mfoot"</span>
+      <span style="color: #586e75;">;</span><span style="color: #586e75;">"org-static-mfoot"</span>
       <span style="color: #2aa198;">"emacs-dotfiles-mfoot.com"</span>
       <span style="color: #2aa198;">"emacs-config.org-mfoot.com"</span>
     <span style="color: #6c71c4;">)</span>
@@ -2650,7 +2650,7 @@ here just because I haven't had the time or the impetus to categorise and docume
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Martin Foot</p>
-<p class="date">Created: 2016-05-14 Sat 12:13</p>
+<p class="date">Created: 2016-05-30 Mon 16:32</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 <script type="text/javascript">
