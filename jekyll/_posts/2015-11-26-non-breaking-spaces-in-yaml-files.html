@@ -1,0 +1,46 @@
+<div class="HTML">
+<p>
+&#x2014;
+layout: post
+title: Non-breaking spaces in YAML files
+category: programming
+published: false
+tags:
+</p>
+<ul class="org-ul">
+<li>yaml</li>
+</ul>
+<p>
+&#x2014;
+</p>
+
+</div>
+
+<p>
+We had a fun problem at work today. We'd copied some configuration settings from a guide that we have stored in our
+confluence wiki.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #839496; font-weight: bold;">require</span> <span style="color: #2aa198;">'yaml'</span>
+y = <span style="color: #2aa198;">"parent_key:</span>
+<span style="color: #2aa198;">  key: value</span>
+<span style="color: #2aa198;">  key2: value2</span>
+<span style="color: #2aa198;">"</span>
+<span style="color: #b58900;">YAML</span>.load(y)
+</pre>
+</div>
+
+<p>
+Now when we replace those spaces for non-breaking spaces:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #839496; font-weight: bold;">require</span> <span style="color: #2aa198;">'yaml'</span>
+y = <span style="color: #2aa198;">"parent_key:</span>
+<span style="color: #2aa198;">key: value</span>
+<span style="color: #2aa198;">key2: value2</span>
+<span style="color: #2aa198;">"</span>
+<span style="color: #b58900;">YAML</span>.load(y)
+</pre>
+</div>

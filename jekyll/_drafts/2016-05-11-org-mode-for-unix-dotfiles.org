@@ -1,0 +1,15 @@
+#+BEGIN_HTML
+---
+layout: post
+title: Org mode for Unix dotfiles
+category: emacs
+tags:
+  - org-mode
+  - literate programming
+  - .emacs
+  - unix
+  - dotfiles
+---
+#+END_HTML
+
+hello

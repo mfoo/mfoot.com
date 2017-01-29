@@ -1,0 +1,78 @@
+<div class="HTML">
+<p>
+&#x2014;
+layout: post
+title: Getting Emacs to email me my agenda
+category: emacs
+tags:
+</p>
+<ul class="org-ul">
+<li>org-mode</li>
+<li>org-agenda</li>
+<li>email</li>
+<li>unix</li>
+<li>cron</li>
+</ul>
+<p>
+&#x2014;
+</p>
+
+</div>
+
+<p>
+Emacs and <a href="https://orgmode.com/">org-mode</a> are taking over my life. I've been using emacs for schedule and agenda management for a while and one
+of the annoyances was getting a quick heads up of today's tasks while on the go. Well.. why not get emacs to make me one?
+</p>
+
+<p>
+It turns out that this is trivial. Emacs has a batch mode that allows you to evaluate scripts without starting the
+editor. You can pass it files to run or emacs lisp commands as string parameters. I have a server with all my dotfiles
+on it already so I set up a simple cron job on my laptop that simply tells Emacs to export my agenda with the
+<code>org-batch-agenda</code> command and emails me the output.
+</p>
+
+<div class="HTML">
+<p>
+&lt;!&#x2013; more &#x2013;&gt;
+</p>
+
+</div>
+
+<p>
+It's important to note that in batch mode Emacs won't read any standard configuration files unless you tell it to, so
+I've passed in the <code>-l ~/.emacs</code> flag to tell it to load my <code>.emacs</code>. This loads my <a href="https://www.mfoot.com/static/emacs-config/config.html">literate config</a> using
+<code>org-babel-load-file</code> (see <a href="https://www.mfoot.com/blog/2015/11/22/literate-emacs-configuration-with-org-mode/">here</a> for more information) which importantly contains the following lines:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">cl</span>) <span style="color: #586e75;">; </span><span style="color: #586e75;">remove-if-not is inside the common-lisp package</span>
+(setq org-agenda-files (remove-if-not 'file-exists-p '(<span style="color: #2aa198;">"~/Repositories/notes"</span> <span style="color: #2aa198;">"~/repositories/notes"</span> <span style="color: #2aa198;">"~/Dropbox/life"</span> <span style="color: #2aa198;">"~/repositories/life"</span>)))
+</pre>
+</div>
+
+<p>
+Since I use org on several machines that for an inexplicable reason have different locations for my notes, I tell org to
+look in whichever of the directories in that list exist. For most people this will be as simple as:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(setq org-agenda-files '(<span style="color: #2aa198;">"~/notes"</span>))
+</pre>
+</div>
+
+<p>
+And that's pretty much it. The cron line pipes the agenda (which is written to the standard output) directly into
+<code>mail</code>. It looks like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-conf"><span style="color: #586e75;"># </span><span style="color: #586e75;">m h  dom mon dow   command</span>
+0 6 * * *  /usr/local/bin/emacs --batch -l ~/.emacs  -eval <span style="color: #2aa198;">'(org-batch-agenda "a")'</span> 2&gt;/dev/null | mail -s <span style="color: #2aa198;">"Martin's Agenda for $(date +'\%A \%D')"</span> martin@mfoot.com
+</pre>
+</div>
+
+<p>
+Customising org's agenda mode is simple with features like <a href="http://orgmode.org/manual/Custom-agenda-views.html">custom agenda views</a> available. Since I'm not great at lisp I
+could even have Emacs pipe the agenda through some <a href="http://orgmode.org/manual/Working-With-Source-Code.html">embedded source block</a> which does some formatting in Python or Ruby
+and then email that to me.
+</p>

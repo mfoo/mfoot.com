@@ -1,0 +1,95 @@
+#+BEGIN_HTML
+---
+layout: post
+title: Getting started with homebrew
+category: emacs
+tags:
+  - beer
+  - wine
+  - homebrew
+---
+#+END_HTML
+
+I grew up with stories of weird and wonderful wines and beers that my mum had made - stuff exploding and clothes stained
+purple from picking wild hedgerow blackberries for wine making. It sounded like fun so recently I decided to try it
+myself. Since then I've made somewhere in the region of 6-8 batches each of beers and wines and I can confirm that it's
+both fun and satisfying. It doesn't require a whole lot of kit, it doesn't take long, and it saves you money compared to
+buying from the shops.
+
+If you're interested in getting into homebrew and don't know what equipment you'll need or how complicated it is, this
+post is for you. It's worth noting that I haven't tried cider yet but it's on my to do list. I expect a lot of what I'm
+saying here also applies to cider making but I can't be certain until I've tried it.
+
+#+BEGIN_HTML
+<!-- more -->
+#+END_HTML
+
+* Requirements
+
+For beers and wines brewing is easy enough that anybody with access to clean water can do it with a small amount of
+equipment. You'll require some
+
+It doesn't even take up much space - initial preparation takes a bit of counter space but fermentation requires no more
+space than an available chair or chair-sized gap. Furthermore, the setup cost is not expensive. You can get a pretty
+decent beer from simple beer kits, but with all hobbies there are more complex, more expensive options available that
+offer more control.
+
+So, what do you need? This depends somewhat on what you're making and how much of it you want. For beers the basic
+equipment is all based on 25 litre (~40 pints) batches, but for wine the usual size is a 3 litre demijohn - a small
+glass container. Whether you're making beer, cider, or wine, they all share the following common components:
+
+- Some flavoured liquid containing either natural or added sugar that you can ferment
+- A container to ferment the liquid in
+- Some yeast
+- A bung and airlock to make the container airtight
+- A big plastic spoon
+- A sanitiser, usually a powdered chemical that you mix with water
+- A thermometer, preferably glass, that you can dip into liquid that covers the 15 to 100c range
+- A siphon (the most basic DIY version is just a piece of tubing)
+- A plastic water jug. 2L kitchen jugs work fine
+- A room with a fairly constant appropriate temperature
+- Something to put your drink in when it's done. If you're using bottles for beer you'll need a capping tool and some
+  caps also. If you're making wine you can buy reusable stoppers
+
+In addition there's some optional stuff:
+- A hydrometer and jar, used for existing your alcohol content / ABV
+- One of those stick-on fish tank thermometers to attach to your fermenter for convenient at-a-glance information
+
+For beer you can buy a homebrew starter kit, which is usually a good way of getting everything in the above list without
+much effort. The kits don't seem to be readily available for wine, so you'll want to order the parts separately. It's
+cheaper than beer as you need less stuff. [[http://www.wilko.com/homebrew-accessories+equipment/wilko-demijohn-container-glass-45l/invt/0022556][Wilco sell demijohns]] for £7. Homebrew is still a popular pass time and you
+shouldn't have trouble finding an online shop that has what you need, but fewer and fewer shops exist on high streets
+these days. I've bought stuff from both eBay and [[http://the-home-brew-shop.co.uk/][The Home Brew Shop]] without any problems.
+
+#+BEGIN_HTML
+<img src="https://brouwlandprod-yappa.netdna-ssl.com/image/fancy/products-0560417.jpg" />
+#+END_HTML
+
+This is a picture of a typical fully featured starter kit for beer - it's Brewferm's "deluxe starter kit".
+
+Once you've got your equipment (if your starter kit doesn't contain one) you'll need a beer/wine kit. Something like
+[[http://www.wilko.com/icat/homebrewbeer][this]] for beer, or [[http://www.wilko.com/icat/homebrewwine][this]] for wine. Each time you want a new batch you'll need to order a new kit but all the equipment can
+be re-used. You should note that these kits usually don't contain sugar, but the instructions will tell you if you need
+to buy some or not. These kits are the most basic ways of making beer and the majority of my beers have been made with
+them. There are many different kits around so you can try for many different kinds of beers. I've been particularly
+impressed with [[http://www.wilko.com/cider+beer-brewing/wilko-dark-velvet-stout/invt/0318379][this one]]. Once you want to try something more advanced you can do what I've done and start a foray into
+the world of [[https://byo.com/newbrew/all-grain][all grain brewing]] which requires more investment into kit but gives even more control.
+
+* The cost of beer
+With a beer kit such as the porter linked above you can get almost 40 pints out of it, for £10 (plus ~£1 of sugar),
+leading to somewhere in the region of £0.30 a pint. Comparing that to the £2-£3 you'd pay from the supermarket, that's a
+huge reduction.
+
+For wine a [[http://www.wilko.com/wine-homebrew-kits/wilko-cabernet-sauvignon-6-bottles/invt/0022741][typical kit]] for 6 bottles costs around £10 also, bringing it to about £1.70 a bottle. I recently made 25
+litres of beetroot wine in one of my beer fermenters. I went to the local market and bought a few kg of beetroot for £5,
+then added about £1 of sugar and £0.50 of yeast and I can get about 30 bottles of wine from it - bringing the per-bottle
+cost down to ~£0.22.
+
+* Books and resources
+There's a huge amount of information available on homebrew. For beer the book How to Brew by John Palmer is great and
+the first edition is [[http://www.howtobrew.com/][available online free]]. YouTube is a great resource, as is eBay as a lot of the information on
+homebrewing hasn't changed much since the 70s/80s. I always keep an eye out in charity shops for homebrew books and to
+date I've found the best one to be [[https://www.amazon.co.uk/Brewing-Beers-Those-Amateur-Winemaker/dp/1854861255][Brewing Beers Like Those You Buy]] because it includes a whole bunch of recipes (but
+doesn't cover some of the basics that How To Brew does). For wine, C.J.J. Berry's [[https://www.amazon.co.uk/First-Steps-Winemaking-C-Berry/dp/1854861395/ref=sr_1_1?ie=UTF8&qid=1463236050&sr=8-1&keywords=first+steps+in+winemaking][First Steps in Winemaking]] is a kind of
+bible and has loads of recipes and great information - I would recommend his rice and raisin wine recipe. There are also
+many online forums and the [[http://homebrew.stackexchange.com/][Homebrewing Stack Exchange]] for getting prompt replies to questions.
