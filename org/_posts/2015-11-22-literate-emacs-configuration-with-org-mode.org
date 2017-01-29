@@ -1,4 +1,4 @@
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 ---
 layout: post
 title: Literate emacs configuration with org mode
@@ -9,7 +9,7 @@ tags:
   - .emacs
   - org-babel-load-file
 ---
-#+END_HTML
+#+END_EXPORT
 
 I've been using org mode with emacs more and more recently. It's exceptional. I keep finding new features and
 capabilities that make the switch to emacs increasingly worthwhile. This post is about configuring emacs and managing
@@ -32,9 +32,9 @@ descriptions, and taking the time to properly annotate code is important. It's o
 combined with a choice of where exactly to put the comment so that it's most useful - is there any documentation to
 update as well?
 
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 <!-- more -->
-#+END_HTML
+#+END_EXPORT
 * What's wrong with configuration files?
 
 I only started using emacs recently. Every few days I changed a configuration setting to get the editor to do what I

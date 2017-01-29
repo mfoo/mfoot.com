@@ -1,4 +1,4 @@
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 ---
 layout: post
 title: "Adding Google Analytics codes to Org Mode's HTML export"
@@ -9,18 +9,18 @@ tags:
   - org-publish-project-alist
   - google-analytics
 ---
-#+END_HTML
+#+END_EXPORT
 
 I recently [[/blog/2015/11/22/literate-emacs-configuration-with-org-mode][moved to a literate programming style of emacs configuration]]. I've configured org-mode to automatically publish
 the latest HTML version of this configuration whenever I publish my blog posts. Since I love metadata and statistics, I
 wondered whether or not I could get the org-mode export to add Google Analytics tracking code for me. Turns out I can!
 
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 <!-- more -->
-#+END_HTML
+#+END_EXPORT
 
 I recently answered a [[https://www.reddit.com/r/emacs/comments/3zpx7p/need_help_customizing_org_publish_for_jekyll/][question on the emacs sub-reddit]] about how org-mode properties could be used inside the HTML
-export. When setting up org-mode to blog with Jekyll, [[/blog/2015/11/17/using-org-mode-to-write-jekyll-blogs/][which I do]], the internet advises using a =BEGIN_HTML= block to embed
+export. When setting up org-mode to blog with Jekyll, [[/blog/2015/11/17/using-org-mode-to-write-jekyll-blogs/][which I do]], the internet advises using a =BEGIN_EXPORT html= block to embed
 the Jekyll YAML front-matter into the file that Jekyll then picks up and applies its templates to. Since the org HTML
 exporter will copy these verbatim, this works quite nicely. The reddit post asked about how properties could be used
 instead such that exports can be made more compatible with other backends.
@@ -28,12 +28,12 @@ instead such that exports can be made more compatible with other backends.
 An example section of an org-mode file being used to blog with Jekyll might look like this:
 
 #+BEGIN_SRC yaml
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 ---
 layout: post
 title: "Adding Google Analytics codes to Org Mode's HTML export"
 ---
-#+END_HTML
+#+END_EXPORT
 #+END_SRC
 
 After reading some documentation I found that you could derive a custom org-mode export backend from the HTML
@@ -43,7 +43,7 @@ translation function for the special =template= section that read the title prop
 
 This got me thinking. Could I do a similar thing for the Google Analytics code for my exported Emacs config file?
 
-I retrospect I could simply have included a =BEGIN_HTML= block at the bottom of my org-mode file with the
+I retrospect I could simply have included a =BEGIN_EXPORT html= block at the bottom of my org-mode file with the
 ~<script></script>~ tag inside it and the org mode HTML export would have rendered it verbatim. That solution is pragmatic
 and probably better in general but it doesn't involve learning more about derived backends.
 

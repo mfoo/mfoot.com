@@ -1,4 +1,4 @@
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 ---
 layout: post
 title: Getting Emacs to email me my agenda
@@ -10,7 +10,7 @@ tags:
   - unix
   - cron
 ---
-#+END_HTML
+#+END_EXPORT
 
 Emacs and [[https://orgmode.com][org-mode]] are taking over my life. I've been using emacs for schedule and agenda management for a while and one
 of the annoyances was getting a quick heads up of today's tasks while on the go. Well.. why not get emacs to make me one?
@@ -20,9 +20,9 @@ editor. You can pass it files to run or emacs lisp commands as string parameters
 on it already so I set up a simple cron job on my laptop that simply tells Emacs to export my agenda with the
 =org-batch-agenda= command and emails me the output.
 
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 <!-- more -->
-#+END_HTML
+#+END_EXPORT
 
 It's important to note that in batch mode Emacs won't read any standard configuration files unless you tell it to, so
 I've passed in the =-l ~/.emacs= flag to tell it to load my =.emacs=. This loads my [[https://www.mfoot.com/static/emacs-config/config.html][literate config]] using

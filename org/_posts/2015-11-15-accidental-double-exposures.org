@@ -1,4 +1,4 @@
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 ---
 layout: post
 title: Accidental double exposures
@@ -10,7 +10,7 @@ tags:
   - 'nikon'
   - 'film photography'
 ---
-#+END_HTML
+#+END_EXPORT
 
 Multiple exposure images are a lot of fun to make and it's always exciting to see the final output. On film cameras they
 can be deliberate or accidental. They could be caused by careful planning, lack of thought before acting, or mechanical

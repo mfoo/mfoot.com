@@ -1,4 +1,4 @@
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 ---
 layout: post
 title: Rotherhithe Historic Remnants Project
@@ -11,22 +11,22 @@ tags:
   - history
   - local history
 ---
-#+END_HTML
+#+END_EXPORT
 
 I live in Surrey Quays in South East London. I've lived here for three years before I decided to investigate some of the
 local history, which it turns out is incredibly rich and vibrant. I knew that only 30 years ago Surrey Quays as we know
 it didn't exist but I did not know what came before it. To give some perspective, the [[https://www.ornc.org/visitor-centre][Greenwich Visitor Center]] has a
 painting on display that is part of the collection of the [[https://www.rmg.co.uk/national-maritime-museum][National Maritime Museum in Greenwich]] (one of my top 2 museums
 in London along with the [[http://www.britishmuseum.org/][British Museum]]) by Hendrick Danckerts from around 1670. It looks like this:
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 <img src="http://collections.rmg.co.uk/mediaLib/387/media-387386/large.jpg" />
-#+END_HTML
+#+END_EXPORT
 
 Image credit Royal Museums Greenwich collection.
 
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 <!-- more -->
-#+END_HTML
+#+END_EXPORT
 
 (Note: if you have [[https://get.adobe.com/flashplayer/][Adobe's Flash plugin]] then there is an interactive zoom-able version on the [[http://collections.rmg.co.uk/collections/objects/13298.html][Royal Museums Greenwich
 collection catalogue]])
@@ -35,9 +35,9 @@ It shows the Isle of Dogs centre right, and to the left we can see Deptford and 
 see Rotherhithe and Surrey Quays. If you take a walk through Greenwich Park up to the [[http://www.rmg.co.uk/royal-observatory][Royal Observatory]] you can see what
 that vista looks like today, and it's a bit different.
 
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 <img src="https://c1.staticflickr.com/4/3350/3298752344_a8b6cc6ce5_b.jpg" />
-#+END_HTML
+#+END_EXPORT
 
 Image source: [[https://www.flickr.com/photos/23333202@N05/3298752344/in/photostream/][moomin1981 on Flickr]].
 

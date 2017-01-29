@@ -1,4 +1,4 @@
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 ---
 layout: post
 title: Switching from Vim to Emacs
@@ -9,7 +9,7 @@ tags:
   - org
   - evil-mode
 ---
-#+END_HTML
+#+END_EXPORT
 
 Last month I switched to Emacs after after 7 years of using Vim. I tried Emacs for the first time on a colleague's
 recommendation and after a month of using it I won't be going back.
@@ -28,9 +28,9 @@ said that I haven't removed vim from my workflow completely. I still prefer usin
 remote machines (but, ofcourse [[http://www.emacswiki.org/emacs/TrampMode][emacs can edit remote files, even SSHing through multiple boxes to get there]]). By using
 evil-mode I don't lose the vim skills that I'd be using editing those files.
 
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 <!-- more -->
-#+END_HTML
+#+END_EXPORT
 
 For most of my configuration I trawled the internet for peoples' =.emacs= files, tested each setting and imported the ones
 I liked. For the rest I searched for answers online or in the in-built help system when I found something I didn't

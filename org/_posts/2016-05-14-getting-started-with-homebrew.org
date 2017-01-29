@@ -1,4 +1,4 @@
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 ---
 layout: post
 title: Getting started with homebrew
@@ -8,7 +8,7 @@ tags:
   - wine
   - homebrew
 ---
-#+END_HTML
+#+END_EXPORT
 
 I grew up with stories of weird and wonderful wines and beers that my mum had made - stuff exploding and clothes stained
 purple from picking wild hedgerow blackberries for wine making. It sounded like fun so recently I decided to try it
@@ -20,9 +20,9 @@ If you're interested in getting into homebrew and don't know what equipment you'
 post is for you. It's worth noting that I haven't tried cider yet but it's on my to do list. I expect a lot of what I'm
 saying here also applies to cider making but I can't be certain until I've tried it.
 
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 <!-- more -->
-#+END_HTML
+#+END_EXPORT
 
 * Requirements
 
@@ -61,9 +61,9 @@ cheaper than beer as you need less stuff. [[http://www.wilko.com/homebrew-access
 shouldn't have trouble finding an online shop that has what you need, but fewer and fewer shops exist on high streets
 these days. I've bought stuff from both eBay and [[http://the-home-brew-shop.co.uk/][The Home Brew Shop]] without any problems.
 
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 <img src="https://brouwlandprod-yappa.netdna-ssl.com/image/fancy/products-0560417.jpg" />
-#+END_HTML
+#+END_EXPORT
 
 This is a picture of a typical fully featured starter kit for beer - it's Brewferm's "deluxe starter kit".
 

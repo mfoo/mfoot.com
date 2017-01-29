@@ -1,4 +1,4 @@
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 ---
 layout: post
 title: Using org-mode to blog with Jekyll
@@ -8,7 +8,7 @@ tags:
   - org-publish
   - org-publish-project-alist
 ---
-#+END_HTML
+#+END_EXPORT
 
 Some years ago I moved to [[http://jekyllrb.com/][Jekyll]] from Wordpress and have been hosting this blog as a statically generated website on
 S3. Having recently discovered Emacs' [[http://orgmode.org/][org mode]] I wanted to see if I could write blog posts with it. Considering that
@@ -16,9 +16,9 @@ this is the emacs community it was probably silly to doubt that nobody had done 
 whole post specifically about this on the org mode site: [[http://orgmode.org/worg/org-tutorials/org-jekyll.html][Using org to Blog with Jekyll]]. It's a little out-of-date as in
 org 8.2 the HTML export publishing function has changed, but that's the only difference.
 
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 <!-- more -->
-#+END_HTML
+#+END_EXPORT
 
 The process of using org-mode to blog with Jekyll involves using the org mode HTML export to publish a body-only export
 of your org-files. This means that it exports only the HTML inside the =<body></body>= tags and doesn't include anything
@@ -37,7 +37,7 @@ title: Using org-mode to write Jekyll blogs
 My blog post goes here.
 #+END_EXAMPLE
 
-This =BEGIN_HTML= block doesn't get HTML processed and leaves a file in the correct format for Jekyll to read.
+This =BEGIN_EXPORT html= block doesn't get HTML processed and leaves a file in the correct format for Jekyll to read.
 
 Inside your emacs configuration we then set up an Publishing Project which adds a new =Publish= menu option to the menu
 you'd see with =C-c C-e= normally. You can use =C-c C-e P x= to publish any publishing project from within any org-mode

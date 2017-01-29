@@ -1,4 +1,4 @@
-#+BEGIN_HTML
+#+BEGIN_EXPORT html
 ---
 layout: post
 title: Non-breaking spaces in YAML files
@@ -7,7 +7,7 @@ published: false
 tags:
   - yaml
 ---
-#+END_HTML
+#+END_EXPORT
 
 We had a fun problem at work today. We'd copied some configuration settings from a guide that we have stored in our
 confluence wiki.
