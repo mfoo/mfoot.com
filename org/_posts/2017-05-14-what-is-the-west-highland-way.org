@@ -5,8 +5,10 @@ title: What is the West Highland Way, and why should I walk it?
 category: photography
 published: true
 tags:
-  - berlin
-  - berlin wall
+  - hiking
+  - walking
+  - scotland
+  - west highland way
 ---
 #+END_EXPORT
 
