@@ -1,0 +1,104 @@
+#+BEGIN_EXPORT html
+---
+layout: post
+title: The West Highland Way for Ingress Players
+category: ingress
+published: true
+tags:
+  - ingress
+  - sojourner
+  - games
+  - west highland way
+---
+#+END_EXPORT
+
+I play a location-based game called [[https://ingress.com][Ingress]], which requires you to visit real-world landmarks and monuments during the
+course of the game. If you haven't heard of it, check it out (join the Enlightened), but if you have, you're probably
+here because you want to know if it's possible to walk the West Highland Way and keep your Sojourner achievement. Well,
+luckily, the answer is yes.
+
+Below I include a set of maps from the Ingress intel site. There's 12 maps from the 12 towns you pass through, not
+including Fort William at the end (it's full of portals). On most days you will pass through at least one of these
+locations.
+
+Note that you'll need to keep your phone charged to play, and this really isn't an issue. If your phone will a day on
+battery saver with the WiFi off, you won't have problems. Most days you can pass at least one pub or cafe for
+lunch/dinner and I had no problem charging my phone while eating. I also brought a small battery pack - light weight is
+best, 5,000mAh should be plenty. It's only for 'just-in-case'.
+
+I haven't described each one in huge detail, so in the areas with only one portal be sure to check ahead of time each
+day.
+
+** Milngavie
+
+   Right at the start of the way is Milngavie. There's plenty of portals in the center where the walk starts.
+
+[[img:2017/08/1-milngavie.jpg]]
+
+#+BEGIN_EXPORT html
+<!-- more -->
+#+END_EXPORT
+
+** Drymen
+Drymen is the target village for the end of the first day on most itineraries. There's some good pubs with portals in
+range, no problems here. It's a short walk off the way itself into town and then back again the next day.
+
+[[img:2017/08/2-drymen.jpg]]
+
+** Balmaha
+Balmaha is not so well provisioned but the portals aren't far from the Oak Tree, a nice place to stop before heading on
+to Rowardennan.
+
+[[img:2017/08/3-balmaha.jpg]]
+
+** Rowardennan
+I have two maps here. The top one is further South (i.e. you'll hit it first if you started from Milngavie), and the
+next shows a group of three portals just before the lodge.
+
+[[img:2017/08/4-rowardennan.jpg]]
+
+[[img:2017/08/4-rowardennan-2.jpg]]
+
+** Inversnaid
+One portal on the way to Inversnaid, where the river runs into Loch Lomond. Be careful not to miss this one.
+
+[[img:2017/08/5-inversnaid.jpg]]
+
+** Inverarnan
+If you got the portal passing Inversnaid, you won't need this one. This is the typical end of day three.
+
+[[img:2017/08/6-inverarnan.jpg]]
+
+** Crianlarich
+Three portals in the middle of the village for day four. Nice and easy.
+
+[[img:2017/08/7-crianlarich.jpg]]
+
+** Tyndrum
+The typical end of day four. A whole bunch of portals right in the way of the path. You'll pass them coming into town
+and then going out again the next day.
+
+[[img:2017/08/8-tyndrum.jpg]]
+
+** Bridge of Orchy
+There's two portals here along the old military road. It's important to grab these if you're continuing to Inverornan.
+
+[[img:2017/08/9-bridge-of-orchy.jpg]]
+
+** Inverornan
+Here is the first time when there's really nothing around. Luckily you should just be passing through and there are
+portals at Kingshouse.
+
+[[img:2017/08/10-inverornan.jpg]]
+
+** Kingshouse
+Almost finished, the end of day 6. A whole bunch of portals here.
+
+[[img:2017/08/11-kingshouse.jpg]]
+
+** Kinlochleven
+It's worth a note here that if you're looking at your phone at this point you're making a huge mistake. Glencoe is
+incredibly beautiful and there's some excellent views on this leg. There's also a bunch of portals in Kinlochleven to
+welcome you when you get there.
+
+[[img:2017/08/12-kinlochleven.jpg]]
