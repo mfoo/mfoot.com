@@ -15,9 +15,9 @@ capabilities that make the switch to emacs increasingly worthwhile. This post is
 configuration in an approachable, coherent, and understandable way.
 </p>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">What is literate programming?</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-org8888222" class="outline-2">
+<h2 id="org8888222">What is literate programming?</h2>
+<div class="outline-text-2" id="text-org8888222">
 <p>
 From the <a href="https://en.wikipedia.org/wiki/Literate_programming">Wikipedia article for Literate programming</a>:
 </p>
@@ -42,9 +42,9 @@ update as well?
 <!-- more -->
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">What's wrong with configuration files?</h2>
-<div class="outline-text-2" id="text-orgheadline2">
+<div id="outline-container-org5c59cb5" class="outline-2">
+<h2 id="org5c59cb5">What's wrong with configuration files?</h2>
+<div class="outline-text-2" id="text-org5c59cb5">
 <p>
 I only started using emacs recently. Every few days I changed a configuration setting to get the editor to do what I
 wanted or to be more like the in-my-opinion superior vim defaults. I added and configured plugins, wrote functions that
@@ -60,34 +60,33 @@ explain what the line was doing but not why. A lot of lines didn't have comments
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>setq scroll-step 1<span style="color: #2aa198;">)</span>            <span style="color: #586e75;">; </span><span style="color: #586e75;">Scroll smoothly rather than by paging</span>
-<span style="color: #2aa198;">(</span>setq visible-bell 1<span style="color: #2aa198;">)</span>           <span style="color: #586e75;">; </span><span style="color: #586e75;">Disable terminal bells</span>
-<span style="color: #2aa198;">(</span>setq-default
-  show-trailing-whitespace t<span style="color: #2aa198;">)</span>       <span style="color: #586e75;">; </span><span style="color: #586e75;">Highlight trailing whitespace</span>
-<span style="color: #2aa198;">(</span>global-auto-revert-mode t<span style="color: #2aa198;">)</span> <span style="color: #586e75;">; </span><span style="color: #586e75;">Automatically revert buffers when files change. This is useful when switching branches and</span>
+<pre class="src src-emacs-lisp">(setq scroll-step 1)            <span style="color: #586e75;">; </span><span style="color: #586e75;">Scroll smoothly rather than by paging</span>
+(setq visible-bell 1)           <span style="color: #586e75;">; </span><span style="color: #586e75;">Disable terminal bells</span>
+(setq-default
+  show-trailing-whitespace t)       <span style="color: #586e75;">; </span><span style="color: #586e75;">Highlight trailing whitespace</span>
+(global-auto-revert-mode t) <span style="color: #586e75;">; </span><span style="color: #586e75;">Automatically revert buffers when files change. This is useful when switching branches and</span>
                             <span style="color: #586e75;">; </span><span style="color: #586e75;">as I sync org mode files between computers</span>
 
-<span style="color: #2aa198;">(</span>windmove-default-keybindings<span style="color: #2aa198;">)</span>
-<span style="color: #2aa198;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-c &lt;left&gt;"</span><span style="color: #b58900;">)</span>  'windmove-left<span style="color: #2aa198;">)</span>
-<span style="color: #2aa198;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-c &lt;right&gt;"</span><span style="color: #b58900;">)</span> 'windmove-right<span style="color: #2aa198;">)</span>
-<span style="color: #2aa198;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-c &lt;up&gt;"</span><span style="color: #b58900;">)</span>    'windmove-up<span style="color: #2aa198;">)</span>
-<span style="color: #2aa198;">(</span>global-set-key <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"C-c &lt;down&gt;"</span><span style="color: #b58900;">)</span>  'windmove-down<span style="color: #2aa198;">)</span>
+(windmove-default-keybindings)
+(global-set-key (kbd <span style="color: #2aa198;">"C-c &lt;left&gt;"</span>)  'windmove-left)
+(global-set-key (kbd <span style="color: #2aa198;">"C-c &lt;right&gt;"</span>) 'windmove-right)
+(global-set-key (kbd <span style="color: #2aa198;">"C-c &lt;up&gt;"</span>)    'windmove-up)
+(global-set-key (kbd <span style="color: #2aa198;">"C-c &lt;down&gt;"</span>)  'windmove-down)
 
-<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defalias</span> '<span style="color: #268bd2;">yes-or-no-p</span> 'y-or-n-p<span style="color: #2aa198;">)</span>   <span style="color: #586e75;">; </span><span style="color: #586e75;">Use 'y' or 'n' instead of 'yes' and 'no' in interactive buffers</span>
+(<span style="color: #859900; font-weight: bold;">defalias</span> '<span style="color: #268bd2;">yes-or-no-p</span> 'y-or-n-p)   <span style="color: #586e75;">; </span><span style="color: #586e75;">Use 'y' or 'n' instead of 'yes' and 'no' in interactive buffers</span>
 
-<span style="color: #2aa198;">(</span>setq backward-delete-char-untabify-method nil<span style="color: #2aa198;">)</span> <span style="color: #586e75;">; </span><span style="color: #586e75;">Disable hitting backspace on tabs converting that tab into spaces</span>
+(setq backward-delete-char-untabify-method nil) <span style="color: #586e75;">; </span><span style="color: #586e75;">Disable hitting backspace on tabs converting that tab into spaces</span>
 
 <span style="color: #586e75;">;; </span><span style="color: #586e75;">default to using tabs at 4</span>
-<span style="color: #2aa198;">(</span>setq-default indent-tabs-mode t<span style="color: #2aa198;">)</span>
-<span style="color: #2aa198;">(</span>setq-default tab-width 4<span style="color: #2aa198;">)</span>
-<span style="color: #2aa198;">(</span>setq-default tab-stop-list <span style="color: #b58900;">(</span>number-sequence 4 200 4<span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
-<span style="color: #2aa198;">(</span>setq-default tab-always-indent 'complete<span style="color: #2aa198;">)</span>
-<span style="color: #2aa198;">(</span>setq-default c-basic-offset 4<span style="color: #2aa198;">)</span>
-<span style="color: #2aa198;">(</span>setq-default c-default-style <span style="color: #2aa198;">"bsd"</span><span style="color: #2aa198;">)</span>
+(setq-default indent-tabs-mode t)
+(setq-default tab-width 4)
+(setq-default tab-stop-list (number-sequence 4 200 4))
+(setq-default tab-always-indent 'complete)
+(setq-default c-basic-offset 4)
+(setq-default c-default-style <span style="color: #2aa198;">"bsd"</span>)
 
 <span style="color: #586e75;">;; </span><span style="color: #586e75;">By default emacs doesn't tab indent to the current level when you hit return. Move to vim style.</span>
-<span style="color: #2aa198;">(</span>define-key global-map <span style="color: #b58900;">(</span>kbd <span style="color: #2aa198;">"RET"</span><span style="color: #b58900;">)</span> 'newline-and-indent<span style="color: #2aa198;">)</span>
+(define-key global-map (kbd <span style="color: #2aa198;">"RET"</span>) 'newline-and-indent)
 </pre>
 </div>
 
@@ -103,7 +102,6 @@ This doesn't just happen in emacs config. Here's a snippet from my old <a href="
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-vimrc">set autoindent      " Copy indent from current line when starting a new line
 					" (typing &lt;CR&gt; in Insert mode or when using the "o" or "O"
 					" command).
@@ -154,9 +152,9 @@ do it right from the start.
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">The literate way</h2>
-<div class="outline-text-2" id="text-orgheadline3">
+<div id="outline-container-org4c6c830" class="outline-2">
+<h2 id="org4c6c830">The literate way</h2>
+<div class="outline-text-2" id="text-org4c6c830">
 <p>
 Enter org-mode. Org is a system for writing plain text notes with syntax highlighting, code execution, task scheduling,
 agenda management, and many more. The whole idea is that you can write notes and mix them with references to things like
@@ -194,13 +192,12 @@ comments, and evaluate the emacs-lisp source blocks within it. Take a look at my
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-emacs-lisp"><span style="color: #586e75;">;; </span><span style="color: #586e75;">Martin's .emacs file</span>
 <span style="color: #586e75;">;;</span>
 <span style="color: #586e75;">;; </span><span style="color: #586e75;">Author: Martin Foot <a href="mailto:martin%40mfoot.com">&lt;martin@mfoot.com&gt;</a></span>
 
 <span style="color: #586e75;">;; </span><span style="color: #586e75;">Load the config</span>
-<span style="color: #2aa198;">(</span>org-babel-load-file <span style="color: #b58900;">(</span>concat user-emacs-directory <span style="color: #2aa198;">"config.org"</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+(org-babel-load-file (concat user-emacs-directory <span style="color: #2aa198;">"config.org"</span>))
 </pre>
 </div>
 

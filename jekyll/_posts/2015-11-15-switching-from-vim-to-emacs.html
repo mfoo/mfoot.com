@@ -47,8 +47,7 @@ for a yes or no response.
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defalias</span> '<span style="color: #268bd2;">yes-or-no-p</span> 'y-or-n-p<span style="color: #2aa198;">)</span>
+<pre class="src src-emacs-lisp">(<span style="color: #859900; font-weight: bold;">defalias</span> '<span style="color: #268bd2;">yes-or-no-p</span> 'y-or-n-p)
 </pre>
 </div>
 
@@ -58,8 +57,7 @@ show information about files on the filesystem:
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>setq dired-listing-switches <span style="color: #2aa198;">"-alh"</span><span style="color: #2aa198;">)</span>
+<pre class="src src-emacs-lisp">(setq dired-listing-switches <span style="color: #2aa198;">"-alh"</span>)
 </pre>
 </div>
 
@@ -69,8 +67,7 @@ continuously? Want to be able to save words to a personal dictionary?
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>add-hook 'org-mode-hook <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #268bd2;">()</span> <span style="color: #268bd2;">(</span>flyspell-mode<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<pre class="src src-emacs-lisp">(add-hook 'org-mode-hook (<span style="color: #859900; font-weight: bold;">lambda</span> () (flyspell-mode)))
 </pre>
 </div>
 
@@ -80,8 +77,7 @@ spell checker:
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>add-hook 'c++-mode-hook <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">lambda</span> <span style="color: #268bd2;">()</span> <span style="color: #268bd2;">(</span>flyspell-prog-mode<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+<pre class="src src-emacs-lisp">(add-hook 'c++-mode-hook (<span style="color: #859900; font-weight: bold;">lambda</span> () (flyspell-prog-mode)))
 </pre>
 </div>
 
@@ -90,8 +86,7 @@ Want emacs to run the a Ruby syntax checker and linter as you type? Install <a h
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span>flycheck-mode<span style="color: #2aa198;">)</span>
+<pre class="src src-emacs-lisp">(flycheck-mode)
 </pre>
 </div>
 

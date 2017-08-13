@@ -1,0 +1,39 @@
+#+BEGIN_EXPORT html
+---
+layout: post
+title: Non-breaking spaces in YAML files
+category: programming
+published: false
+tags:
+  - yaml
+---
+#+END_EXPORT
+
+We had a fun problem at work today. We'd copied some configuration settings from a guide that we have stored in our
+confluence wiki.
+
+#+BEGIN_SRC ruby :results raw
+require 'yaml'
+y = "parent_key:
+  key: value
+  key2: value2
+"
+YAML.load(y)
+#+END_SRC
+
+#+RESULTS:
+| parent_key | => | (key => value key2 => value2) |
+
+Now when we replace those spaces for non-breaking spaces:
+
+#+BEGIN_SRC ruby :results raw
+require 'yaml'
+y = "parent_key:
+key: value
+key2: value2
+"
+YAML.load(y)
+#+END_SRC
+
+#+RESULTS:
+| parent_key | => | (key => value key2 => value2) |

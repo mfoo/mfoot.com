@@ -54,14 +54,24 @@ Then add ~(org-babel-load-file (concat user-emacs-directory "config.org"))~ to =
 
 Here is the contents of my =~/.emacs= file:
 
-#+BEGIN_SRC emacs-lisp :results none :tangle ~/.emacs
+#+BEGIN_SRC lisp :results none :exports code
 ;; Martin's .emacs file
 ;;
 ;; Author: Martin Foot <martin@mfoot.com>
 
+<<<<<<< HEAD
 ;; Load the config
 (require 'org)
 (org-babel-load-file (concat user-emacs-directory "config.org"))
+=======
+; Limit garbage collection to speed up startup (TODO revert this after the config is loaded)
+(setq gc-cons-threshold 100000000)
+
+;; Load the config
+(org-babel-load-file (concat user-emacs-directory "config.org"))
+
+(setq gc-cons-threshold 800000)
+>>>>>>> org-jekyll
 #+END_SRC
 
 That's it.
@@ -69,18 +79,35 @@ That's it.
 The reason that this works is that some parts of this file are carefully organised. =org-babel-load-file= pulls out and
 executes =emacs-lisp= code blocks in the order they're in the file. This means that it's very important that my [[Package repositories][Package
 repositories]] section comes before any of the other non-standard config.
+<<<<<<< HEAD
 * Package repositories
 I use Melpa and Marmalade for repositories.
 
 #+BEGIN_SRC emacs-lisp :results none
 (require 'package)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+=======
+
+Small note for readers of the source file: The example above uses the org babel source language of ~lisp~ rather than
+~emacs-lisp~, meaning that it won't be executed by ~org-babel-load-file~ on startup. Initially I had a ~tangle~ block here so
+=~/.emacs.d/.emacs= would be written conveniently by org, but it adds to the startup time of every emacs load. Removing
+the ~tangle~ block meant a recursive load, so my workaround is to change the source language. ~org-babel-load-file~ will
+only evaluate ~emacs-lisp~ blocks.
+* Package repositories
+I use Melpa and Marmalade for repositories as well as Org's official repository.
+
+#+BEGIN_SRC emacs-lisp :results none
+(require 'package)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/") t)
+>>>>>>> org-jekyll
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
 #+END_SRC
 
 Then, since I use ~use-package~ for every package from the repositories, initialise this first.
 
+<<<<<<< HEAD
 #+BEGIN_SRC emacs-lisp :results none
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -90,12 +117,32 @@ Then, since I use ~use-package~ for every package from the repositories, initial
   (setq use-package-always-ensure t)
   (require 'use-package)
 )
+=======
+Note this is currently commented, it exists in =.emacs=.
+
+#+BEGIN_SRC emacs-lisp :results none
+;(unless (package-installed-p 'use-package)
+;  (package-refresh-contents)
+;  (package-install 'use-package))
+;
+;(eval-when-compile
+;  (setq use-package-always-ensure t)
+;  (setq use-package-verbose t) ; Put slow loading packages / config warnings in the *Messages* buffer
+;  (require 'use-package)
+;)
+>>>>>>> org-jekyll
 #+END_SRC
 
 =use-package= has support for removing minor modes from the bottom. This requires the =diminish= package.
 
 #+BEGIN_SRC emacs-lisp :results none
+<<<<<<< HEAD
 (use-package diminish)
+=======
+(use-package diminish
+  :defer t
+)
+>>>>>>> org-jekyll
 #+END_SRC
 * Startup time benchmarking
 It's possible to benchmark startup time in emacs. This is useful if evaluating this gets too slow. I keep these lines
@@ -110,15 +157,24 @@ package needs to be downloaded manually.
 * Load path
 TODO: Fix this!
 #+BEGIN_SRC emacs-lisp
+<<<<<<< HEAD
 (add-to-list 'load-path "~/org-mode/lisp/")
+=======
+;;(add-to-list 'load-path "~/org-mode/lisp/")
+>>>>>>> org-jekyll
 #+END_SRC
 
 * User information
 #+BEGIN_SRC emacs-lisp :results none
+<<<<<<< HEAD
 ;(setq user-full-name "Martin Foot"
 ;      user-mail-address "martin@mfoot.com")
 (setq user-full-name ""
       user-mail-address "")
+=======
+(setq user-full-name "Martin Foot"
+      user-mail-address "martin@mfoot.com")
+>>>>>>> org-jekyll
 #+END_SRC
 * Parentheses
 Use =electric-pair-mode= to automatically close inserted parentheses and braces. I don't have this enabled in text modes
@@ -139,6 +195,11 @@ Then I use =[[https://github.com/Fanael/rainbow-delimiters][rainbow-delimiters]]
 
 #+BEGIN_SRC emacs-lisp :results none
 (use-package rainbow-delimiters
+<<<<<<< HEAD
+=======
+  :diminish
+  :defer t
+>>>>>>> org-jekyll
   :config
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 )
@@ -164,6 +225,11 @@ I also like to highlight git changes in buffers in a git repository:
 
 #+BEGIN_SRC emacs-lisp :results none
 (use-package git-gutter+
+<<<<<<< HEAD
+=======
+  :diminish
+  :defer t
+>>>>>>> org-jekyll
   :config
   (global-git-gutter+-mode)
 )
@@ -173,6 +239,11 @@ When working with structured code it's nice to have an indentation guide.
 
 #+BEGIN_SRC emacs-lisp :results none
 (use-package indent-guide
+<<<<<<< HEAD
+=======
+  :defer t
+  :diminish
+>>>>>>> org-jekyll
   :config
   (add-hook 'prog-mode-hook (lambda () (indent-guide-mode)))
 )
@@ -191,6 +262,10 @@ I've configured it to wait 0.5 seconds before popping up the suggestions list.
 #+BEGIN_SRC emacs-lisp :results none
 (use-package which-key
   :diminish which-key-mode
+<<<<<<< HEAD
+=======
+  :defer t
+>>>>>>> org-jekyll
   :init
   (setq which-key-idle-delay 0.5)
   (which-key-mode)
@@ -219,6 +294,22 @@ I also configure emacs to ask me if I really want to quit when hitting =C-x C-c=
 #+BEGIN_SRC emacs-lisp :results none
 (setq confirm-kill-emacs 'y-or-n-p)
 #+END_SRC
+<<<<<<< HEAD
+=======
+* Multiple cursors
+[[https://github.com/magnars/multiple-cursors.el][Multiple cursors]] is cool.
+
+#+BEGIN_SRC emacs-lisp :results none
+(use-package multiple-cursors
+  :diminish multiple-cursors-mode
+  :defer t
+  :init
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+)
+#+END_SRC
+>>>>>>> org-jekyll
 * Symbolic links
 By default emacs doesn't follow symlinks
 
@@ -283,6 +374,11 @@ Let's also show a fortune message in the scratch buffer when we start emacs:
 
 #+BEGIN_SRC emacs-lisp :results none
 (use-package fortune-cookie
+<<<<<<< HEAD
+=======
+  :defer t
+  :diminish
+>>>>>>> org-jekyll
   :config
   (setq fortune-cookie-cowsay-enable nil) ; Disable cowsay
   (fortune-cookie-mode)                   ; Enable fortune cookie mode
@@ -392,6 +488,10 @@ I highlight mixed spaces and tabs, and have whitespace mode clean out blank line
 
 #+BEGIN_SRC emacs-lisp :results none
 (use-package expand-region
+<<<<<<< HEAD
+=======
+  :diminish
+>>>>>>> org-jekyll
   :defer t
   :bind ("C-=" . er/expand-region)
 )
@@ -400,10 +500,13 @@ I highlight mixed spaces and tabs, and have whitespace mode clean out blank line
 When I originally wrote this file I had a few simple customisations here. As I discovered new features and customised
 more things it became larger and larger and I had to split it into subcategories.
 
+<<<<<<< HEAD
 #+BEGIN_SRC emacs-lisp :results none
 (require 'org)
 #+END_SRC
 
+=======
+>>>>>>> org-jekyll
 ** Key bindings
 :LOGBOOK:
 - State "IN_PROGRESS" from "TODO"       [2015-12-03 Thu 10:17]
@@ -455,7 +558,11 @@ drawers makes them easily expandable and collapsible.
 (setq org-log-into-drawer t)
 #+END_SRC
 *** TODO State transitions
+<<<<<<< HEAD
 Here states transitions are configured. This is largely based on [[http://doc.norang.ca/org-mode.html#TasksAndStates][this document]] but I use =IN_PROGRESS= instead of =NEXT=.
+=======
+State transitions are largely based on [[http://doc.norang.ca/org-mode.html#TasksAndStates][this document]] but I use =IN_PROGRESS= instead of =NEXT=.
+>>>>>>> org-jekyll
 
 #+BEGIN_SRC emacs-lisp :results none
 (setq org-todo-keywords
@@ -494,7 +601,20 @@ whether or not the file exists.
 
 #+BEGIN_SRC emacs-lisp :results none
 (require 'cl) ; remove-if-not is inside the common-lisp package
+<<<<<<< HEAD
 (setq org-agenda-files (remove-if-not 'file-exists-p '("~/Repositories/notes" "~/repositories/notes" "~/Dropbox/life" "~/repositories/life")))
+=======
+(setq org-agenda-files
+  (remove-if-not
+    'file-exists-p
+    '(
+      "~/Repositories/notes"
+      "~/repositories/notes"
+      "~/repositories/life"
+      "~/repositories/life/projects"
+      "~/repositories/life/tasks")))
+;(setq org-agenda-files (remove-if-not 'file-exists-p '("~/Repositories/notes" "~/repositories/notes")))
+>>>>>>> org-jekyll
 #+END_SRC
 
 Set up a key binding for the org agenda
@@ -502,26 +622,42 @@ Set up a key binding for the org agenda
 #+BEGIN_SRC emacs-lisp :results none
 (global-set-key (kbd "C-c a") 'org-agenda)
 #+END_SRC
+<<<<<<< HEAD
 
+=======
+** Switching buffers
+>>>>>>> org-jekyll
 =org-iswitchb= is a quick way to switch org mode buffers.
 
 #+BEGIN_SRC emacs-lisp :results none
 (global-set-key (kbd "C-c b") 'org-iswitchb)
 #+END_SRC
+<<<<<<< HEAD
 
+=======
+** LaTeX entities
+>>>>>>> org-jekyll
 Enable pretty entities - shows e.g. \alpha \beta \gamma as UTF-8 characters.
 
 #+BEGIN_SRC emacs-lisp :results none
 (setq org-pretty-entities t)
 #+END_SRC
+<<<<<<< HEAD
 
+=======
+** Emphasis and italics
+>>>>>>> org-jekyll
 In =org-mode= we can use [[http://orgmode.org/manual/Emphasis-and-monospace.html][several different emphasis types]] using different emphasis markup. When a block of text has some
 emphasis on it, get emacs to hide the markup characters:
 
 #+BEGIN_SRC emacs-lisp :results none
 (setq org-hide-emphasis-markers t)
 #+END_SRC
+<<<<<<< HEAD
 
+=======
+** Syntax highlighting for code blocks
+>>>>>>> org-jekyll
 Ensure native syntax highlighting is used for inline source blocks in org files
 
 #+BEGIN_SRC emacs-lisp :results none
@@ -541,7 +677,11 @@ Configure the languages that Babel will automatically syntax highlight
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((sql . t)
+<<<<<<< HEAD
    (sh . t)
+=======
+   (shell . t)
+>>>>>>> org-jekyll
    (ditaa . t)
    (dot . t)
    (calc . t)
@@ -549,10 +689,19 @@ Configure the languages that Babel will automatically syntax highlight
    (emacs-lisp . t)
    (ruby . t)
    (python . t)
+<<<<<<< HEAD
   )
 )
 #+END_SRC
 
+=======
+   (gnuplot . t)
+   (latex . t)
+  )
+)
+#+END_SRC
+** Displaying images referenced in org files
+>>>>>>> org-jekyll
 When we're using a GUI emacs we can display embedded images on startup
 
 #+BEGIN_SRC emacs-lisp :results none
@@ -561,17 +710,32 @@ When we're using a GUI emacs we can display embedded images on startup
 (add-hook 'org-mode-hook 'org-babel-result-hide-all)
 #+END_SRC
 
+<<<<<<< HEAD
+=======
+I use graphical emacs so that I can display inline images. Set them to have a maximum size so large images don't fill
+the screen.
+
+#+BEGIN_SRC emacs-lisp :results none
+(setq org-image-actual-width 800)
+#+END_SRC
+** Export org's checkboxes as HTML checkboxes on HTML export
+>>>>>>> org-jekyll
 When exporting to HTML change check boxes into actual HTML check boxes.
 
 #+BEGIN_SRC emacs-lisp :results none
 (setq org-html-checkbox-type 'html)
 #+END_SRC
+<<<<<<< HEAD
 
+=======
+** Ditaa (generating images from textual block diagrams)
+>>>>>>> org-jekyll
 I use =ditaa= for block diagrams. This executes a java program and needs to know where to find the jar.
 
 #+BEGIN_SRC emacs-lisp :results none
 (setq org-ditaa-jar-path "/home/martin/bin/ditaa0_9.jar")
 #+END_SRC
+<<<<<<< HEAD
 
 I use graphical emacs so that I can display inline images. Set them to have a maximum size so large images don't fill
 the screen.
@@ -580,6 +744,9 @@ the screen.
 (setq org-image-actual-width 800)
 #+END_SRC
 
+=======
+** To Do list and agenda
+>>>>>>> org-jekyll
 I've been using a single TODO list file and using org-capture to capture todo items to my org agenda from anywhere. This
 tends to happen at home rather than at work as my work org files contain appropriate TODOs arranged by date headers. At
 home and in my blog I can capture TODO items and put them in this directory.
@@ -628,8 +795,14 @@ Example: :)
 
 #+BEGIN_SRC emacs-lisp :results none
 (use-package emojify
+<<<<<<< HEAD
   :init
   (add-hook 'org-mode-hook 'emojify-mode))
+=======
+  :diminish
+  :defer t
+)
+>>>>>>> org-jekyll
 #+END_SRC
 ** Improved bullet point styles
 *** Section headers
@@ -639,6 +812,11 @@ These are taken from https://thraxys.wordpress.com/2016/01/14/pimp-up-your-org-a
 
 #+BEGIN_SRC emacs-lisp :results none
 (use-package org-bullets
+<<<<<<< HEAD
+=======
+  :defer t
+  :diminish
+>>>>>>> org-jekyll
   :init
   (setq org-bullets-bullet-list '("◉" "◎" "⚫" "○" "►" "◇"))
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
@@ -659,6 +837,10 @@ section of the screen to insert, where it uses =org-attach= to save it, embeds i
 
 #+BEGIN_SRC emacs-lisp :results none
 (use-package org-attach-screenshot
+<<<<<<< HEAD
+=======
+  :diminish
+>>>>>>> org-jekyll
   :bind
   (("C-c S" . org-attach-screenshot))
 )
@@ -669,6 +851,7 @@ I use =org-reveal= for HTML/JS presentations.
 TODO: Get org-reveal installed.
 
 #+BEGIN_SRC emacs-lisp
+<<<<<<< HEAD
 (add-to-list 'load-path "~/.emacs.d/org-reveal/")
 (setq org-reveal-root (expand-file-name (concat user-emacs-directory "reveal.js")))
 (add-hook 'org-mode-hook (lambda () (load-library "ox-reveal")))
@@ -716,6 +899,12 @@ PATH should be a topic that can be thrown at the man command."
 #+END_SRC
 
 
+=======
+;(add-to-list 'load-path "~/.emacs.d/org-reveal/")
+;(setq org-reveal-root (expand-file-name (concat user-emacs-directory "reveal.js")))
+;(add-hook 'org-mode-hook (lambda () (load-library "ox-reveal"))) ;
+#+END_SRC
+>>>>>>> org-jekyll
 * Blog
 [[http://www.mfoot.com][My blog]] uses a static site generator called [[https://jekyllrb.com/][Jekyll]]. This parses YAML files and produces static HTML content which I then
 host on [[https://aws.amazon.com/s3/][Amazon S3]]. I really like the power of =org-mode= in Emacs, so this configuration block enables me to write blog
@@ -780,11 +969,19 @@ manipulation to insert the Google Analytics code at the end of the =<body>= tag.
 (setq org-publish-project-alist
   '(
      ("org-mfoot" ; Export my blog to the Jekyll format for ~jekyll build~
+<<<<<<< HEAD
        :base-directory "~/repositories/mfoot.com/jekyll/_posts"
        :base-extension "org"
 
        ;; Path to your Jekyll project.
        :publishing-directory "~/repositories/mfoot.com/jekyll/_posts"
+=======
+       :base-directory "~/repositories/mfoot.com/org/"
+       :base-extension "org"
+
+       ;; Path to your Jekyll project.
+       :publishing-directory "~/repositories/mfoot.com/jekyll/"
+>>>>>>> org-jekyll
        :recursive t
        :publishing-function org-html-publish-to-html
        :html-extension "html"
@@ -798,6 +995,7 @@ manipulation to insert the Google Analytics code at the end of the =<body>= tag.
        :auto-postamble nil
      )
 
+<<<<<<< HEAD
     ;("org-static-mfoot"
     ;      :base-directory "~/repositories/mfoot.com/org/"
     ;      :base-extension "css\\|js\\|png\\|jpg\\|gif"
@@ -805,6 +1003,15 @@ manipulation to insert the Google Analytics code at the end of the =<body>= tag.
     ;      :recursive t
     ;      :publishing-function org-publish-attachment
     ;)
+=======
+    ("org-static-mfoot"
+          :base-directory "~/repositories/mfoot.com/org/"
+          :base-extension "css\\|js\\|png\\|jpg\\|gif"
+          :publishing-directory "~/repositories/mfoot.com/jekyll"
+          :recursive t
+          :publishing-function org-publish-attachment
+    )
+>>>>>>> org-jekyll
 
     ("emacs-dotfiles-mfoot.com" ; Publish an HTML version of this file to the static folder.
       :base-directory "~/repositories/dotfiles/.emacs.d/"
@@ -827,7 +1034,11 @@ manipulation to insert the Google Analytics code at the end of the =<body>= tag.
 
     ("mfoot.com" :components (
       "org-mfoot"
+<<<<<<< HEAD
       ;"org-static-mfoot"
+=======
+      "org-static-mfoot"
+>>>>>>> org-jekyll
       "emacs-dotfiles-mfoot.com"
       "emacs-config.org-mfoot.com"
     )
@@ -839,7 +1050,13 @@ In addition, I need to install the =htmlize= package to provide syntax highlight
 information.
 
 #+BEGIN_SRC emacs-lisp :results none
+<<<<<<< HEAD
 (use-package htmlize)
+=======
+(use-package htmlize
+  :defer t
+)
+>>>>>>> org-jekyll
 #+END_SRC
 
 In order to get images to work both inside emacs and inside the generated output I need to register a custom image
@@ -891,8 +1108,18 @@ for some really fast navigation of the visible buffer.
 
 #+BEGIN_SRC emacs-lisp :results none
 (use-package avy
+<<<<<<< HEAD
   :init (progn
     (use-package evil)
+=======
+  :defer t
+  :diminish
+  :init (progn
+    (use-package evil
+      :diminish
+      :defer t
+    )
+>>>>>>> org-jekyll
   )
   :config
   (define-key evil-normal-state-map (kbd "gc") 'avy-goto-char)
@@ -909,7 +1136,13 @@ I swap branches a lot. =auto-reload-mode= will automatically reload opened buffe
 I use flycheck mode for syntax highlighting and linting when programming. See https://github.com/flycheck/flycheck
 #+BEGIN_SRC emacs-lisp :results none
 (use-package flycheck
+<<<<<<< HEAD
   :init
+=======
+  :defer t
+  :diminish
+  :config
+>>>>>>> org-jekyll
   (add-hook 'prog-mode-hook (lambda () (flycheck-mode)))
 )
 #+END_SRC
@@ -918,7 +1151,14 @@ I use flycheck mode for syntax highlighting and linting when programming. See ht
 Add a major mode for yaml highlighting
 
 #+BEGIN_SRC emacs-lisp :results none
+<<<<<<< HEAD
 (use-package yaml-mode)
+=======
+(use-package yaml-mode
+  :defer t
+  :diminish
+)
+>>>>>>> org-jekyll
 #+END_SRC
 ** C
 At work we use BSD-style C/C++. We also set the default indentation to four spaces.
@@ -931,6 +1171,7 @@ At work we use BSD-style C/C++. We also set the default indentation to four spac
 I've just started learning about Go so this is very basic. Enough to run through the tutorials.
 
 #+BEGIN_SRC emacs-lisp :results none
+<<<<<<< HEAD
 (use-package go-mode)
 
 (setenv "GOPATH" "~/go")
@@ -938,6 +1179,17 @@ I've just started learning about Go so this is very basic. Enough to run through
 (add-hook 'go-mode-hook (lambda () (
   (add-hook 'before-save-hook 'gofmt-before-save)
 )))
+=======
+(use-package go-mode
+  :mode "\\.go"
+  :init
+  (setenv "GOPATH" "~/go")
+  :config
+  (add-hook 'go-mode-hook (lambda () (
+    (add-hook 'before-save-hook 'gofmt-before-save)
+  )))
+)
+>>>>>>> org-jekyll
 #+END_SRC
 ** SCSS
 When doing web development, SCSS is really useful. We use [[https://github.com/antonj/scss-mode][scss-mode]] for this. By default hitting tab will insert four
@@ -945,6 +1197,10 @@ spaces. We'll modify this to use two in the same format that Twitter's Bootstrap
 
 #+BEGIN_SRC emacs-lisp :results none
 (use-package scss-mode
+<<<<<<< HEAD
+=======
+  :defer t
+>>>>>>> org-jekyll
   :config
   (add-hook 'scss-mode-hook (lambda () (
     (setq css-indent-offset 2)
@@ -953,6 +1209,7 @@ spaces. We'll modify this to use two in the same format that Twitter's Bootstrap
   )))
 )
 #+END_SRC
+<<<<<<< HEAD
 * Linting prose
 I came across a [[http://unconj.ca/blog/linting-prose-in-emacs.html][cool blog post]] on linting prose in emacs with the [[http://proselint.com][proselint package]] for python wrapped as a flycheck
 checker.
@@ -968,12 +1225,16 @@ checker.
   :modes (text-mode markdown-mode org-mode))
 (add-to-list 'flycheck-checkers 'proselint)
 #+END_SRC
+=======
+
+>>>>>>> org-jekyll
 * Autocompletion
 I use [[http://company-mode.github.io/][company-mode]] for autocompletion. It's bound to =C-<space>= in a similar way to eclipse. Since I use =evil-mode= I
 don't use emacs' default mark combo.
 
 #+BEGIN_SRC emacs-lisp :results none
 (use-package company
+<<<<<<< HEAD
   :init
   (use-package helm-company
     :config
@@ -997,6 +1258,27 @@ don't use emacs' default mark combo.
               '(:with company-yasnippet))))
 
   (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+=======
+  :defer t
+  :diminish
+  :config
+  (progn
+    ;; Company mode interferes with yasnippets, so this fixes it and integrates them:
+    ;; http://emacs.stackexchange.com/questions/10431/get-company-to-show-suggestions-for-yasnippet-names
+    ;; Add yasnippet support for all company backends
+    ;; https://github.com/syl20bnr/spacemacs/pull/179
+    (defvar company-mode/enable-yas t
+      "Enable yasnippet for all backends.")
+
+    (defun company-mode/backend-with-yas (backend)
+      (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+          backend
+        (append (if (consp backend) backend (list backend))
+                '(:with company-yasnippet))))
+    (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+
+    (global-company-mode)
+>>>>>>> org-jekyll
   )
 )
 #+END_SRC
@@ -1006,6 +1288,11 @@ I've discovered =yafolding-mode= for all my code folding needs.
 
 #+BEGIN_SRC emacs-lisp :results none
 (use-package yafolding
+<<<<<<< HEAD
+=======
+  :defer t
+  :diminish
+>>>>>>> org-jekyll
   :config
   (add-hook 'prog-mode-hook (lambda()  (yafolding-mode)))
 )
@@ -1017,8 +1304,15 @@ advised.
 
 #+BEGIN_SRC emacs-lisp :results none
 (use-package magit
+<<<<<<< HEAD
   :config
   (global-set-key (kbd "C-x g") 'magit-status)
+=======
+  :diminish
+  :bind (("C-x g" . magit-status))
+  :config
+  (setq magit-completing-read-function 'ivy-completing-read)
+>>>>>>> org-jekyll
 )
 #+END_SRC
 * TODO Base editor configuration
@@ -1032,8 +1326,11 @@ I came from Vim and some of the default emacs functionality felt weird to me.
 ;; TODO: Try and get projectile-ag to work. Is git grep better?
 ;; Human readable sizes in dired
 (setq dired-listing-switches "-alh")
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> org-jekyll
 #+END_SRC
 ** Mouse support for terminals
 Enable the mouse when running in a terminal.
@@ -1098,6 +1395,7 @@ iterates over all of them, installing each one. My =~/.emacs= configures [[https
 
 
   ) "a list of packages to ensure are installed at launch.")
+<<<<<<< HEAD
 
 
 ;; method to check if all packages are installed
@@ -1116,6 +1414,8 @@ iterates over all of them, installing each one. My =~/.emacs= configures [[https
 ;  (dolist (p required-packages)
 ;	(when (not (package-installed-p p))
 ;   (package-install p))))
+=======
+>>>>>>> org-jekyll
 #+END_SRC
 
 * Remote shells
@@ -1153,9 +1453,19 @@ This is customised to use the =solarized= theme.
 
 #+BEGIN_SRC emacs-lisp :results none
 (use-package solarized-theme
+<<<<<<< HEAD
   :init
   (load-theme 'solarized-dark)
   (use-package smart-mode-line
+=======
+  :defer t
+  :init
+  (load-theme 'solarized-dark)
+  :config
+  (use-package smart-mode-line
+    :defer t
+    :diminish
+>>>>>>> org-jekyll
     :config
     (progn
       (setq sml/no-confirm-load-theme t)
@@ -1179,14 +1489,28 @@ keybindings.
 
 #+BEGIN_SRC emacs-lisp :results none
 (use-package evil
+<<<<<<< HEAD
+=======
+  :diminish
+>>>>>>> org-jekyll
   :config (evil-mode) ; Enable evil mode globally
 )
 
 (use-package evil-surround
+<<<<<<< HEAD
+=======
+  :defer t
+  :diminish
+>>>>>>> org-jekyll
   :config (global-evil-surround-mode t)
 )
 
 (use-package evil-tabs
+<<<<<<< HEAD
+=======
+  :defer t
+  :diminish
+>>>>>>> org-jekyll
   :config (global-evil-tabs-mode t)
 )
 #+END_SRC
@@ -1206,6 +1530,10 @@ mechanism backed by external commands exists as well).
 
 #+BEGIN_SRC emacs-lisp :results none
 (use-package projectile
+<<<<<<< HEAD
+=======
+  :diminish
+>>>>>>> org-jekyll
   :config
   (projectile-global-mode)
 )
@@ -1214,7 +1542,14 @@ mechanism backed by external commands exists as well).
 I use =helm-projectile-ag= quite a lot which requires the =ag= package.
 
 #+BEGIN_SRC emacs-lisp :results none
+<<<<<<< HEAD
 (use-package ag)
+=======
+(use-package ag
+  :defer t
+  :diminish
+)
+>>>>>>> org-jekyll
 #+END_SRC
 ** Recentf mode
 As well as using Projectile for browsing projects, [[https://www.emacswiki.org/emacs/RecentFiles][recentf]] shows recently opened files in the buffer list for fast
@@ -1239,6 +1574,7 @@ pane that will pop up and disappear with the =F8= key.
   ([f8] . neotree-toggle)
 )
 #+END_SRC
+<<<<<<< HEAD
 ** TODO Helm mode
 :LOGBOOK:
 - State "TODO"       from ""           [2015-11-21 Sat 10:01]
@@ -1276,6 +1612,35 @@ Use [[https://github.com/yasuyk/helm-git-grep][helm-git-grep]] for fast searches
 The TODO here is that helm is /awesome/. There are so many functions to learn. I need to find some easy-to-remember
 shortcuts for things like =helm-occur=. Spend some time reading
 http://pages.sachachua.com/.emacs.d/Sacha.html#orgheadline12.
+=======
+** Swiper
+I've switched to Swiper from Helm.
+
+#+BEGIN_SRC emacs-lisp :results none
+(use-package counsel
+  :ensure t
+)
+
+(use-package swiper
+  :ensure t
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (global-set-key "\C-s" 'swiper)
+  (global-set-key (kbd "C-c C-r") 'ivy-resume)
+  (global-set-key (kbd "<f6>") 'ivy-resume)
+  (global-set-key (kbd "M-x") 'counsel-M-x)
+  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+  (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+  (global-set-key (kbd "C-c j") 'counsel-git-grep)
+  (global-set-key (kbd "C-c k") 'counsel-ag)
+  (global-set-key (kbd "C-x l") 'counsel-locate)
+  (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+  (setq projectile-completion-system 'ivy)
+)
+#+END_SRC
+
+>>>>>>> org-jekyll
 ** Anzu
 [[https://github.com/syohex/emacs-anzu][Anzu]] shows how many strings match the regex you're replacing and show the effect of replacement as the substitution is
 typed. This is awesome. Using =%s/using/foo/= you'll see the change to =foo= in the buffer.
@@ -1284,7 +1649,13 @@ http://pragmaticemacs.com/emacs/prettier-text-replacement-with-anzu/
 
 #+BEGIN_SRC emacs-lisp :results none
 (use-package anzu
+<<<<<<< HEAD
   :init (global-anzu-mode)
+=======
+  :diminish
+  :defer t
+  :config (global-anzu-mode)
+>>>>>>> org-jekyll
   :bind (
     ("M-%" . anzu-query-replace)
     ("C-M-%" . anzu-query-replace-regexp)
@@ -1306,7 +1677,12 @@ This is enabled globally:
 (use-package rainbow-mode
   :config
   (rainbow-mode)
+<<<<<<< HEAD
   (add-hook 'scss-mode-hook (lambda () (rainbow-mode)))
+=======
+  :diminish
+  :defer t
+>>>>>>> org-jekyll
 )
 #+END_SRC
 ** Coffee mode
@@ -1314,10 +1690,19 @@ Major mode for editing CoffeeScript files.
 
 #+BEGIN_SRC emacs-lisp :results none
 (use-package coffee-mode
+<<<<<<< HEAD
+=======
+  :mode "\\.coffee$"
+>>>>>>> org-jekyll
   :config (setq coffee-tab-width 2)
 )
 
 (use-package flymake-coffee
+<<<<<<< HEAD
+=======
+  :defer t
+  :diminish
+>>>>>>> org-jekyll
   :init
   (add-hook 'coffee-mode-hook 'flymake-coffee-load)
 )
@@ -1325,15 +1710,29 @@ Major mode for editing CoffeeScript files.
 
 ** Docker
 #+BEGIN_SRC emacs-lisp :results none
+<<<<<<< HEAD
 (use-package docker)
 (use-package dockerfile-mode)
+=======
+(use-package docker
+  :defer t
+  :diminish
+)
+(use-package dockerfile-mode
+  :defer t
+)
+>>>>>>> org-jekyll
 #+END_SRC
 ** Ruby configuration
 Provide a =ruby-mode= for editing ruby files.
 
 #+BEGIN_SRC emacs-lisp :results none
 (use-package enh-ruby-mode
+<<<<<<< HEAD
   :mode "\\.rb\\'"
+=======
+  :mode "\\.rb$"
+>>>>>>> org-jekyll
   :config
   (setq enh-ruby-deep-indent-paren nil) ; Don't indent ruby function parameters at column index of function parentheses
 )
@@ -1343,6 +1742,10 @@ I use rspec a lot, and [[https://github.com/pezra/rspec-mode][rspec-mode]] is ve
 
 #+BEGIN_SRC emacs-lisp :results none
 (use-package rspec-mode
+<<<<<<< HEAD
+=======
+  :mode "_spec.rb$"
+>>>>>>> org-jekyll
   :config
   (setq rspec-use-rake-when-possible nil)
   (setq rspec-use-bundler-when-possible t)
@@ -1361,7 +1764,16 @@ I use rspec a lot, and [[https://github.com/pezra/rspec-mode][rspec-mode]] is ve
 [[https://github.com/rejeep/ruby-end.el][ruby-end]] inserts =end= blocks whenever I type =do= automatically.
 
 #+BEGIN_SRC emacs-lisp :results none
+<<<<<<< HEAD
 (use-package ruby-end)
+=======
+(use-package ruby-end
+  :defer t
+  :diminish
+  :init
+  (add-hook 'ruby-mode-hook #'ruby-end-mode)
+)
+>>>>>>> org-jekyll
 #+END_SRC
 
 The following allows using =binding.pry= in =rspec-mode=.
@@ -1375,6 +1787,7 @@ The following allows using =binding.pry= in =rspec-mode=.
 )
 
 (use-package robe
+<<<<<<< HEAD
   :init
   (add-hook 'enh-ruby-mode-hook 'robe-mode)
   :config
@@ -1387,6 +1800,48 @@ The following allows using =binding.pry= in =rspec-mode=.
 (use-package cmake-mode)
 #+END_SRC
 
+=======
+  :defer t
+  :init
+  (add-hook 'enh-ruby-mode-hook 'robe-mode)
+  (with-eval-after-load 'company (add-to-list 'company-backends 'company-robe))
+)
+
+(defun mfoot/rdb ()
+  "Run rake db:rdb."
+  (interactive)
+  (let ((default-directory "~/repositories/cube/src/webapp"))
+	(async-shell-command "bundle exec rake db:rdb" "*Bundle exec*")))
+
+(defun mfoot/trdb ()
+  "Run rake db:trdb."
+  (interactive)
+  (let ((default-directory "~/repositories/cube/src/webapp"))
+	(async-shell-command "bundle exec rake db:trdb" "*Bundle exec*")))
+
+(add-hook 'enh-ruby-mode-hook
+  (lambda () (local-set-key (kbd "C-x r t") 'mfoot/trdb))
+  (lambda () (local-set-key (kbd "C-x r d") 'mfoot/rdb)))
+#+END_SRC
+
+[[https://github.com/asok/projectile-rails][projectile-rails]] provides quick jump-to-model and jump-to-helper support for rails projects.
+
+#+BEGIN_SRC emacs-lisp :results none
+(use-package projectile-rails
+  :defer t
+  :diminish
+  :init
+  (add-hook 'projectile-mode-hook 'projectile-rails-on)
+)
+#+END_SRC
+** CMake
+#+BEGIN_SRC emacs-lisp :results none
+(use-package cmake-mode
+  :diminish
+  :mode ("CMakeLists.txt" . cmake-mode)
+)
+#+END_SRC
+>>>>>>> org-jekyll
 ** MySQL
 Emacs has a built-in MySQL client. When using it, I want to disable line wrapping. I can use standard text navigation
 features to see what I need ([[https://zeekat.nl/articles/making-emacs-work-for-me.html][source]]).
@@ -1398,6 +1853,10 @@ features to see what I need ([[https://zeekat.nl/articles/making-emacs-work-for-
 I use [[https://github.com/flycheck/flycheck][flycheck]] as a framework for syntax checking and static analysis. E.g. it will provide language-specific syntax
 checking for known languages. Some languages also provide linting as well via flycheck.
 
+<<<<<<< HEAD
+=======
+TODO: This section should be merged with my =use-package= declaration for flycheck.
+>>>>>>> org-jekyll
 #+BEGIN_SRC emacs-lisp :results none
 (add-hook 'prog-mode-hook (lambda () (flycheck-mode)))
 #+END_SRC
@@ -1424,6 +1883,7 @@ I don't flyspell =org-mode= buffers inside the =PROPERTIES=, =LOGBOOK=, or =BEGI
 * Presenting
 I've been using [[https://github.com/yjwen/org-reveal][org-reveal]] for presentations.
 
+<<<<<<< HEAD
 ##+BEGIN_SRC emacs-lisp :results none
 #(use-package ox-reveal
 #  :ensure t
@@ -1433,12 +1893,30 @@ I've been using [[https://github.com/yjwen/org-reveal][org-reveal]] for presenta
 #  (add-hook 'org-mode-hook (lambda () (load-library 'ox-reveal)))
 #)
 ##+END_SRC
+=======
+#+BEGIN_SRC emacs-lisp :results none
+;; (use-package ox-reveal
+;;   :ensure t
+;;   :defer t
+;;   :config
+;;   (setq org-reveal-root (concat user-emacs-directory "reveal-js/reveal.js"))
+;;   (add-hook 'org-mode-hook (lambda () (load-library 'ox-reveal)))
+;; )
+#+END_SRC
+>>>>>>> org-jekyll
 * TODO Code snippet handling
 I use [[https://github.com/capitaomorte/yasnippet][yasnippet]] for code snippet handling. This is enabled globally.
 
 #+BEGIN_SRC emacs-lisp :results none
+<<<<<<< HEAD
  (use-package yasnippet
    :config (yas-global-mode 1)
+=======
+(use-package yasnippet
+  :config (yas-global-mode 1)
+  :diminish
+  :defer t
+>>>>>>> org-jekyll
  )
 #+END_SRC
 * TODO Other configuration
@@ -1446,6 +1924,7 @@ This section holds configuration from before I moved to using =org-babel= (i.e. 
 here just because I haven't had the time or the impetus to categorise and document it.
 
 #+BEGIN_SRC emacs-lisp :results none
+<<<<<<< HEAD
 ;(add-hook 'projectile-mode-hook 'projectile-custom-hook)
 ;(add-hook 'helm-projectile-mode-hook 'projectile-custom-hook)
 
@@ -1453,6 +1932,8 @@ here just because I haven't had the time or the impetus to categorise and docume
 ;(global-set-key (kbd "C-c p g") 'helm-projectile-grep)
 ;(define-key projectile-command-map (kbd "C-c p g") 'helm-projectile-grep)
 
+=======
+>>>>>>> org-jekyll
 ;; If we're at the end of a word and hit TAB, run the expand command
 ;; for tab completion. If we're not at the end of a word, run the
 ;; normal tab command

@@ -1,0 +1,213 @@
+#+BEGIN_EXPORT html
+---
+layout: post
+title: Literate emacs configuration with org mode
+category: emacs
+tags:
+  - org-mode
+  - literate programming
+  - .emacs
+  - org-babel-load-file
+---
+#+END_EXPORT
+
+I've been using org mode with emacs more and more recently. It's exceptional. I keep finding new features and
+capabilities that make the switch to emacs increasingly worthwhile. This post is about configuring emacs and managing
+configuration in an approachable, coherent, and understandable way.
+
+* What is literate programming?
+
+From the [[https://en.wikipedia.org/wiki/Literate_programming][Wikipedia article for Literate programming]]:
+
+#+BEGIN_QUOTE
+Literate programming is an approach to programming introduced by Donald Knuth in which a program is given as an
+explanation of the program logic in a natural language, such as English, interspersed with snippets of macros and
+traditional source code, from which a compilable source code can be generated.
+#+END_QUOTE
+
+The core concept is that a program is much easier to understand by any human being when it is mixed with prose about
+that program. While often algorithmic or structural comments in code are quite detailed, I often find single line
+comments without much meaning that do little to help me understand the code. Complex systems require complex
+descriptions, and taking the time to properly annotate code is important. It's often quite difficult as well, as it's
+combined with a choice of where exactly to put the comment so that it's most useful - is there any documentation to
+update as well?
+
+#+BEGIN_EXPORT html
+<!-- more -->
+#+END_EXPORT
+* What's wrong with configuration files?
+
+I only started using emacs recently. Every few days I changed a configuration setting to get the editor to do what I
+wanted or to be more like the in-my-opinion superior vim defaults. I added and configured plugins, wrote functions that
+got executed on certain language-specific programming mode hooks, changed line length and word wrapping settings,
+configured themes and highlighting, etc.
+
+I ended up with a =.emacs= file that was huge and when I came back to modify it I didn't always remember the reason behind
+each setting. What effect does it have? What is wrong with the default setting? The comments I had made tended to
+explain what the line was doing but not why. A lot of lines didn't have comments at all. Here's an extract from my
+=.emacs= file from [[https://github.com/mfoo/dotfiles/blob/66a4b4a41e42e7c4c58e88c8718ea27febb59964/.emacshttps://github.com/mfoo/dotfiles/blob/66a4b4a41e42e7c4c58e88c8718ea27febb59964/.emacs][a recent commit]]:
+
+#+BEGIN_SRC emacs-lisp
+(setq scroll-step 1)			; Scroll smoothly rather than by paging
+(setq visible-bell 1)			; Disable terminal bells
+(setq-default
+  show-trailing-whitespace t)		; Highlight trailing whitespace
+(global-auto-revert-mode t)	; Automatically revert buffers when files change. This is useful when switching branches and
+							; as I sync org mode files between computers
+
+(windmove-default-keybindings)
+(global-set-key (kbd "C-c <left>")	'windmove-left)
+(global-set-key (kbd "C-c <right>") 'windmove-right)
+(global-set-key (kbd "C-c <up>")	'windmove-up)
+(global-set-key (kbd "C-c <down>")	'windmove-down)
+
+(defalias 'yes-or-no-p 'y-or-n-p)	; Use 'y' or 'n' instead of 'yes' and 'no' in interactive buffers
+
+(setq backward-delete-char-untabify-method nil) ; Disable hitting backspace on tabs converting that tab into spaces
+
+;; default to using tabs at 4
+(setq-default indent-tabs-mode t)
+(setq-default tab-width 4)
+(setq-default tab-stop-list (number-sequence 4 200 4))
+(setq-default tab-always-indent 'complete)
+(setq-default c-basic-offset 4)
+(setq-default c-default-style "bsd")
+
+;; By default emacs doesn't tab indent to the current level when you hit return. Move to vim style.
+(define-key global-map (kbd "RET") 'newline-and-indent)
+#+END_SRC
+
+What's wrong here? Well, the comment indentation changes a lot, there's similar types of settings in different parts of
+the file, there's global variables very close to language specific variables, and a lot of the non-obvious settings
+aren't commented at all. There's also a global mode being enabled inside a section of the configuration that looks like
+it's meant for editor defaults configuration. What a mess.
+
+This doesn't just happen in emacs config. Here's a snippet from my old [[https://raw.githubusercontent.com/mfoo/dotfiles/master/.vimrc][.vimrc]]:
+
+#+BEGIN_SRC vimrc
+set autoindent      " Copy indent from current line when starting a new line
+                    " (typing <CR> in Insert mode or when using the "o" or "O"
+                    " command).
+
+set smartindent     " Do smart autoindenting when starting a new line. Works
+                    " for C-like programs, but can also be used for other
+                    " languages.
+
+set wrap            " Wrap lines that are longer than the width of the screen
+
+" Format JSON data
+map <C-F6> :%!python -m json.tool<CR>
+
+"------------------------------------------------------------------------------
+" Search Settings
+"------------------------------------------------------------------------------
+
+set incsearch       " Start showing search results as soon as we type
+set ignorecase      " Get search to ignore cases.
+set smartcase       " If the search string has uppercase characters, override ignorecase.
+"------------------------------------------------------------------------------
+" Key Bindings
+"------------------------------------------------------------------------------
+let mapleader=","
+
+" Use normal regex chars.
+nnoremap / /\v
+vnoremap / /\v
+#+END_SRC
+
+Here I've tried to keep the comments consistent but there's still settings, keybindings, and custom functions all in
+similar places. I've tried to keep the file separated by headers but they are only as good as the diligence I use when
+maintaining the file. It's obvious that I've worked on these files bit by bit over time without spending much effort on
+making it understandable or organising the sections. This is entirely my fault, but I don't feel like the standard style
+of configuration files provides a framework to encourage people to do the right thing. They often end up as a jumbled
+bucket of unrelated settings. A maintenance quagmire. It feels like a laziness epidemic. The only cure is diligence when
+making changes.
+
+Often going back and adding comments after-the-fact is difficult if you don't remember why the setting existed in the
+first place or what the defaults were. Given that I was just at the beginning of my emacs adventure and had made a
+relatively small number of changes I was at an ideal place to apply a framework that would encourage documentation and
+do it right from the start.
+
+* The literate way
+Enter org-mode. Org is a system for writing plain text notes with syntax highlighting, code execution, task scheduling,
+agenda management, and many more. The whole idea is that you can write notes and mix them with references to things like
+articles, images, and example code combined with the output of that code after it is executed. For instance, imagine I'm
+taking notes on a support request that needs some database diving and I need to construct a query. I can make a SQL code
+block, tell org mode to use my local development database, then execute it. The results are shown in a table right under
+the SQL statement. Without ever leaving emacs. I can refine the query until I have exactly what I want before running it
+on the production database. In addition to the ability to execute pretty much arbitrary code right from inside emacs,
+org comes with a very interesting function called =org-babel-load-file=. Using =M-x describe-function <ret>
+org-babel-load-file= we can see what it does:
+
+#+BEGIN_QUOTE emacs-lisp
+org-babel-load-file is an interactive compiled Lisp function.
+
+(org-babel-load-file FILE &optional COMPILE)
+
+Load Emacs Lisp source code blocks in the Org-mode FILE.
+This function exports the source code using `org-babel-tangle'
+and then loads the resulting file using `load-file'.  With prefix
+arg (noninteractively: 2nd arg) COMPILE the tangled Emacs Lisp
+file to byte-code before it is loaded.
+#+END_QUOTE
+
+In short it executes any code inside emacs-lisp source code blocks in an org mode file. This is awesome. It means we can
+write a file in org format giving descriptions and code examples and have emacs load the file, completely ignore the
+comments, and evaluate the emacs-lisp source blocks within it. Take a look at my =~/.emacs=:
+
+#+BEGIN_SRC emacs-lisp
+;; Martin's .emacs file
+;;
+;; Author: Martin Foot <martin@mfoot.com>
+
+;; Load the config
+(org-babel-load-file (concat user-emacs-directory "config.org"))
+#+END_SRC
+
+That's it. Now we take a look at a snippet from =~/.emacs.d/config.org=:
+
+#+BEGIN_EXAMPLE
+,* Startup message
+Don't show the default emacs startup message when it's opened
+
+,#+BEGIN_SRC emacs-lisp
+(setq inhibit-startup-message t)
+,#+END_SRC
+
+Let's also show a fortune message in the scratch buffer when we start emacs:
+
+[[https://github.com/andschwa/fortune-cookie][Source here]]
+
+,#+BEGIN_SRC emacs-lisp
+(use-package fortune-cookie
+  :ensure t
+  :config
+  (setq fortune-cookie-cowsay-enable nil) ; Disable cowsay
+  (fortune-cookie-mode)                   ; Enable fortune cookie mode
+)
+,#+END_SRC
+#+END_EXAMPLE
+
+This is leagues ahead of any other way of representing and grouping configuration I have ever seen. You can make full
+use of org mode's tagging, section folding, task tracking and organisational features right from inside your
+configuration file. You can include state diagrams, tables, sample inputs and outputs for functions. There's human
+readable descriptions behind what each line is doing. There's a link to the original project page for the mode I'm
+adding. I can schedule work on sections of the configuration that I don't have time to change right now and it will
+appear on my global agenda along with any other tasks I'm managing with org mode.
+
+And it gets better. Org mode has a built in exporting system for a whole bunch of different export formats. I can export
+my configuration file to HTML and it will add the appropriate menu structure and source code highlighting. All of the
+links stored in my org mode files become hyperlinks to documentation or project websites. It makes it incredibly easy to
+share configuration files so that the readers, too, can understand why I've changed each setting. If you're not
+convinced with how powerful this is yet, [[https://www.mfoot.com/static/emacs-config/config.html][Here's a link to the generated config]]. And [[https://www.mfoot.com/static/emacs-config/config.org][here's a link to the raw
+configuration file]] I'd wager that even a non-emacs user can understand some of what's going on. You don't even need to
+look at the setting, just read the description. Literate programming's most important feature for me is the fact that at
+some point in the future I'm going to need to remember why I changed something, and I feel like this is the ideal format
+to help me with that. Nothing else I've seen comes close. My documentation for my configuration file /is/ my configuration
+file. Executable documentation.
+
+The concepts of literate programming are unrelated to org mode, org is just an enabler. Not everybody uses emacs, but if
+you've managed to get this far as a non-emacs user, I hope you've at least learned something about the value of the
+literate programming concept.
+
+And maybe if you've soaked up even some of the enthusiasm I have for org-mode, you might like to give it a try too!

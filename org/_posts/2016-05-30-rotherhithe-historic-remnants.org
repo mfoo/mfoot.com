@@ -1,0 +1,73 @@
+#+BEGIN_EXPORT html
+---
+layout: post
+title: Rotherhithe Historic Remnants Project
+category: photography
+published: true
+tags:
+  - sinar
+  - rotherhithe
+  - surrey quays
+  - history
+  - local history
+---
+#+END_EXPORT
+
+I live in Surrey Quays in South East London. I've lived here for three years before I decided to investigate some of the
+local history, which it turns out is incredibly rich and vibrant. I knew that only 30 years ago Surrey Quays as we know
+it didn't exist but I did not know what came before it. To give some perspective, the [[https://www.ornc.org/visitor-centre][Greenwich Visitor Center]] has a
+painting on display that is part of the collection of the [[https://www.rmg.co.uk/national-maritime-museum][National Maritime Museum in Greenwich]] (one of my top 2 museums
+in London along with the [[http://www.britishmuseum.org/][British Museum]]) by Hendrick Danckerts from around 1670. It looks like this:
+#+BEGIN_EXPORT html
+<img src="http://collections.rmg.co.uk/mediaLib/387/media-387386/large.jpg" />
+#+END_EXPORT
+
+Image credit Royal Museums Greenwich collection.
+
+#+BEGIN_EXPORT html
+<!-- more -->
+#+END_EXPORT
+
+(Note: if you have [[https://get.adobe.com/flashplayer/][Adobe's Flash plugin]] then there is an interactive zoom-able version on the [[http://collections.rmg.co.uk/collections/objects/13298.html][Royal Museums Greenwich
+collection catalogue]])
+
+It shows the Isle of Dogs centre right, and to the left we can see Deptford and its [[https://en.wikipedia.org/wiki/Deptford_Dockyard][Navy Dockyard]], then further north we
+see Rotherhithe and Surrey Quays. If you take a walk through Greenwich Park up to the [[http://www.rmg.co.uk/royal-observatory][Royal Observatory]] you can see what
+that vista looks like today, and it's a bit different.
+
+#+BEGIN_EXPORT html
+<img src="https://c1.staticflickr.com/4/3350/3298752344_a8b6cc6ce5_b.jpg" />
+#+END_EXPORT
+
+Image source: [[https://www.flickr.com/photos/23333202@N05/3298752344/in/photostream/][moomin1981 on Flickr]].
+
+What is now largely a residential area (Rotherhithe, not Canary Wharf) was in the not-too-distant past a bunch of fields
+and meadows. So what's been happening between now and then?
+
+- 1600s - the ship building industry grew and received a royal charter, and Rotherhithe witnessed the launch of the
+  [[https://en.wikipedia.org/wiki/Mayflower][Mayflower]], was [[http://russiadock.blogspot.co.uk/2008/06/rotherhithe-heritage-1-background-to.html][frequented by Samuel Pepys]] and John Evelyn, and had the [[http://www.thehistoryoflondon.co.uk/in-brief-plague-and-fire/][last recorded case of the Great Plague of
+  London]]
+- 1700s - the area was a staging ground for whaling ships, and [[http://russiadock.blogspot.co.uk/2008/06/rotherhithe-heritage-3-whaling-at.html][businesses boiled down whale blubber to make oil]].
+- 1800s - there were several companies involved in [[https://en.wikipedia.org/wiki/Ship_breaking][ship breaking]], where old Navy ships were sold to private companies
+  who took them apart and sold their parts for profit. This included [[http://russiadock.blogspot.co.uk/2013/06/the-beatsons-ship-breaking-family-in.html][the HMS Temeraire]] which was [[https://en.wikipedia.org/wiki/HMS_Temeraire_%25281798%2529][launched in 1798,
+  fought in the Battle of Trafalgar,]] and was [[https://en.wikipedia.org/wiki/The_Fighting_Temeraire][the subject of J. M. Turner's oil painting "The Fighting Temeraire"]].
+- 1900s - There was a thriving wood shipping industry, and the [[https://en.wikipedia.org/wiki/Surrey_Commercial_Docks][Surrey Commercial Docks]] were targeted by the Luftwaffe in
+  World War II. This occupied a large portion of the docks, including special man-made lakes used to store timber. The
+  [[https://en.wikipedia.org/wiki/Rotherhithe#Nordic_connection][Finnish Church and Norwegian Church]] were built to serve the scandinavian communities that had grown up due to strong
+  timber trading connections, and a [[http://www.holy-trinity-rotherhithe.org.uk/history][great fire burned 350,000 tonnes of timber]] on the first night of the Blitz, [[http://www.portcities.org.uk/london/server/show/ConNarrative.53/chapterId/788/Docklands-and-the-Blitz.html][the
+  largest blaze requiring 300 pumps to contain it]].
+
+The [[https://en.wikipedia.org/wiki/Surrey_Quays][wikipedia page for Surrey Quays]] provides a brief explanation of the most recent changes, where the stagnating
+commercial docks were rejuvenated by the [[https://en.wikipedia.org/wiki/London_Docklands_Development_Corporation][London Docklands Development Corporation]] who built over 5,000 houses including
+the shopping centre at Canada Water and converted Surrey Quays into its modern-day form.
+
+... and that's where I come in. I've walked and cycled around the area fairly extensively and have always been impressed
+at the small chunks of historic architecture and signs of days gone by that litter the area. Now that I know how rich
+its past has been I've been paying more attention and I see more and more of these historic remnants. I now know the
+stories behind the [[http://russiadock.blogspot.co.uk/2015/11/the-wonderful-rotherhithe-bascule.html][Bascule Bridges in Rotherhithe]] and the [[http://russiadock.blogspot.co.uk/2013/08/the-scotch-derrick-commercial-wharf-and.html][red Scotch Derrick at Odessa Street]] and it's encouraged me to
+get out and document what I see. I think it's fascinating and since I've recently begun large format photography with a
+[[https://www.google.co.uk/search?q=sinar+norma+information&biw=1356&bih=638&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjT8Lq1o4LNAhXqCcAKHUU4CfI4FBD8BQgGKAE#tbm=isch&q=sinar+norma+][Sinar Norma like these ones]] I think it's a great idea to combine the two. My intention is to cycle round during the next
+few months and document a whole bunch of historic remnants that I've noticed, then post them here with a description for
+people to see and learn about. It will help me learn about large format photography while learning cool stuff about my
+local area at the same time. I've already taken a few but I need to get the negatives scanned and write them up, so
+watch this space.

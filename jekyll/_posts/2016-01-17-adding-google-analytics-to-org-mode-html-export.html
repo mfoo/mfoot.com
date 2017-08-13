@@ -19,7 +19,7 @@ wondered whether or not I could get the org-mode export to add Google Analytics 
 
 <p>
 I recently answered a <a href="https://www.reddit.com/r/emacs/comments/3zpx7p/need_help_customizing_org_publish_for_jekyll/">question on the emacs sub-reddit</a> about how org-mode properties could be used inside the HTML
-export. When setting up org-mode to blog with Jekyll, <a href="file:///blog/2015/11/17/using-org-mode-to-write-jekyll-blogs/">which I do</a>, the internet advises using a <code>BEGIN_HTML</code> block to embed
+export. When setting up org-mode to blog with Jekyll, <a href="file:///blog/2015/11/17/using-org-mode-to-write-jekyll-blogs/">which I do</a>, the internet advises using a <code>BEGIN_EXPORT html</code> block to embed
 the Jekyll YAML front-matter into the file that Jekyll then picks up and applies its templates to. Since the org HTML
 exporter will copy these verbatim, this works quite nicely. The reddit post asked about how properties could be used
 instead such that exports can be made more compatible with other backends.
@@ -30,13 +30,12 @@ An example section of an org-mode file being used to blog with Jekyll might look
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-yaml"><span style="color: #586e75;">#</span><span style="color: #586e75;">+BEGIN_HTML</span>
+<pre class="src src-yaml"><span style="color: #586e75;">#</span><span style="color: #586e75;">+BEGIN_EXPORT html</span>
 <span style="color: #586e75;">---</span>
 <span style="color: #268bd2;">layout</span>: post
 <span style="color: #268bd2;">title</span>: <span style="color: #2aa198;">"Adding Google Analytics codes to Org Mode's HTML export"</span>
 <span style="color: #586e75;">---</span>
-<span style="color: #586e75;">#</span><span style="color: #586e75;">+END_HTML</span>
+<span style="color: #586e75;">#</span><span style="color: #586e75;">+END_EXPORT</span>
 </pre>
 </div>
 
@@ -52,7 +51,7 @@ This got me thinking. Could I do a similar thing for the Google Analytics code f
 </p>
 
 <p>
-I retrospect I could simply have included a <code>BEGIN_HTML</code> block at the bottom of my org-mode file with the
+I retrospect I could simply have included a <code>BEGIN_EXPORT html</code> block at the bottom of my org-mode file with the
 <code>&lt;script&gt;&lt;/script&gt;</code> tag inside it and the org mode HTML export would have rendered it verbatim. That solution is pragmatic
 and probably better in general but it doesn't involve learning more about derived backends.
 </p>
@@ -70,12 +69,11 @@ the <code>&lt;/body&gt;</code> tag and inserts my analytics string right before 
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">mfoot-append-google-analytics-tag</span> <span style="color: #b58900;">(</span>template info<span style="color: #b58900;">)</span>
+<pre class="src src-emacs-lisp">(<span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">mfoot-append-google-analytics-tag</span> (template info)
   <span style="color: #2aa198;">"Appends my Google Analytics script segment to the body"</span>
-  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span>html-template <span style="color: #859900;">(</span>org-html-template template info<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
-    <span style="color: #268bd2;">(</span><span style="color: #859900; font-weight: bold;">let</span> <span style="color: #6c71c4;">(</span><span style="color: #859900;">(</span>pos <span style="color: #b58900;">(</span>string-match <span style="color: #268bd2;">(</span>regexp-quote <span style="color: #2aa198;">"&lt;/body&gt;"</span><span style="color: #268bd2;">)</span> html-template<span style="color: #b58900;">)</span><span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span>
-      <span style="color: #6c71c4;">(</span>concat <span style="color: #859900;">(</span>substring html-template 0 pos<span style="color: #859900;">)</span>
+  (<span style="color: #859900; font-weight: bold;">let</span> ((html-template (org-html-template template info)))
+    (<span style="color: #859900; font-weight: bold;">let</span> ((pos (string-match (regexp-quote <span style="color: #2aa198;">"&lt;/body&gt;"</span>) html-template)))
+      (concat (substring html-template 0 pos)
         <span style="color: #2aa198;">"&lt;script type=\"text/javascript\"&gt;</span>
 <span style="color: #2aa198;">          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){</span>
 <span style="color: #2aa198;">          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),</span>
@@ -86,7 +84,7 @@ the <code>&lt;/body&gt;</code> tag and inserts my analytics string right before 
 <span style="color: #2aa198;">          ga('send', 'pageview');</span>
 
 <span style="color: #2aa198;">        &lt;/script&gt;"</span>
-        <span style="color: #859900;">(</span>substring html-template pos<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+        (substring html-template pos)))))
 </pre>
 </div>
 
@@ -95,14 +93,13 @@ I can then define the backend tell it to use my export function:
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">ox-html</span><span style="color: #2aa198;">)</span>
-<span style="color: #2aa198;">(</span>org-export-define-derived-backend 'mfoot-html-with-google-analytics 'html
+<pre class="src src-emacs-lisp">(<span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">ox-html</span>)
+(org-export-define-derived-backend 'mfoot-html-with-google-analytics 'html
   <span style="color: #839496; font-weight: bold;">:translate-alist</span>
-  '<span style="color: #b58900;">(</span>
-    <span style="color: #268bd2;">(</span>template . mfoot-append-google-analytics-tag<span style="color: #268bd2;">)</span>
-  <span style="color: #b58900;">)</span>
-<span style="color: #2aa198;">)</span>
+  '(
+    (template . mfoot-append-google-analytics-tag)
+  )
+)
 </pre>
 </div>
 
@@ -130,13 +127,12 @@ If you have your project defined in this way you just need to define a publishin
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">mfoot-export-emacs-config-to-file</span>
-  <span style="color: #b58900;">(</span>plist filename pub-dir<span style="color: #b58900;">)</span>
+<pre class="src src-emacs-lisp">(<span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">mfoot-export-emacs-config-to-file</span>
+  (plist filename pub-dir)
   <span style="color: #2aa198;">"Export current buffer to an blog HTML file"</span>
-  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">let*</span> <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span>extension <span style="color: #859900;">(</span>concat <span style="color: #2aa198;">"."</span> org-html-extension<span style="color: #859900;">)</span><span style="color: #6c71c4;">)</span>
-     <span style="color: #6c71c4;">(</span>org-export-coding-system org-html-coding-system<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span>
-   <span style="color: #268bd2;">(</span>org-publish-org-to 'mfoot-html-with-google-analytics filename extension plist pub-dir<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
+  (<span style="color: #859900; font-weight: bold;">let*</span> ((extension (concat <span style="color: #2aa198;">"."</span> org-html-extension))
+     (org-export-coding-system org-html-coding-system))
+   (org-publish-org-to 'mfoot-html-with-google-analytics filename extension plist pub-dir)))
 </pre>
 </div>
 
@@ -145,16 +141,15 @@ Then you need to associate the publishing project with the publishing function i
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #2aa198;">"emacs-dotfiles-mfoot.com"</span> <span style="color: #586e75;">; </span><span style="color: #586e75;">Publish an HTML version of this file to the static folder.</span>
+<pre class="src src-emacs-lisp">(<span style="color: #2aa198;">"emacs-dotfiles-mfoot.com"</span> <span style="color: #586e75;">; </span><span style="color: #586e75;">Publish an HTML version of this file to the static folder.</span>
   <span style="color: #839496; font-weight: bold;">:base-directory</span> <span style="color: #2aa198;">"~/repositories/dotfiles/.emacs.d/"</span>
   <span style="color: #839496; font-weight: bold;">:base-extension</span> <span style="color: #2aa198;">"org"</span>
   <span style="color: #839496; font-weight: bold;">:publishing-directory</span> <span style="color: #2aa198;">"~/repositories/mfoot.com/jekyll/static/emacs-config"</span>
   <span style="color: #839496; font-weight: bold;">:exclude</span> <span style="color: #2aa198;">".*"</span>
-  <span style="color: #839496; font-weight: bold;">:include</span> <span style="color: #b58900;">(</span><span style="color: #2aa198;">"config.org"</span><span style="color: #b58900;">)</span>
+  <span style="color: #839496; font-weight: bold;">:include</span> (<span style="color: #2aa198;">"config.org"</span>)
   <span style="color: #839496; font-weight: bold;">:publishing-function</span> mfoot-export-emacs-config-to-file
   <span style="color: #839496; font-weight: bold;">:html-extension</span> <span style="color: #2aa198;">"html"</span>
-<span style="color: #2aa198;">)</span>
+)
 </pre>
 </div>
 
