@@ -1,7 +1,7 @@
 #+BEGIN_EXPORT html
 ---
 layout: post
-title: Starting a 52 rolls project
+title: Starting a 52 Rolls Project
 category: photography
 published: true
 tags:
@@ -26,3 +26,10 @@ I plan to be posting photos from each week online on this blog. The shot below c
 a Summicron-M 35mm ASPH.
 
 [[img:2017/10/52rolls-intro.jpg]]
+
+I'll try to post each week and I'll try to keep this post updated with links, but I might be a little inconsistent on
+timing since it takes time to develop and scan the negatives.
+
+Posts so far:
+
+- [[https://www.mfoot.com/blog/2017/11/05/52-rolls-week-1/][Week 1, London]]
