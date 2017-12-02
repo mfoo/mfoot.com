@@ -3,7 +3,7 @@
 layout: post
 title: 52 Rolls Project - W2+3, Warsaw with Kodak Portra 400 and Fuji Superia 1600 Part 1
 category: photography
-published: false
+published: true
 tags:
   - film
   - 52 rolls
@@ -26,31 +26,32 @@ Portra 400 and one roll was Fuji Superia 1600 that had expired over five years a
 
 [[img:2017/11/52-rolls-week-2-1.jpg]]
 
-Warsaw has had a particularly violent recent history, and that violence has left its scars on the city. You might not
-see them unless you are looking as the damage is gone, and in its place there is new construction and renovation, giving
-it a chance to make a name for itself as a particularly modern city. We had five nights here, and I’ll try and explain
-some of the interesting parts through a selection of photos below. The photos themselves turned out fairly well, and the
-M6 is a joy to use, but as you’ll soon see the expired Fuji film had a lot of noise.
+Warsaw has had a particularly violent and sobering recent history. It's suffered through a huge amount of destruction,
+but looking at it you might not notice that anything's out of the ordinary. The city is in a constant stream of
+construction and renovation, giving it a chance to reshape itself into a particularly modern place to live. We had five
+nights here, and I’ll try and explain some of the interesting parts through a selection of photos below. The photos
+themselves turned out fairly well, and the M6 is a joy to use, but as you’ll soon see the expired Fuji film had a lot of
+noise.
 
 #+BEGIN_EXPORT html
 <!-- more -->
 #+END_EXPORT
 
-We had good weather for the first half of the trip, but it was overcast and grey and rainy for the second half. During
-the whole trip the lighting was very odd - there was a constant cloud layer with no details in the clouds. This led to a
-bright ambient light with a strange orange tint that produced almost non-existent shadows.
+We had good weather for the first half of the trip, but it was overcast and rainy for the second half. The lighting was
+very odd the whole time - bright but diffuse, filtered through a constant amorphous cloud layer. This led to a strange
+orange tint and very poorly defined shadows.
 
 [[img:2017/11/52-rolls-week-2-2.jpg]]
 
-Our AirBnB was in the Old Town, which is somewhat of a misnomer that leads into a discussion about one of the things
+Our apartment was in the Old Town, which is somewhat of a misnomer that leads into a discussion about one of the things
 that makes Warsaw interesting: it was almost entirely destroyed during World War Two. Look closely at the image
 above. It might look like a central European town square, but most of the buildings lack any kind of intricate stonework
-or variations in theme that are the hallmark of a set of buildings that have evolved over time. You can see this in the
-next image: a lot of the decorations on buildings are just painted on.
+or variations in theme that are the hallmark of a city centre that has evolved over time. You can see this in the next
+image: a lot of the decorations on buildings are just painted on.
 
 [[img:2017/11/52-rolls-week-2-3.jpg]]
 
-What’s more, a large number of buildings in the old town square (and generally around Warsaw) are clad in
+What’s more, a large number of buildings in the old town square (and generally around Warsaw) were clad in
 scaffolding. Outside the center this might be just normal wear, but in the old town I wasn’t expecting to see it. It’s
 likely because October isn’t high tourist season.
 
@@ -77,8 +78,8 @@ January 1945
 All this adds up to the fact that Warsaw’s so-called old town is actually incredibly new. A large portion of it was
 rebuilt in the 1950s, and it looks like changes are still happening today. As our [[https://freewalkingtour.com/warsaw/][free walking tour]] guide told us, the
 old town is now entirely the domain of tourists. To me, the idea that we were surrounded by a facade was at first
-disappointing and unnerving, but as soon as you realise why it’s like that, and you start to see the terrible history
-that Warsaw (and many other Polish cities) have endured, it makes sense. They are moving on.
+disappointing - having experienced places like Prague and Tallinn - but as soon as you learn why it’s like that, and you
+start to see the terrible history that Warsaw (and many other Polish cities) have endured, it all becomes clear.
 
 There are museums, large public statues and memorials to the recent historic events, and for those willing to learn
 you’ll find a lot of quality material. We visited the [[http://www.polin.pl/en][Museum of the History of Polish Jews]] which was informative and
@@ -96,24 +97,24 @@ And occasionally you’ll see buildings that have incorporated the rubble into t
 
 [[img:2017/11/52-rolls-week-2-8.jpg]]
 
-But more pervasive are green areas and parks with art installations and sculptures.
+There are also many green areas and parks with art installations and sculptures.
 
 [[img:2017/11/52-rolls-week-2-9.jpg]]
 
-This guy was fun: somebody had put a horse chestnut on his head:
+This one was fun - somebody had put a horse chestnut on his head:
 
 [[img:2017/11/52-rolls-week-2-10.jpg]]
 
 We had arrived during the "golden autumn", and the colours were vivid and beautiful. Leaves had fallen and the squirrels
-were busy gathering and burying their food for the winter. As a Brit, seeing red squirrels again was great. They used to
-be our native variety until the invasive grey species evicted them from most parts of Britain. They’re quite rare to see
-now.
+were busy gathering and burying their food for the winter. As a Brit, seeing red squirrels again was unexpected. They
+used to be our native variety until the invasive grey species evicted them from most parts of Britain. They’re quite
+rare to see now.
 
 [[img:2017/11/52-rolls-week-2-11.jpg]]
 
 Julia loves the autumnal colours too, and since part of the reason of starting a 52 rolls project is to try and be more
 creative, I tried to take some photos that either required staging or required more thought than I might put into a
-simple holiday-aide-memoire snapshot.
+simple holiday snapshot.
 
 [[img:2017/11/52-rolls-week-2-12.jpg]]
 
@@ -129,8 +130,8 @@ don’t evoke anything. When I walked past this guy sitting on a bench, softly p
 something I wouldn’t usually have seen. The framing of the branches was excellent too. After seeing the result, it’s so
 close to what I saw, but not quite right. I’m not sure if my rangefinder’s parallax compensation isn’t spot on, or (more
 likely) that I didn’t pay enough attention, but the branch of the tree is much too close to the guy’s head, and that
-isn’t what I was intending at all. So close, but yet so far. A minute or two later he packed up and walked away. Lesson
-learned: if you see a picture that you think could be great, take more than one shot.
+isn’t what I was intending at all. A minute or two later he packed up and walked away. Lesson learned: if you see a
+picture that you think could be good, take more than one shot and pay more attention before hitting the shutter.
 
 [[img:2017/11/52-rolls-week-2-14.jpg]]
 
@@ -142,9 +143,9 @@ One thing that was particularly celebrated in Warsaw was Poland’s rich musical
 
 These photos are of the [[https://en.wikipedia.org/wiki/Chopin_Statue,_Warsaw][Chopin Statue in Łazienki park]]. It’s a huge monument, and there’s also a Chopin Museum and
 regular tourist-targeted Chopin concerts in the old town. They were pretty cheap, so we decided to go to one in the
-knowledge that it might be lacking substance and a little tacky, but we were both amazed. My two pictures from after the
-concert aren’t particularly interesting, but if you’re in Warsaw please check out [[http://timeforchopin.eu/en/][Time For Chopin]] - it’s an excellent
-and intimate experience sitting two meters from a concert piano inside a gallery with no more than 15-20 other people.
+knowledge that it might be lacking substance and a little tacky, but we were both amazed. If you’re in Warsaw please
+check out [[http://timeforchopin.eu/en/][Time For Chopin]] - it’s an excellent and intimate experience sitting two meters from a concert piano inside a
+gallery with no more than 15-20 other people. It wasn't tacky at all and we both very much enjoyed the experience.
 
 Other things that point Warsaw out as a modern city are the excellent public transport system and the pervasive city
 Wi-Fi points. We even spotted Wi-Fi hotspots on lampposts next to benches in public parks.

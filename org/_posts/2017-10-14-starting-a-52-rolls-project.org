@@ -33,3 +33,5 @@ timing since it takes time to develop and scan the negatives.
 Posts so far:
 
 - [[https://www.mfoot.com/blog/2017/11/05/52-rolls-week-1/][Week 1, London]]
+- [[https://www.mfoot.com/blog/2017/11/18/52-rolls-week-2-and-3-part-1][Weeks 2 and 3, Warsaw (Part 1)]]
+- [[https://www.mfoot.com/blog/2017/12/02/52-rolls-week-2-and-3-part-2][Weeks 2 and 3, Warsaw (Part 2)]]
