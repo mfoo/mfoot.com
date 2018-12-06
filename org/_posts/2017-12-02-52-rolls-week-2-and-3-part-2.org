@@ -21,10 +21,10 @@ tags:
 #+END_EXPORT
 
 Welcome back for Part 2 of my post on my trip to Warsaw with a Leica M6 TTL, a 35mm Summicron ASPH, some Kodak Portra
-400 and a roll of expired Fuji Superia 1600. I finished the last post (*LINK*) saying that I need to spend some time
-understanding the meter as I’ve had a few photos that are very underexposed with bright light sources in them. I can
-say, however, that it performed well in dark areas. I’m really happy with this photo of Julia which was taken in very
-subdued light with the Superia inside the [[https://en.wikipedia.org/wiki/Royal_Castle,_Warsaw][Royal Castle]], which has an impressive gallery of art and period rooms.
+400 and a roll of expired Fuji Superia 1600. I finished [[https://www.mfoot.com/blog/2017/11/18/52-rolls-week-2-and-3-part-1/][Part 1]] saying that I need to spend some time understanding the
+meter as I’ve had a few photos that are very underexposed with bright light sources in them. I can say, however, that it
+performed well in dark areas. I’m really happy with this photo of Julia which was taken in very subdued light with the
+Superia inside the [[https://en.wikipedia.org/wiki/Royal_Castle,_Warsaw][Royal Castle]], which has an impressive gallery of art and period rooms.
 
 [[img:2017/11/52-rolls-week-2-21.jpg]]
 
