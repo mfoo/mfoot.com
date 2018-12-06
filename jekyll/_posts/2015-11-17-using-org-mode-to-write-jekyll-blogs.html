@@ -79,42 +79,42 @@ Inside my emacs configuration I have the following:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(setq org-publish-project-alist
-  '(
-     (<span style="color: #2aa198;">"org-mfoot"</span> <span style="color: #586e75;">; </span><span style="color: #586e75;">Export my blog to the Jekyll format for ~jekyll build~</span>
-       <span style="color: #586e75;">;; </span><span style="color: #586e75;">Path to your org files.</span>
-       <span style="color: #839496; font-weight: bold;">:base-directory</span> <span style="color: #2aa198;">"~/repositories/mfoot.com/org/"</span>
-       <span style="color: #839496; font-weight: bold;">:base-extension</span> <span style="color: #2aa198;">"org"</span>
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">setq</span> org-publish-project-alist
+  '<span style="color: #b58900;">(</span>
+     <span style="color: #268bd2;">(</span><span style="color: #2aa198;">"org-mfoot"</span> <span style="color: #93a1a1;">; </span><span style="color: #93a1a1;">Export my blog to the Jekyll format for ~jekyll build~</span>
+       <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">Path to your org files.</span>
+       <span style="color: #657b83; font-weight: bold;">:base-directory</span> <span style="color: #2aa198;">"~/repositories/mfoot.com/org/"</span>
+       <span style="color: #657b83; font-weight: bold;">:base-extension</span> <span style="color: #2aa198;">"org"</span>
 
-       <span style="color: #586e75;">;; </span><span style="color: #586e75;">Path to your Jekyll project.</span>
-       <span style="color: #839496; font-weight: bold;">:publishing-directory</span> <span style="color: #2aa198;">"~/repositories/mfoot.com/jekyll/"</span>
-       <span style="color: #839496; font-weight: bold;">:recursive</span> t
-       <span style="color: #839496; font-weight: bold;">:publishing-function</span> org-html-publish-to-html
-       <span style="color: #839496; font-weight: bold;">:html-extension</span> <span style="color: #2aa198;">"html"</span>
-       <span style="color: #839496; font-weight: bold;">:body-only</span> t <span style="color: #586e75;">;; </span><span style="color: #586e75;">Only export section between &lt;body&gt; &lt;/body&gt;</span>
+       <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">Path to your Jekyll project.</span>
+       <span style="color: #657b83; font-weight: bold;">:publishing-directory</span> <span style="color: #2aa198;">"~/repositories/mfoot.com/jekyll/"</span>
+       <span style="color: #657b83; font-weight: bold;">:recursive</span> t
+       <span style="color: #657b83; font-weight: bold;">:publishing-function</span> org-html-publish-to-html
+       <span style="color: #657b83; font-weight: bold;">:html-extension</span> <span style="color: #2aa198;">"html"</span>
+       <span style="color: #657b83; font-weight: bold;">:body-only</span> t <span style="color: #93a1a1;">;; </span><span style="color: #93a1a1;">Only export section between &lt;body&gt; &lt;/body&gt;</span>
 
-       <span style="color: #839496; font-weight: bold;">:section-numbers</span> nil
-       <span style="color: #839496; font-weight: bold;">:with-toc</span> nil
-       <span style="color: #839496; font-weight: bold;">:auto-index</span> nil
-       <span style="color: #839496; font-weight: bold;">:auto-preamble</span> nil
-       <span style="color: #839496; font-weight: bold;">:body-only</span> t
-       <span style="color: #839496; font-weight: bold;">:auto-postamble</span> nil
-     )
+       <span style="color: #657b83; font-weight: bold;">:section-numbers</span> nil
+       <span style="color: #657b83; font-weight: bold;">:with-toc</span> nil
+       <span style="color: #657b83; font-weight: bold;">:auto-index</span> nil
+       <span style="color: #657b83; font-weight: bold;">:auto-preamble</span> nil
+       <span style="color: #657b83; font-weight: bold;">:body-only</span> t
+       <span style="color: #657b83; font-weight: bold;">:auto-postamble</span> nil
+     <span style="color: #268bd2;">)</span>
 
-    (<span style="color: #2aa198;">"org-static-mfoot"</span>
-      <span style="color: #839496; font-weight: bold;">:base-directory</span> <span style="color: #2aa198;">"~/repositories/mfoot.com/org/"</span>
-      <span style="color: #839496; font-weight: bold;">:base-extension</span> <span style="color: #2aa198;">"css</span><span style="color: #859900; font-weight: bold;">\\</span><span style="color: #b58900; font-weight: bold;">|</span><span style="color: #2aa198;">js</span><span style="color: #859900; font-weight: bold;">\\</span><span style="color: #b58900; font-weight: bold;">|</span><span style="color: #2aa198;">png</span><span style="color: #859900; font-weight: bold;">\\</span><span style="color: #b58900; font-weight: bold;">|</span><span style="color: #2aa198;">jpg</span><span style="color: #859900; font-weight: bold;">\\</span><span style="color: #b58900; font-weight: bold;">|</span><span style="color: #2aa198;">gif"</span>
-      <span style="color: #839496; font-weight: bold;">:publishing-directory</span> <span style="color: #2aa198;">"~/repositories/mfoot.com/jekyll"</span>
-      <span style="color: #839496; font-weight: bold;">:recursive</span> t
-      <span style="color: #839496; font-weight: bold;">:publishing-function</span> org-publish-attachment
-    )
+    <span style="color: #268bd2;">(</span><span style="color: #2aa198;">"org-static-mfoot"</span>
+      <span style="color: #657b83; font-weight: bold;">:base-directory</span> <span style="color: #2aa198;">"~/repositories/mfoot.com/org/"</span>
+      <span style="color: #657b83; font-weight: bold;">:base-extension</span> <span style="color: #2aa198;">"css</span><span style="color: #859900; font-weight: bold;">\\</span><span style="color: #b58900; font-weight: bold;">|</span><span style="color: #2aa198;">js</span><span style="color: #859900; font-weight: bold;">\\</span><span style="color: #b58900; font-weight: bold;">|</span><span style="color: #2aa198;">png</span><span style="color: #859900; font-weight: bold;">\\</span><span style="color: #b58900; font-weight: bold;">|</span><span style="color: #2aa198;">jpg</span><span style="color: #859900; font-weight: bold;">\\</span><span style="color: #b58900; font-weight: bold;">|</span><span style="color: #2aa198;">gif"</span>
+      <span style="color: #657b83; font-weight: bold;">:publishing-directory</span> <span style="color: #2aa198;">"~/repositories/mfoot.com/jekyll"</span>
+      <span style="color: #657b83; font-weight: bold;">:recursive</span> t
+      <span style="color: #657b83; font-weight: bold;">:publishing-function</span> org-publish-attachment
+    <span style="color: #268bd2;">)</span>
 
-    (<span style="color: #2aa198;">"mfoot.com"</span> <span style="color: #839496; font-weight: bold;">:components</span> (
+    <span style="color: #268bd2;">(</span><span style="color: #2aa198;">"mfoot.com"</span> <span style="color: #657b83; font-weight: bold;">:components</span> <span style="color: #6c71c4;">(</span>
       <span style="color: #2aa198;">"org-mfoot"</span>
       <span style="color: #2aa198;">"org-static-mfoot"</span>
-    )
-  )
-)
+    <span style="color: #6c71c4;">)</span>
+  <span style="color: #268bd2;">)</span>
+<span style="color: #b58900;">)</span>
 </pre>
 </div>
 
@@ -134,16 +134,16 @@ I had a problem with images that the documentation didn't cover. When using link
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">org-custom-link-img-follow</span> (path)
-  (org-open-file-with-emacs
-   (format <span style="color: #2aa198;">"../images/%s"</span> path)))
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">org-custom-link-img-follow</span> <span style="color: #b58900;">(</span>path<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span>org-open-file-with-emacs
+   <span style="color: #268bd2;">(</span>format <span style="color: #2aa198;">"../images/%s"</span> path<span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-(<span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">org-custom-link-img-export</span> (path desc format)
-  (<span style="color: #859900; font-weight: bold;">cond</span>
-   ((eq format 'html)
-    (format <span style="color: #2aa198;">"&lt;img src=\"/images/%s\" alt=\"%s\"/&gt;"</span> path desc))))
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">defun</span> <span style="color: #268bd2;">org-custom-link-img-export</span> <span style="color: #b58900;">(</span>path desc format<span style="color: #b58900;">)</span>
+  <span style="color: #b58900;">(</span><span style="color: #859900; font-weight: bold;">cond</span>
+   <span style="color: #268bd2;">(</span><span style="color: #6c71c4;">(</span>eq format 'html<span style="color: #6c71c4;">)</span>
+    <span style="color: #6c71c4;">(</span>format <span style="color: #2aa198;">"&lt;img src=\"/images/%s\" alt=\"%s\"/&gt;"</span> path desc<span style="color: #6c71c4;">)</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 
-(org-add-link-type <span style="color: #2aa198;">"img"</span> 'org-custom-link-img-follow 'org-custom-link-img-export)
+<span style="color: #2aa198;">(</span>org-add-link-type <span style="color: #2aa198;">"img"</span> 'org-custom-link-img-follow 'org-custom-link-img-export<span style="color: #2aa198;">)</span>
 </pre>
 </div>
 

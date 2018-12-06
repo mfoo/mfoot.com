@@ -11,7 +11,7 @@ tags:
 ---
 
 <p>
-Emacs and <a href="https://orgmode.com/">org-mode</a> are taking over my life. I've been using emacs for schedule and agenda management for a while and one
+Emacs and <a href="https://orgmode.com">org-mode</a> are taking over my life. I've been using emacs for schedule and agenda management for a while and one
 of the annoyances was getting a quick heads up of today's tasks while on the go. Well.. why not get emacs to make me one?
 </p>
 
@@ -31,8 +31,8 @@ I've passed in the <code>-l ~/.emacs</code> flag to tell it to load my <code>.em
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">cl</span>) <span style="color: #586e75;">; </span><span style="color: #586e75;">remove-if-not is inside the common-lisp package</span>
-(setq org-agenda-files (remove-if-not 'file-exists-p '(<span style="color: #2aa198;">"~/Repositories/notes"</span> <span style="color: #2aa198;">"~/repositories/notes"</span> <span style="color: #2aa198;">"~/Dropbox/life"</span> <span style="color: #2aa198;">"~/repositories/life"</span>)))
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">require</span> '<span style="color: #268bd2; font-weight: bold;">cl</span><span style="color: #2aa198;">)</span> <span style="color: #93a1a1;">; </span><span style="color: #93a1a1;">remove-if-not is inside the common-lisp package</span>
+<span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">setq</span> org-agenda-files <span style="color: #b58900;">(</span>remove-if-not 'file-exists-p '<span style="color: #268bd2;">(</span><span style="color: #2aa198;">"~/Repositories/notes"</span> <span style="color: #2aa198;">"~/repositories/notes"</span> <span style="color: #2aa198;">"~/Dropbox/life"</span> <span style="color: #2aa198;">"~/repositories/life"</span><span style="color: #268bd2;">)</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 
@@ -42,7 +42,7 @@ look in whichever of the directories in that list exist. For most people this wi
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(setq org-agenda-files '(<span style="color: #2aa198;">"~/notes"</span>))
+<pre class="src src-emacs-lisp"><span style="color: #2aa198;">(</span><span style="color: #859900; font-weight: bold;">setq</span> org-agenda-files '<span style="color: #b58900;">(</span><span style="color: #2aa198;">"~/notes"</span><span style="color: #b58900;">)</span><span style="color: #2aa198;">)</span>
 </pre>
 </div>
 
@@ -52,7 +52,7 @@ And that's pretty much it. The cron line pipes the agenda (which is written to t
 </p>
 
 <div class="org-src-container">
-<pre class="src src-conf"><span style="color: #586e75;"># </span><span style="color: #586e75;">m h  dom mon dow   command</span>
+<pre class="src src-conf"><span style="color: #93a1a1;"># </span><span style="color: #93a1a1;">m h  dom mon dow   command</span>
 0 6 * * *  /usr/local/bin/emacs --batch -l ~/.emacs  -eval <span style="color: #2aa198;">'(org-batch-agenda "a")'</span> 2&gt;/dev/null | mail -s <span style="color: #2aa198;">"Martin's Agenda for $(date +'\%A \%D')"</span> martin@mfoot.com
 </pre>
 </div>

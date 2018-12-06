@@ -13,12 +13,12 @@ confluence wiki.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-ruby"><span style="color: #839496; font-weight: bold;">require</span> <span style="color: #2aa198;">'yaml'</span>
+<pre class="src src-ruby"><span style="color: #657b83; font-weight: bold;">require</span> <span style="color: #2aa198;">'yaml'</span>
 y = <span style="color: #2aa198;">"parent_key:</span>
 <span style="color: #2aa198;">  key: value</span>
 <span style="color: #2aa198;">  key2: value2</span>
 <span style="color: #2aa198;">"</span>
-<span style="color: #b58900;">YAML</span>.load(y)
+<span style="color: #b58900;">YAML</span>.load<span style="color: #2aa198;">(</span>y<span style="color: #2aa198;">)</span>
 </pre>
 </div>
 
@@ -27,11 +27,11 @@ Now when we replace those spaces for non-breaking spaces:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-ruby"><span style="color: #839496; font-weight: bold;">require</span> <span style="color: #2aa198;">'yaml'</span>
+<pre class="src src-ruby"><span style="color: #657b83; font-weight: bold;">require</span> <span style="color: #2aa198;">'yaml'</span>
 y = <span style="color: #2aa198;">"parent_key:</span>
 <span style="color: #2aa198;">key: value</span>
 <span style="color: #2aa198;">key2: value2</span>
 <span style="color: #2aa198;">"</span>
-<span style="color: #b58900;">YAML</span>.load(y)
+<span style="color: #b58900;">YAML</span>.load<span style="color: #2aa198;">(</span>y<span style="color: #2aa198;">)</span>
 </pre>
 </div>
