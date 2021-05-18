@@ -9,7 +9,7 @@ GEM
       deep_merge (= 1.0.0)
     deep_merge (1.0.0)
     dotenv (1.0.2)
-    ffi (1.9.18)
+    ffi (1.15.0)
     forwardable-extended (2.6.0)
     jekyll (3.6.0)
       addressable (~> 2.4)
