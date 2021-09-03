@@ -3,7 +3,7 @@ GEM
   specs:
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
-    aws-eventstream (1.1.1)
+    aws-eventstream (1.2.0)
     aws-sdk (2.11.632)
       aws-sdk-resources (= 2.11.632)
     aws-sdk-core (2.11.632)
@@ -11,7 +11,7 @@ GEM
       jmespath (~> 1.0)
     aws-sdk-resources (2.11.632)
       aws-sdk-core (= 2.11.632)
-    aws-sigv4 (1.2.3)
+    aws-sigv4 (1.4.0)
       aws-eventstream (~> 1, >= 1.0.2)
     colorator (1.1.0)
     colored (1.2)
@@ -91,4 +91,4 @@ DEPENDENCIES
   s3_website
 
 BUNDLED WITH
-   1.10.4
+   1.17.2
